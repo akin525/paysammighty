@@ -10,18 +10,26 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
+        <!-- Favicon icon -->
+        <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+        <link href="{{asset('user/css/style.css')}}" rel="stylesheet">
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+{{--        @vite(['resources/css/app.css', 'resources/js/app.js'])--}}
 
         <!-- Styles -->
-        @livewireStyles
+{{--        @livewireStyles--}}
     </head>
-    <body>
-        <div class="font-sans text-gray-900 antialiased">
+    <body class="h-100">
+    <div class="login-account">
+        <div class="row h-100">
             {{ $slot }}
         </div>
+    </div>
 
         @livewireScripts
+    <script src="{{asset('user/vendor/global/global.min.js')}}"></script>
+    <script src="{{asset('user/vendor/bootstrap-select/dist/js/bootstrap-select.min.js')}}"></script>
+    <script src="{{asset('user/js/custom.min.js')}}"></script>
+    <script src="{{asset('user/js/deznav-init.js')}}"></script>
     </body>
 </html>

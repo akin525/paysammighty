@@ -8,6 +8,7 @@ use App\Models\deposit;
 use App\Models\setting;
 use App\Models\User;
 use App\Models\VirtualAccounts;
+use App\Models\WalletTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -50,6 +51,13 @@ class WehookController
                     'iwallet' => $pt,
                     'fwallet' => $gt,
                 ]);
+                $wt=WalletTransaction::create([
+                    'username' => $user->username,
+                    'refid' =>$refid,
+                    'amount' => $amount,
+                    'bb' => $pt,
+                    'bf' => $gt,
+                ]);
                 $charp = charp::create([
                     'username' => $user->username,
                     'payment_ref' => $reference,
@@ -59,7 +67,6 @@ class WehookController
                 ]);
                 $user->wallet = $gt;
                 $user->save();
-
 
                 $admin= 'info@sammighty.com.ng';
 

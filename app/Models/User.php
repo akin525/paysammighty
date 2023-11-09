@@ -29,6 +29,7 @@ class User extends Authenticatable
         'business_name',
         'account_prefix',
         'email',
+        'wallet',
         'password',
     ];
 
