@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\bill_payment;
 use App\Models\bo;
-use App\Models\deposit;
+use App\Models\Deposit;
 use App\Models\VirtualAccounts;
 use App\Models\WalletTransaction;
 use Illuminate\Http\Request;
