@@ -195,12 +195,12 @@
                         <span class="nav-text">Settlements</span>
                     </a>
                 </li>
-                <li><a  href="#">
+                <li><a  href="{{route('credentials')}}">
                         <i class="fa fa-user-alt"></i>
                         <span class="nav-text">Api Credentials</span>
                     </a>
                 </li>
-                <li><a  href="#">
+                <li><a  href="{{route('allvirtual')}}">
                         <i class="fa fa-user-check"></i>
                         <span class="nav-text">Virtual Accounts</span>
                     </a>

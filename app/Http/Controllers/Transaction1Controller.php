@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\bill_payment;
 use App\Models\bo;
 use App\Models\deposit;
+use App\Models\VirtualAccounts;
 use App\Models\WalletTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -48,5 +49,15 @@ class Transaction1Controller extends Controller
 
         return view('transaction', compact('alldepo'));
     }
+
+    function myvirtualaccount()
+    {
+        $virtual=VirtualAccounts::where('username', Auth::user()->name)->orderBy('id', 'desc')->get();
+
+        return view('virtual', compact('virtual'));
+    }
+
+
+
 
 }

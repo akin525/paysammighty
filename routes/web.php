@@ -38,6 +38,11 @@ Route::middleware([
 
     Route::post('update', [BusniessController::class, 'updateprofile'])->name('update');
     Route::post('updates', [BusniessController::class, 'updatebusiness'])->name('updates');
+
+    Route::get('allvirtual', [Transaction1Controller::class, 'myvirtualaccount'])->name('allvirtual');
+    Route::get('credentials', [BusniessController::class, 'apicredential'])->name('credentials');
+
+    Route::post('updateweb', [BusniessController::class, 'updatewebhook'])->name('updateweb');
 });
 Route::get('/logout', function(){
     Auth::logout();

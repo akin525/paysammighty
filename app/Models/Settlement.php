@@ -8,11 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class VirtualAccounts extends Authenticatable
+class Settlement extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $table = 'virtual_acct';
+    protected $table = 'settlements';
     protected $guarded=[];
 
 

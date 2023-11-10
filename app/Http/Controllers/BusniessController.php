@@ -59,4 +59,25 @@ class BusniessController
             'message' => "Business profile update Successfully",
         ]);
     }
+    function apicredential()
+    {
+        $business=Business::where('username', Auth::user()->username)->first();
+        return view('credentials', compact('business'));
+    }
+    function updatewebhook(Request $request)
+    {
+        $request->validate([
+            'webhook'=>['required', 'url'],
+        ]);
+
+        $user=User::where('username', Auth::user()->username)->first();
+        $user->webhook=$request->webhook;
+        $user->save();
+
+        return response()->json([
+            'status' => 1,
+            'message' => "Webhook Update Successfully",
+        ]);
+    }
+
 }
