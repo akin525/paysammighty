@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Business;
+use App\Models\Settlement;
 use App\Models\User;
+use Hamcrest\Core\Set;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -78,6 +80,12 @@ class BusniessController
             'status' => 1,
             'message' => "Webhook Update Successfully",
         ]);
+    }
+    function allsettlement()
+    {
+        $settle=Settlement::where('username', Auth::user()->username)->first();
+
+        return view('settlement', compact('settle'));
     }
 
 }
