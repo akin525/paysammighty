@@ -2,6 +2,7 @@
 @section('tittle','MyWallet')
 @section('page', 'Wallet')
 @section('content')
+
 <div class="row">
     <div class="col-xl-6">
         <div class="card text-white bg-success">
@@ -92,4 +93,5 @@
         </div>
 
     </div>
+
 @endsection

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AirtimeController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BillController;
 use App\Http\Controllers\BusniessController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Transaction1Controller;
@@ -43,6 +46,15 @@ Route::middleware([
     Route::get('credentials', [BusniessController::class, 'apicredential'])->name('credentials');
 
     Route::post('updateweb', [BusniessController::class, 'updatewebhook'])->name('updateweb');
+
+    Route::get('airtime', [AirtimeController::class, 'loadindex'])->name('airtime');
+    Route::get('redata/{selectedValue}', [AuthController::class, 'redata'])->name('redata');
+    Route::post('bill', [BillController::class, 'bill'])->name('bill');
+    Route::get('select', [AuthController::class, 'select'])->name('select');
+    Route::get('allbill', [BillController::class, 'allbils'])->name('allbill');
+    Route::post('buyairtime', [AirtimeController::class, 'airtime'])->name('buyairtime');
+
+
 });
 Route::get('/logout', function(){
     Auth::logout();

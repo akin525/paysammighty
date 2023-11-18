@@ -210,6 +210,25 @@
                         <span class="nav-text">Make Transfer</span>
                     </a>
                 </li>
+                <li><a  href="{{route('airtime')}}">
+                        <i class="fa fa-network-wired"></i>
+                        <span class="nav-text">Airtime</span>
+                        <span class="badge badge-xs style-1 badge-success">NEW</span>
+
+                    </a>
+                </li>
+                <li><a  href="{{route('select')}}">
+                        <i class="fa fa-book"></i>
+                        <span class="nav-text">Data</span>
+                        <span class="badge badge-xs style-1 badge-danger">HOT</span>
+
+                    </a>
+                </li>
+                <li><a  href="{{route('allbill')}}">
+                        <i class="fa fa-money-check"></i>
+                        <span class="nav-text">All Bills</span>
+                    </a>
+                </li>
             </ul>
 
             <div class="copyright">
