@@ -16,7 +16,8 @@ class DashboardController
         $deposit=Deposit::where('username', Auth::user()->username)->orderBy('id', 'desc')->paginate(25);
         $todaydepo=Deposit::where([['created_at', 'LIKE', '%' . $today . '%']])->sum('amount');
 
-        return view('dashboard', compact('deposit', 'todaydepo'));
+        $bus=Business::where('username', Auth::user()->username)->first();
+        return view('dashboard', compact('deposit', 'todaydepo', 'bus'));
 
 
     }

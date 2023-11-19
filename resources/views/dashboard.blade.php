@@ -137,6 +137,43 @@
             </div>
         </div>
     </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="alert alert-info">
+                    @if ($bus->account_number==1 && $bus->account_name==1)
+                        <a href='#' class='text-white'>Click this section to get your permament Virtual Bank Account (Transfer money to the account no to get your Sammighty Wallet funded instantly!)</a>
+                    @else
+                        <div class="row column1">
+                            <div class="col-md-7 col-lg-6">
+                                <div class="card-body">
+                                    <ul style="list-style-type:square">
+                                        <li class="text-white"><h3 class="text-white"><b>Personal Vertual Account Number</b></h3></li>
+                                        <br>
+                                        <li class='text-white'><h5 class="text-white"><b>{{$bus->account_name}}</b></h5></li>
+                                        <li class='text-white'><h5 class="text-white"><b>Account No:{{$bus->account_number}}</b></h5></li>
+                                            <li class='text-white'><h5 class="text-white"><b>Bank:{{$bus->bank}}</b></h5></li>
+                                        <br>
+                                        <li class='text-white'><h5 class="text-white"><b>Note: All virtual funding are being set automatically</b></h5></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-7 col-lg-6">
+                                <div>
+                                    <center>
+                                        <a href="#">
+                                            <img width="200" src="{{asset("user/wall.png")}}"  alt="">
+                                        </a>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
+            </div>
+        </div>
+    </div>
+
     <script>
         fetch('/transaction')
             .then(response => response.json())
