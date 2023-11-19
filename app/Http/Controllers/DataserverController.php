@@ -103,10 +103,10 @@ class DataserverController extends Controller
                 'network' =>$request->plan_id,
                 'mobileno' => $request->number,
                 'dataplan' => $request->code,
-                'client_reference' => $request->id, //update this on your script to receive webhook notifications
+                'client_reference' => $request->refid, //update this on your script to receive webhook notifications
             ),
             CURLOPT_HTTPHEADER => array(
-                "AuthorizationToken: 5ac0a75517a095c4cdb52fd82b8ee037", //replace this with your authorization_token
+                "AuthorizationToken:  fed2524ba6cae4b443f65f60a30a8731", //replace this with your authorization_token
                 "cache-control: no-cache"
             ),
         ));

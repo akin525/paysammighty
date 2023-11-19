@@ -9,6 +9,7 @@ use App\Models\bo;
 use App\Models\data;
 use App\Models\easy;
 use App\Models\interest;
+use App\Models\profit;
 use App\Models\server;
 use App\Models\wallet;
 use Illuminate\Http\Request;
@@ -109,52 +110,96 @@ class BillController
                         $mcd = server::where('status', "1")->first();
                         if ($mcd->name == "easyaccess") {
                             $response = $daterserver->easyaccess($object);
+
+                            $data = json_decode($response, true);
+                            $success = "";
+                            if ($data['success'] == 'true') {
+                                $success = 1;
+
+                                $ms = $data['message'];
+                                $po = $bt->ramount - $bt->amount;
+
+                                $profit = profit::create([
+                                    'username' => $user->username,
+                                    'plan' => $bt->network . '|' . $bt->plan,
+                                    'amount' => $po,
+                                ]);
+                                $update=bill_payment::where('id', $bo->id)->update([
+                                    'server_response'=>$response,
+                                    'status'=>1,
+                                ]);
+                                $name = $bt->plan;
+                                $am = "$bt->plan  was successful delivered to";
+                                $ph = $request->number;
+
+
+
+
+                                return response()->json([
+                                    'message' => $am, 'name' => $name, 'ph' => $ph, 'success' => $success,
+                                    'user' => $user
+                                ], 200);
+                            } elseif ($data['success'] == 'false') {
+                                $success = 0;
+                                $zo = $user->wallet + $request->amount;
+                                $user->wallet = $zo;
+                                $user->save();
+
+                                $name = $bt->plan;
+                                $am = "NGN $request->amount Was Refunded To Your Wallet";
+                                $ph = ", Transaction fail";
+                                return response()->json([
+                                    'status' => 'fail',
+                                    'message' => $am.' ' .$ph,
+                                ]);
+                            }
                         }else if ($mcd->name == "mcd") {
                             $response = $daterserver->mcdbill($object);
+                            $data = json_decode($response, true);
+                            if (isset($data['result'])){
+                                $success=$data['result'];
+                            }else{
+                                $success=$data["success"];
+                            }
+                            if ($success==1) {
+                                $update=bill_payment::where('id', $bo->id)->update([
+                                    'server_response'=>$response,
+                                    'status'=>1,
+                                ]);
+                                $name = $bt->plan;
+                                $am = "$bt->plan  was successful delivered to";
+                                $ph = $request->number;
+
+
+
+
+                                return response()->json([
+                                    'message' => $am, 'name' => $name, 'ph' => $ph, 'success' => $success,
+                                    'user' => $user
+                                ], 200);
+
+                            }elseif ($success==0){
+                                $zo=$user->wallet+$request->amount;
+                                $user->wallet = $zo;
+                                $user->save();
+
+                                $update=bill_payment::where('id', $bo->id)->update([
+                                    'server_response'=>$response,
+                                    'status'=>0,
+                                ]);
+                                $name= $bt->plan;
+                                $am= "NGN $request->amount Was Refunded To Your Wallet";
+                                $ph=", Transaction fail";
+                                return response()->json([
+                                    'message' => $am, 'name' => $name, 'ph'=>$ph, 'success'=>$success,
+                                    'user' => $user
+                                ], 200);
+
+
+                            }
                         }
 
-                        $data = json_decode($response, true);
-                        if (isset($data['result'])){
-                            $success=$data['result'];
-                        }else{
-                            $success=$data["success"];
-                        }
-                        if ($success==1) {
-                            $update=bill_payment::where('id', $bo->id)->update([
-                                'server_response'=>$response,
-                                'status'=>1,
-                            ]);
-                            $name = $bt->plan;
-                            $am = "$bt->plan  was successful delivered to";
-                            $ph = $request->number;
 
-
-
-
-                            return response()->json([
-                                'message' => $am, 'name' => $name, 'ph' => $ph, 'success' => $success,
-                                'user' => $user
-                            ], 200);
-
-                        }elseif ($success==0){
-                            $zo=$user->wallet+$request->amount;
-                            $user->wallet = $zo;
-                            $user->save();
-
-                            $update=bill_payment::where('id', $bo->id)->update([
-                                'server_response'=>$response,
-                                'status'=>0,
-                            ]);
-                            $name= $bt->plan;
-                            $am= "NGN $request->amount Was Refunded To Your Wallet";
-                            $ph=", Transaction fail";
-                            return response()->json([
-                                'message' => $am, 'name' => $name, 'ph'=>$ph, 'success'=>$success,
-                                'user' => $user
-                            ], 200);
-
-
-                        }
 
             }
         }else {
