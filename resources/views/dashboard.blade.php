@@ -142,7 +142,7 @@
         <div class="card-body">
             <div class="alert alert-success">
                     @if ($bus->account_number==1 && $bus->account_name==1)
-                        <a href='#' class='bg-success'>Click this section to get your permament Virtual Bank Account (Transfer money to the account no to get your Sammighty Wallet funded instantly!)</a>
+                        <a href='#' class='badge badge-danger'>Click this section to get your payment Virtual Bank Account </a>
                     @else
                         <div class="row column1">
                             <div class="col-md-7 col-lg-6">
