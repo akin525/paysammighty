@@ -26,7 +26,6 @@ class BillController
     {
         $validator = Validator::make($request->all(), [
             'code' => 'required',
-            'amount' => 'required',
             'number' => 'required',
             'refid' => 'required',
             'selling_amount'=>'required',
@@ -38,10 +37,12 @@ class BillController
         }
         $apikey = $request->header('apikey');
         $user = User::where('apikey',$apikey)->first();
+        $bt = easy::where("plan_id", $request->code)->first();
+
         if ($user) {
 
-            if ($user->wallet< $request->amount) {
-                $mg = "You Cant Make Purchase Above " . "NGN" . $request->amount . " from your wallet. Your wallet balance is NGN $user->waller. Please Fund Wallet And Retry or Pay Online Using Our Alternative Payment Methods.";
+            if ($user->wallet< $bt->ramount) {
+                $mg = "You Cant Make Purchase Above " . "NGN" . $bt->ramount . " from your wallet. Your wallet balance is NGN $user->waller. Please Fund Wallet And Retry or Pay Online Using Our Alternative Payment Methods.";
 
                 return response()->json([
                     'message' => $mg,
@@ -50,7 +51,7 @@ class BillController
                 ], 200);
 
             }
-            if ($request->amount < 0) {
+            if ($bt->ramount < 0) {
 
                 $mg = "error transaction";
                 return response()->json([
@@ -70,7 +71,6 @@ class BillController
                 ], 200);
 
             } else {
-                $bt = easy::where("plan_id", $request->code)->first();
                 if (!isset($bt)) {
                     return response()->json([
                         'message' => "invalid code, check and try again later",
@@ -78,7 +78,7 @@ class BillController
                         'success' => 0
                     ], 200);
                 }
-                $gt = $user->wallet - $request->amount;
+                $gt = $user->wallet - $request->selling_amount;
 
 
                 $bon=$bt->ramount -$request->selling_amount;

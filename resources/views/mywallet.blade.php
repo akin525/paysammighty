@@ -13,9 +13,10 @@
                 <h2 class="text-white">₦{{number_format(intval(Auth::user()->wallet *1),2)}}</h2>
                 <br>
                 <br>
-                <h5 class="card-title text-white">Pending Balance</h5>
+                <h5 class="card-title text-white">Bonus</h5>
                 <hr>
-                <h2 class="text-white">₦{{number_format(intval($pendingbalance *1),2)}}</h2>
+                <h2 class="text-white">₦{{number_format(intval(Auth::user()->bonus *1),2)}}</h2>
+                <a href="#" class="badge badge-danger">Withdraw Bonus</a>
             </div>
 
         </div>
