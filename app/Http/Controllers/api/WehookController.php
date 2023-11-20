@@ -44,7 +44,7 @@ class WehookController
                 $gt = $amount1 + $pt;
                 $reference=$refid;
 
-                $deposit['narration']=$narration;
+//                $deposit['narration']=$narration;
                 $deposit = Deposit::create([
                     'username' => $user->username,
                     'refid' =>$refid,
@@ -59,6 +59,8 @@ class WehookController
                     'bb' => $pt,
                     'bf' => $gt,
                 ]);
+                $user->wallet = $gt;
+                $user->save();
                 $charp = charp::create([
                     'username' => $user->username,
                     'payment_ref' => $reference,
@@ -66,8 +68,7 @@ class WehookController
                     'iwallet' => $pt,
                     'fwallet' => $gt,
                 ]);
-                $user->wallet = $gt;
-                $user->save();
+
 
                 $admin= 'info@sammighty.com.ng';
 
