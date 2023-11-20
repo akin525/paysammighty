@@ -6,6 +6,7 @@ use App\Http\Controllers\BillController;
 use App\Http\Controllers\BusniessController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Transaction1Controller;
+use App\Http\Controllers\VertualController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -53,6 +54,8 @@ Route::middleware([
     Route::get('select', [AuthController::class, 'select'])->name('select');
     Route::get('allbill', [BillController::class, 'allbils'])->name('allbill');
     Route::post('buyairtime', [AirtimeController::class, 'airtime'])->name('buyairtime');
+
+    Route::get('virtual', [VertualController::class, 'vertual'])->name('virtual');
 
 
 });

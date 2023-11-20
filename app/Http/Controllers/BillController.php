@@ -250,7 +250,6 @@ class BillController extends Controller
                         return response()->json([
                             'status' => 'fail',
                             'message' =>$response,
-//                            'data' => $responseData // If you want to include additional data
                         ]);
                     }
                 }
