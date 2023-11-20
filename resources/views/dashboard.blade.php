@@ -142,7 +142,7 @@
         <div class="card-body">
             <div class="alert alert-success">
                     @if ($bus->account_number==1 && $bus->account_name==1)
-                        <a href='#' class='badge badge-danger' id="virtual">Click this section to get your payment Virtual Bank Account </a>
+                        <button class='badge badge-danger' id="virtual">Click this section to get your payment Virtual Bank Account </button>
                     @else
                         <div class="row column1">
                             <div class="col-md-7 col-lg-6">
