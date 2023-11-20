@@ -35,8 +35,8 @@
                         </div>
                         <span class="fs-20 text-black font-w500 me-3 mb-3">**** **** **** 1234</span>
                     </div>
-                    <div class="">
-                        <div class="">
+                    <div class="card">
+                        <div class="card-body">
                             <div class="bg-success">
                                 @if ($bus->account_number==1 && $bus->account_name==1)
                                     <button class='badge badge-danger' id="virtualButton">Click this section to get your payment Virtual Bank Account </button>
