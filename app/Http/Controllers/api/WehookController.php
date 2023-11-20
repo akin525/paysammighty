@@ -47,7 +47,7 @@ class WehookController
                 $deposit['narration']=$narration;
                 $deposit = Deposit::create([
                     'username' => $user->username,
-                    'payment_ref' =>$refid,
+                    'refid' =>$refid,
                     'amount' => $amount,
                     'iwallet' => $pt,
                     'fwallet' => $gt,
