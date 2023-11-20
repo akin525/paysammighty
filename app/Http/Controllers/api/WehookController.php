@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 
+use App\Models\Business;
 use App\Models\charp;
 use App\Models\deposit;
 use App\Models\setting;
@@ -15,6 +16,74 @@ use Illuminate\Support\Facades\Mail;
 class WehookController
 {
 
+    function personalsendwebhook(Request $request)
+    {
+        if ($json = json_decode(file_get_contents("php://input"), true)) {
+            print_r($json['ref']);
+            $data = $json;
+
+        }
+        $refid=$data["reference"];
+        $amount=$data["amount"];
+        $account=$data['receiving_account'];
+        $narration=$data["sender_narration"];
+        $virtual = Business::where('account_number', $account)->first();
+        $user=User::where('username', $virtual->username)->first();
+        $pt=$user['wallet'];
+
+        if ($account== $virtual->account_number ) {
+            $depo = Deposit::where('payment_ref', $refid)->first();
+            if (isset($depo)) {
+                echo "payment refid the same";
+            }else {
+
+                $char = setting::first();
+                $amount1 = $amount - $char->charges;
+
+
+                $gt = $amount1 + $pt;
+                $reference=$refid;
+
+                $deposit['narration']=$narration;
+                $deposit = Deposit::create([
+                    'username' => $user->username,
+                    'payment_ref' =>$refid,
+                    'amount' => $amount,
+                    'iwallet' => $pt,
+                    'fwallet' => $gt,
+                ]);
+                $wt=WalletTransaction::create([
+                    'username' => $user->username,
+                    'refid' =>$refid,
+                    'amount' => $amount,
+                    'bb' => $pt,
+                    'bf' => $gt,
+                ]);
+                $charp = charp::create([
+                    'username' => $user->username,
+                    'payment_ref' => $reference,
+                    'amount' => $char->charges,
+                    'iwallet' => $pt,
+                    'fwallet' => $gt,
+                ]);
+                $user->wallet = $gt;
+                $user->save();
+
+                $admin= 'info@sammighty.com.ng';
+
+                $receiver= $user->email;
+
+
+                return $response;
+
+
+            }
+
+
+        }
+
+
+    }
     function sendwebhook(Request $request)
     {
         if ($json = json_decode(file_get_contents("php://input"), true)) {

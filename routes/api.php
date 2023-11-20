@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('paylony', [\App\Http\Controllers\api\WehookController::class, 'sendwebhook'])->name('paylony');
+Route::post('paylony', [\App\Http\Controllers\api\WehookController::class, 'personalsendwebhook'])->name('paylony');
 
 Route::group(['middleware'=> 'apikey'], function () {
 Route::post('createaccount', [\App\Http\Controllers\api\GenerateAccountController::class, 'generateaccount'])->name('createaccount');
