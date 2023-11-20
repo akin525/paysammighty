@@ -32,7 +32,7 @@ class WehookController
         $pt=$user['wallet'];
 
         if ($account== $virtual->account_number ) {
-            $depo = Deposit::where('payment_ref', $refid)->first();
+            $depo = Deposit::where('refid', $refid)->first();
             if (isset($depo)) {
                 echo "payment refid the same";
             }else {
