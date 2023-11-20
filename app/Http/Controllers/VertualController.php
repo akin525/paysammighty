@@ -47,7 +47,7 @@ class VertualController
         "address": "lagos nigeria",
         "gender": "Male",
         "email": "'.$input['email'].'",
-        "phone": "'.$input['phone'].'",
+        "phone": "'.$business['phone'].'",
         "dob": "1995-03-13",
         "provider": "providus"
 }',
