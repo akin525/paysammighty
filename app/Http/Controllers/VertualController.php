@@ -49,7 +49,7 @@ class VertualController
         "email": "'.$input['email'].'",
         "phone": "'.$business['phone'].'",
         "dob": "1995-03-13",
-        "provider": "providus"
+        "provider": "safehaven"
 }',
                 CURLOPT_HTTPHEADER => array(
                     'Content-Type: application/json',
