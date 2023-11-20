@@ -54,7 +54,7 @@ class VertualController
 }',
                 CURLOPT_HTTPHEADER => array(
                     'Content-Type: application/json',
-                    'Authorization: Bearer sk_live_eqlikh2e7rslsa5qz0xiik4dft5uzjmglnlmcxv'
+                    'Authorization: Bearer '.env('PAYLONY')
                 ),
             ));
 

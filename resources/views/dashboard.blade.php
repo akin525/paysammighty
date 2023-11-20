@@ -145,7 +145,60 @@
             <div class="alert alert-success">
                     @if ($bus->account_number==1 && $bus->account_name==1)
                         <button class='badge badge-danger' id="virtual">Click this section to get your payment Virtual Bank Account </button>
-                    @else
+
+                    <!-- Assuming you have a button with the id 'virtualButton' -->
+                    <button id="virtualButton">Click me</button>
+
+                    <script>
+                        $(document).ready(function() {
+                            $('#virtualButton').click(function() {
+                                // Show the loading spinner
+                                Swal.fire({
+                                    title: 'Processing',
+                                    text: 'Please wait...',
+                                    icon: 'info',
+                                    allowOutsideClick: false,
+                                    showConfirmButton: false
+                                });
+
+                                // Send the selected value to the '/getOptions' route
+                                $.ajax({
+                                    url: '{{ url('virtual') }}',
+                                    type: 'GET',
+                                    success: function(response) {
+                                        // Handle the successful response
+                                        if (response.status == '1') {
+                                            Swal.fire({
+                                                icon: 'success',
+                                                title: 'Success',
+                                                text: response.message
+                                            }).then(() => {
+                                                location.reload(); // Reload the page
+                                            });
+                                        } else {
+                                            Swal.fire({
+                                                icon: 'info',
+                                                title: 'Pending',
+                                                text: response.message
+                                            });
+                                            // Handle any other response status
+                                        }
+                                    },
+                                    error: function(xhr) {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Fail',
+                                            text: xhr.responseText
+                                        });
+                                        // Handle any errors
+                                        console.log(xhr.responseText);
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+
+                @else
                         <div class="row column1">
                             <div class="col-md-7 col-lg-6">
                                 <div class="card-body">
@@ -175,6 +228,55 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            $('#virtual').change(function() {
+                console.log('Button clicked'); // Add this line
+                // Show the loading spinner
+                Swal.fire({
+                    title: 'Processing',
+                    text: 'Please wait...',
+                    icon: 'info',
+                    allowOutsideClick: false,
+                    showConfirmButton: false
+                });
+                // Send the selected value to the '/getOptions' route
+                $.ajax({
+                    url: '{{ url('virtual') }}',
+                    type: 'GET',
+                    success: function(response) {
+                        // Handle the successful response
+                        if (response.status == '1') {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success',
+                                text: response.message
+                            }).then(() => {
+                                location.reload(); // Reload the page
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Pending',
+                                text: response.message
+                            });
+                            // Handle any other response status
+                        }
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'fail',
+                            text: xhr.responseText
+                        });
+                        // Handle any errors
+                        console.log(xhr.responseText);
+                    }
+                });
+            });
+        });
+
+    </script>
 
     <script>
         fetch('/transaction')
@@ -237,54 +339,5 @@
             });
     </script>
 
-    <script>
-        $(document).ready(function() {
-            $('#virtual').change(function() {
-                console.log('Button clicked'); // Add this line
-                // Show the loading spinner
-                Swal.fire({
-                    title: 'Processing',
-                    text: 'Please wait...',
-                    icon: 'info',
-                    allowOutsideClick: false,
-                    showConfirmButton: false
-                });
-                // Send the selected value to the '/getOptions' route
-                $.ajax({
-                    url: '{{ url('virtual') }}',
-                    type: 'GET',
-                    success: function(response) {
-                        // Handle the successful response
-                        if (response.status == '1') {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Success',
-                                text: response.message
-                            }).then(() => {
-                                location.reload(); // Reload the page
-                            });
-                        } else {
-                            Swal.fire({
-                                icon: 'info',
-                                title: 'Pending',
-                                text: response.message
-                            });
-                            // Handle any other response status
-                        }
-                    },
-                    error: function(xhr) {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'fail',
-                            text: xhr.responseText
-                        });
-                        // Handle any errors
-                        console.log(xhr.responseText);
-                    }
-                });
-            });
-        });
-
-    </script>
 
 @endsection
