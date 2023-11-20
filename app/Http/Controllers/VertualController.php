@@ -18,10 +18,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 class VertualController
 {
-    public function vertual(Request $request)
+    public function vertual()
     {
-        if (Auth::check()) {
-            $user = User::find($request->user()->id);
+            $user = User::where('username', Auth::user()->username)->first();
             $business=Business::where('username', Auth::user()->username)->first();
             if ($user->account_prefix== null ){
                 $msg="Kindly update your Business Profile before clicking generate virtual account";
@@ -82,6 +81,5 @@ class VertualController
             }
 
         }
-    }
 
 }
