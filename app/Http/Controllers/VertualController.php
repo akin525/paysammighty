@@ -22,13 +22,13 @@ class VertualController
     {
             $user = User::where('username', Auth::user()->username)->first();
             $business=Business::where('username', Auth::user()->username)->first();
-            if ($user->account_prefix== null ){
-                $msg="Kindly update your Business Profile before clicking generate virtual account";
-                return response()->json([
-                    'status' => 'success',
-                    'message' => $msg,
-                ]);
-            }
+//            if ($user->account_prefix== null ){
+//                $msg="Kindly update your Business Profile before clicking generate virtual account";
+//                return response()->json([
+//                    'status' => 'success',
+//                    'message' => $msg,
+//                ]);
+//            }
             $input=$user;
             $curl = curl_init();
 
@@ -72,12 +72,15 @@ class VertualController
                 $business->bank=$bank;
                 $business->save();
                 return response()->json([
-                    'status' => 'success',
+                    'status' => '1',
                     'message' => "Account Generated Successfully",
                 ]);
             }elseif ($data['success']==0){
 
-                return redirect('dashboard');
+                return response()->json([
+                    'status' => '0',
+                    'message' => $response,
+                ]);
             }
 
         }
