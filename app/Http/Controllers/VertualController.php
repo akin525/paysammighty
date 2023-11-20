@@ -9,6 +9,7 @@ use App\Models\charp;
 use App\Models\data;
 use App\Models\deposit;
 use App\Models\setting;
+use App\Models\VirtualAccounts;
 use App\Models\wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -71,6 +72,15 @@ class VertualController
                 $business->account_name = $account;
                 $business->bank=$bank;
                 $business->save();
+
+
+                $create = VirtualAccounts::create([
+                    'username' => $user->username,
+                    'account_number' => $number,
+                    'account_name' => $account,
+                    'bank' => $bank,
+                    'ref' => $ref,
+                ]);
                 return response()->json([
                     'status' => '1',
                     'message' => "Account Generated Successfully",
