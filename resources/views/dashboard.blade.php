@@ -202,7 +202,7 @@
                 @else
                         <div class="row column1">
                             <div class="col-md-7 col-lg-6">
-                                <div class="card-body">
+                                <div class="card-body alert alert-success">
                                     <ul style="list-style-type:square">
                                         <li class="text-white"><h3 class="text-white"><b>Personal Virtual Account Number</b></h3></li>
                                         <br>
