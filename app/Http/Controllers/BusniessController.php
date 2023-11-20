@@ -49,7 +49,7 @@ class BusniessController
             'phone'=>'required',
         ]);
 
-        $business=Business::where('username', Auth::user()->username)->fist();
+        $business=Business::where('username', Auth::user()->username)->first();
 
         $business->email=$request['email'];
         $business->cemail=$request['cemail'];
