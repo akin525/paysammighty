@@ -19,7 +19,7 @@ class WehookController
     function sendwebhook(Request $request)
     {
         if ($json = json_decode(file_get_contents("php://input"), true)) {
-            print_r($json['ref']);
+            print_r($json['reference']);
             $data = $json;
 
         }
