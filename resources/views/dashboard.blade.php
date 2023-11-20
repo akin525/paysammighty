@@ -140,8 +140,8 @@
         </div>
     </div>
 
-    <div class="card">
-        <div class="card-body">
+    <div class="">
+        <div class="">
             <div class="alert alert-success">
                     @if ($bus->account_number==1 && $bus->account_name==1)
                         <button class='badge badge-danger' id="virtualButton">Click this section to get your payment Virtual Bank Account </button>
@@ -202,7 +202,7 @@
                 @else
                         <div class="row column1">
                             <div class="col-md-7 col-lg-6">
-                                <div class="card-body alert alert-success">
+                                <div class="card-body">
                                     <ul style="list-style-type:square">
                                         <li class="text-white"><h3 class="text-white"><b>Personal Virtual Account Number</b></h3></li>
                                         <br>
