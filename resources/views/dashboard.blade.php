@@ -35,6 +35,96 @@
                         </div>
                         <span class="fs-20 text-black font-w500 me-3 mb-3">**** **** **** 1234</span>
                     </div>
+                    <div class="">
+                        <div class="">
+                            <div class="alert alert-success">
+                                @if ($bus->account_number==1 && $bus->account_name==1)
+                                    <button class='badge badge-danger' id="virtualButton">Click this section to get your payment Virtual Bank Account </button>
+
+                                    <!-- Assuming you have a button with the id 'virtualButton' -->
+                                    {{--                    <button id="virtualButton">Click me</button>--}}
+
+                                    <script>
+                                        $(document).ready(function() {
+                                            $('#virtualButton').click(function() {
+                                                // Show the loading spinner
+                                                Swal.fire({
+                                                    title: 'Processing',
+                                                    text: 'Please wait...',
+                                                    icon: 'info',
+                                                    allowOutsideClick: false,
+                                                    showConfirmButton: false
+                                                });
+
+                                                // Send the selected value to the '/getOptions' route
+                                                $.ajax({
+                                                    url: '{{ url('virtual') }}',
+                                                    type: 'GET',
+                                                    success: function(response) {
+                                                        // Handle the successful response
+                                                        if (response.status == '1') {
+                                                            Swal.fire({
+                                                                icon: 'success',
+                                                                title: 'Success',
+                                                                text: response.message
+                                                            }).then(() => {
+                                                                location.reload(); // Reload the page
+                                                            });
+                                                        } else {
+                                                            Swal.fire({
+                                                                icon: 'info',
+                                                                title: 'Pending',
+                                                                text: response.message
+                                                            });
+                                                            // Handle any other response status
+                                                        }
+                                                    },
+                                                    error: function(xhr) {
+                                                        Swal.fire({
+                                                            icon: 'error',
+                                                            title: 'Fail',
+                                                            text: xhr.responseText
+                                                        });
+                                                        // Handle any errors
+                                                        console.log(xhr.responseText);
+                                                        console.log(xhr);
+                                                    }
+                                                });
+                                            });
+                                        });
+                                    </script>
+
+                                @else
+                                    <div class="row column1">
+                                        <div class="col-md-7 col-lg-6">
+                                            <div class="card-body">
+                                                <ul style="list-style-type:square">
+                                                    <li class="text-white"><h3 class="text-white"><b>Personal Virtual Account Number</b></h3></li>
+                                                    <br>
+                                                    <li class='text-white'><h5 class="text-white"><b>{{$bus->account_name}}</b></h5></li>
+                                                    <li class='text-white'><h5 class="text-white"><b>Account No:{{$bus->account_number}}</b></h5></li>
+                                                    <li class='text-white'><h5 class="text-white"><b>Bank:{{$bus->bank}}</b></h5></li>
+                                                    <br>
+                                                    <li class='text-white'><h5 class="text-white"><b>Note: All virtual funding are being set automatically</b></h5></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7 col-lg-6">
+                                            <div>
+                                                <center>
+                                                    <a href="#">
+                                                        <img width="200" src="{{asset("user/wall.png")}}"  alt="">
+                                                    </a>
+                                                </center>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="card-body">
                         <div class="progress mb-4" style="height:18px;">
                             <div class="progress-bar bg-inverse progress-animated" style="width: 40%; height:18px;" role="progressbar">
@@ -138,95 +228,6 @@
                 </div>
             </div>
 
-            <div class="">
-                <div class="">
-                    <div class="alert alert-success">
-                        @if ($bus->account_number==1 && $bus->account_name==1)
-                            <button class='badge badge-danger' id="virtualButton">Click this section to get your payment Virtual Bank Account </button>
-
-                            <!-- Assuming you have a button with the id 'virtualButton' -->
-                            {{--                    <button id="virtualButton">Click me</button>--}}
-
-                            <script>
-                                $(document).ready(function() {
-                                    $('#virtualButton').click(function() {
-                                        // Show the loading spinner
-                                        Swal.fire({
-                                            title: 'Processing',
-                                            text: 'Please wait...',
-                                            icon: 'info',
-                                            allowOutsideClick: false,
-                                            showConfirmButton: false
-                                        });
-
-                                        // Send the selected value to the '/getOptions' route
-                                        $.ajax({
-                                            url: '{{ url('virtual') }}',
-                                            type: 'GET',
-                                            success: function(response) {
-                                                // Handle the successful response
-                                                if (response.status == '1') {
-                                                    Swal.fire({
-                                                        icon: 'success',
-                                                        title: 'Success',
-                                                        text: response.message
-                                                    }).then(() => {
-                                                        location.reload(); // Reload the page
-                                                    });
-                                                } else {
-                                                    Swal.fire({
-                                                        icon: 'info',
-                                                        title: 'Pending',
-                                                        text: response.message
-                                                    });
-                                                    // Handle any other response status
-                                                }
-                                            },
-                                            error: function(xhr) {
-                                                Swal.fire({
-                                                    icon: 'error',
-                                                    title: 'Fail',
-                                                    text: xhr.responseText
-                                                });
-                                                // Handle any errors
-                                                console.log(xhr.responseText);
-                                                console.log(xhr);
-                                            }
-                                        });
-                                    });
-                                });
-                            </script>
-
-                        @else
-                            <div class="row column1">
-                                <div class="col-md-7 col-lg-6">
-                                    <div class="card-body">
-                                        <ul style="list-style-type:square">
-                                            <li class="text-white"><h3 class="text-white"><b>Personal Virtual Account Number</b></h3></li>
-                                            <br>
-                                            <li class='text-white'><h5 class="text-white"><b>{{$bus->account_name}}</b></h5></li>
-                                            <li class='text-white'><h5 class="text-white"><b>Account No:{{$bus->account_number}}</b></h5></li>
-                                            <li class='text-white'><h5 class="text-white"><b>Bank:{{$bus->bank}}</b></h5></li>
-                                            <br>
-                                            <li class='text-white'><h5 class="text-white"><b>Note: All virtual funding are being set automatically</b></h5></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-md-7 col-lg-6">
-                                    <div>
-                                        <center>
-                                            <a href="#">
-                                                <img width="200" src="{{asset("user/wall.png")}}"  alt="">
-                                            </a>
-                                        </center>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-
-                    </div>
-                </div>
-            </div>
 
         </div>
     </div>
