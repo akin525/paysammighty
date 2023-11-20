@@ -238,6 +238,7 @@
     <script>
         $(document).ready(function() {
             $('#virtual').change(function() {
+                console.log('Button clicked'); // Add this line
                 // Show the loading spinner
                 Swal.fire({
                     title: 'Processing',
