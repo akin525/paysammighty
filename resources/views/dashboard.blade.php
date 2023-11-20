@@ -144,10 +144,10 @@
         <div class="card-body">
             <div class="alert alert-success">
                     @if ($bus->account_number==1 && $bus->account_name==1)
-                        <button class='badge badge-danger' id="virtual">Click this section to get your payment Virtual Bank Account </button>
+                        <button class='badge badge-danger' id="virtualButton">Click this section to get your payment Virtual Bank Account </button>
 
                     <!-- Assuming you have a button with the id 'virtualButton' -->
-                    <button id="virtualButton">Click me</button>
+{{--                    <button id="virtualButton">Click me</button>--}}
 
                     <script>
                         $(document).ready(function() {
@@ -192,6 +192,7 @@
                                         });
                                         // Handle any errors
                                         console.log(xhr.responseText);
+                                        console.log(xhr);
                                     }
                                 });
                             });
