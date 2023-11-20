@@ -5,7 +5,7 @@ namespace App\Http\Controllers\api;
 
 use App\Models\Business;
 use App\Models\charp;
-use App\Models\deposit;
+use App\Models\Deposit;
 use App\Models\setting;
 use App\Models\User;
 use App\Models\VirtualAccounts;
