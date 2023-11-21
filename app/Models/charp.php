@@ -4,17 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class charp extends Model
 {
+    use HasApiTokens, HasFactory, Notifiable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     use HasFactory;
-    protected $fillable = [
-        'status',
-        'username',
-        'payment_ref',
-        'amount',
-        'iwallet',
-        'fwallet',
-        'description',
-    ];
+
+    protected $table = 'charges';
+    protected $guarded=[];
 }
