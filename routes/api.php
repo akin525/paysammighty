@@ -22,6 +22,6 @@ Route::post('paylony', [\App\Http\Controllers\api\WehookController::class, 'send
 Route::group(['middleware'=> 'apikey'], function () {
 Route::post('createaccount', [\App\Http\Controllers\api\GenerateAccountController::class, 'generateaccount'])->name('createaccount');
 Route::get('allvirtual', [\App\Http\Controllers\api\FetchVirtualAccountController::class, 'getallmyaccount'])->name('allvirtual');
-Route::post('data', [\App\Http\Controllers\Api\BillController::class, 'data'])->name('data');
-Route::post('airtime', [\App\Http\Controllers\Api\AirController::class, 'airtime'])->name('airtime');
+Route::post('data', [\App\Http\Controllers\api\BillController::class, 'data'])->name('data');
+Route::post('airtime', [\App\Http\Controllers\api\AirController::class, 'airtime'])->name('airtime');
 });
