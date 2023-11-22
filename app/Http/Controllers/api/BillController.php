@@ -111,10 +111,10 @@ class BillController
                         $mcd = server::where('status', "1")->first();
                         if ($mcd->name == "easyaccess") {
                             $response = $daterserver->easyaccess($object);
-                            return response()->json([
-                                'status' => 'success',
-                                'message' => $response,
-                            ]);
+//                            return response()->json([
+//                                'status' => 'success',
+//                                'message' => $response,
+//                            ]);
                             $data = json_decode($response, true);
                             $success = "";
                             if ($data['success'] == 'true') {
@@ -143,7 +143,7 @@ class BillController
                                     'message' => $am, 'name' => $name, 'ph' => $ph, 'success' => $success,
                                     'user' => $user
                                 ], 200);
-                            } elseif ($data['success'] == 'false') {
+                            } else {
                                 $success = 0;
                                 $zo = $user->wallet + $request->amount;
                                 $user->wallet = $zo;
