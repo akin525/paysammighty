@@ -105,6 +105,7 @@ class BillController
 
                         $object = json_decode($bt);
                         $object->number = $request->number;
+                        $object->refid = $request->refid;
                         $json = json_encode($object);
 
                         $mcd = server::where('status', "1")->first();
