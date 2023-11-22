@@ -37,7 +37,7 @@ class BillController
         }
         $apikey = $request->header('apikey');
         $user = User::where('apikey',$apikey)->first();
-        $bt = easy::where("plan_id", $request->code)->first();
+        $bt = easy::where("cat_id", $request->code)->first();
 
         if ($user) {
 
