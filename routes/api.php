@@ -24,4 +24,8 @@ Route::post('createaccount', [\App\Http\Controllers\api\GenerateAccountControlle
 Route::get('allvirtual', [\App\Http\Controllers\api\FetchVirtualAccountController::class, 'getallmyaccount'])->name('allvirtual');
 Route::post('data', [\App\Http\Controllers\api\BillController::class, 'data'])->name('data');
 Route::post('airtime', [\App\Http\Controllers\api\AirController::class, 'airtime'])->name('airtime');
+Route::post('verifytv', [\App\Http\Controllers\api\AlltvController::class, 'verifytv'])->name('verifytv');
+Route::post('paytv', [\App\Http\Controllers\api\AlltvController::class, 'paytv'])->name('paytv');
+
+
 });
