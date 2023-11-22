@@ -153,7 +153,7 @@ class BillController
                                 $am = "NGN $request->amount Was Refunded To Your Wallet";
                                 $ph = ", Transaction fail";
                                 return response()->json([
-                                    'status' => 'fail',
+                                    'success' => 0,
                                     'message' => $am.' ' .$ph,
                                 ]);
                             }
