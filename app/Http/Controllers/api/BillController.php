@@ -96,7 +96,7 @@ class BillController
                     'status' => 0,
                     'number' => $request->number,
                     'transactionid' =>'api'. $request->refid,
-                    'discountamount' => $bonus,
+                    'discountamount' => $bon,
                     'paymentmethod' => 'wallet',
                     'balance' => $gt,
                 ]);
