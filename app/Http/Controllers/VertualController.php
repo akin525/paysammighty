@@ -53,7 +53,7 @@ class VertualController
         "provider": "gtb"
 }',
                 CURLOPT_HTTPHEADER => array(
-                    'Content-Type: application/json',
+                    '1Content-Type: application/json',
                     'Authorization: Bearer '.env('PAYLONY')
                 ),
             ));
@@ -77,7 +77,7 @@ class VertualController
                 $create = VirtualAccounts::create([
                     'username' => $user->username,
                     'account_number' => $number,
-                    'account_name' => $account,
+                    'customer' => $account,
                     'bank' => $bank,
                     'ref' => $ref,
                 ]);
