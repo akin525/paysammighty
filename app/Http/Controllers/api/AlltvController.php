@@ -41,7 +41,7 @@ class AlltvController
             ], 403);
         }
 //        return $request;
-        $ve=data::where('plan_id', $request->productid)->first();
+        $ve=easy::where('plan_id', $request->productid)->first();
 //        return $request;
 
         $curl = curl_init();
