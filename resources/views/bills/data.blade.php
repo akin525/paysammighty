@@ -187,7 +187,7 @@
 
                             // Append the received options to the second select box
                             $.each(response, function(index, option) {
-                                secondSelect.append('<option  value="' + option.id + '">' + option.plan +  ' --₦' + option.tamount + '</option>');
+                                secondSelect.append('<option  value="' + option.id + '">' + option.plan +  ' --₦' + option.amount + '</option>');
                             });
 
                             // Select the desired value dynamically
