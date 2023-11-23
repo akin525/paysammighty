@@ -62,7 +62,7 @@ class GenerateAccountController
         "email": "' . $request['email'] . '",
         "phone": "' . $request['phone'] . '",
         "dob": "' . $request['dob'] . '",
-        "provider": "gtb"
+        "provider": "providus"
 }',
                 CURLOPT_HTTPHEADER => array(
                     'Content-Type: application/json',
