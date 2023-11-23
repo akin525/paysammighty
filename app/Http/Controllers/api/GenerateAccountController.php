@@ -20,7 +20,7 @@ class GenerateAccountController
             'email' => 'required',
             'dob' => 'required',
             'phone' => 'required',
-//            'provider'=>'required',
+            'refid'=>'required',
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -29,12 +29,12 @@ class GenerateAccountController
         }
         $apikey = $request->header('apikey');
         $user = User::where('apikey',$apikey)->first();
-        $virtual=VirtualAccounts::where('email', $request->email)->first();
+        $virtual=VirtualAccounts::where('refid', $request->refid)->first();
 
         if ($virtual){
 
             $datar=["account_number"=>$virtual->account_number, "account_name"=>$virtual->account_name,
-                "bank"=>$virtual->bank];
+                "bank"=>$virtual->bank, "refid"=>$virtual->refid];
             return response()->json([
                 'message' => "Account with this email already generated",
                 'data' => $datar,
