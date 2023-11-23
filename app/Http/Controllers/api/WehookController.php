@@ -63,7 +63,7 @@ class WehookController
                 $user->save();
                 $charp = charp::create([
                     'username' => $user->username,
-                    'payment_ref' => $reference,
+                    'refid' => $reference,
                     'amount' => $char->charges,
                     'iwallet' => $pt,
                     'fwallet' => $gt,
