@@ -68,16 +68,16 @@ class AlltvController
         $response = curl_exec($curl);
         curl_close($curl);
         $data = json_decode($response, true);
-        $success= $data["success"];
-        if($success== "true"){
-            $name=$data["message"]["content"]["Customer_Name"];
-
-            $log=$name;
-        }else{
-            $log= $data["message"];
-        }
+//        $success= $data["success"];
+//        if($success== "true"){
+//            $name=$data["message"]["content"]["Customer_Name"];
+//
+//            $log=$name;
+//        }else{
+//            $log= $data["message"];
+//        }
         return response()->json([
-          'success'=>1, 'message' => $log, 'request'=>$request, 'name'=>$name
+          'success'=>1, 'message' => $data, 'request'=>$request, 'name'=>$data
         ], 200);
 
 
