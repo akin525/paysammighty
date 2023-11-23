@@ -20,7 +20,7 @@ class GenerateAccountController
             'email' => 'required',
             'dob' => 'required',
             'phone' => 'required',
-            'provider'=>'required',
+//            'provider'=>'required',
         ]);
         if ($validator->fails()) {
             return response()->json([
