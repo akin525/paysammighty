@@ -37,7 +37,7 @@ class AlltvController
         ]);
         if ($validator->fails()) {
             return response()->json([
-                'errors' => BillController::error_processor($validator)
+                'errors' => $this->error_processor($validator)
             ], 403);
         }
 //        return $request;
@@ -223,5 +223,12 @@ class AlltvController
             ], 200);
 
         }
-
+    public static function error_processor($validator)
+    {
+        $err_keeper = [];
+        foreach ($validator->errors()->getMessages() as $index => $error) {
+            array_push($err_keeper, ['success'=> 0, 'code' => $index, 'message' => $error[0]]);
+        }
+        return $err_keeper;
+    }
 }
