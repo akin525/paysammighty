@@ -77,7 +77,7 @@ class AlltvController
             $log= $data["message"];
         }
         return response()->json([
-            'message' => $log, 'request'=>$request, 'name'=>$name
+          'success'=>1,  'message' => $log, 'request'=>$request, 'name'=>$name
         ], 200);
 
 
