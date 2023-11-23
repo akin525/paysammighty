@@ -85,7 +85,7 @@ class GenerateAccountController
                 $create = VirtualAccounts::create([
                     'username' => $user->username,
                     'account_number' => $number,
-                    'account_name' => $account,
+                    'customer' => $account,
                     'bank' => $bank,
                     'ref' => $ref,
                 ]);
