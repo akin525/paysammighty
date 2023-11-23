@@ -29,18 +29,8 @@ class GenerateAccountController
         }
         $apikey = $request->header('apikey');
         $user = User::where('apikey',$apikey)->first();
-        $virtual=VirtualAccounts::where('refid', $request->refid)->first();
+//        $virtual=VirtualAccounts::where('refid', $request->refid)->first();
 
-        if ($virtual){
-
-            $datar=["account_number"=>$virtual->account_number, "account_name"=>$virtual->account_name,
-                "bank"=>$virtual->bank, "refid"=>$virtual->refid];
-            return response()->json([
-                'message' => "Account with this email already generated",
-                'data' => $datar,
-                'success' => 1
-            ], 200);
-        } else {
 
 
             $curl = curl_init();
@@ -81,7 +71,17 @@ class GenerateAccountController
                 $bank = $data["data"]["provider"];
                 $ref = $data['data']['reference'];
 
+                $virtual=VirtualAccounts::where('refid', $ref)->first();
 
+                if ($virtual) {
+
+                    return response()->json([
+                        'message' => "Account already generated",
+                        'data' => $data,
+                        'success' => 1
+                    ], 200);
+
+                }
                 $create = VirtualAccounts::create([
                     'username' => $user->username,
                     'account_number' => $number,
@@ -106,7 +106,6 @@ class GenerateAccountController
 
             }
         }
-    }
     public static function error_processor($validator)
     {
         $err_keeper = [];
