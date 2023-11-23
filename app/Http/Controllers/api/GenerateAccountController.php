@@ -107,4 +107,12 @@ class GenerateAccountController
             }
         }
     }
+    public static function error_processor($validator)
+    {
+        $err_keeper = [];
+        foreach ($validator->errors()->getMessages() as $index => $error) {
+            array_push($err_keeper, ['success'=> 0, 'code' => $index, 'message' => $error[0]]);
+        }
+        return $err_keeper;
+    }
 }
