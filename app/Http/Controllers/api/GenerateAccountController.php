@@ -86,7 +86,7 @@ class GenerateAccountController
                     'username' => $user->username,
                     'account_number' => $number,
                     'customer' => $account,
-                    'bank' => $bank,
+                    'provider' => $bank,
                     'ref' => $ref,
                 ]);
 //                $data = ["account_number" => $number, "account_name" => $account,
