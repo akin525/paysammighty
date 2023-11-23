@@ -97,6 +97,13 @@ class GenerateAccountController
                     'data' => $data,
                     'success' => 1
                 ], 200);
+            }else{
+                return response()->json([
+                    'message' => "error",
+                    'data' => $data,
+                    'success' => 0
+                ], 200);
+
             }
         }
     }
