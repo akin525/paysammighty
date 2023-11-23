@@ -20,7 +20,7 @@ class GenerateAccountController
             'email' => 'required',
             'dob' => 'required',
             'phone' => 'required',
-            'provider'=>'required',
+//            'provider'=>'required',
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -62,7 +62,7 @@ class GenerateAccountController
         "email": "' . $request['email'] . '",
         "phone": "' . $request['phone'] . '",
         "dob": "' . $request['dob'] . '",
-        "provider": "' . $request['provider'] . '"
+        "provider": "gtb"
 }',
                 CURLOPT_HTTPHEADER => array(
                     'Content-Type: application/json',

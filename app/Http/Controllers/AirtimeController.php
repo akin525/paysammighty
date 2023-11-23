@@ -57,7 +57,6 @@ class AirtimeController
             } else {
 
                 $user = User::find($request->user()->id);
-                $bt = data::where("cat_id", $request->id)->first();
                 $per=2/100;
                 $comission=$per*$request->amount;
                 $fbalance=$user->wallet;

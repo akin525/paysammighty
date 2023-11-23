@@ -33,14 +33,15 @@ class AlltvController
 
         $validator = Validator::make($request->all(), [
             'productid' => 'required',
+            'number' => 'required',
         ]);
         if ($validator->fails()) {
             return response()->json([
-                'errors' => BillController::error_processor($validator)
+                'errors' => $this->error_processor($validator)
             ], 403);
         }
 //        return $request;
-        $ve=data::where('plan_id', $request->productid)->first();
+        $ve=easy::where('network', $request->productid)->first();
 //        return $request;
 
         $curl = curl_init();
@@ -76,7 +77,7 @@ class AlltvController
             $log= $data["message"];
         }
         return response()->json([
-            'message' => $log, 'request'=>$request, 'name'=>$name
+          'success'=>1, 'message' => $name,  'name'=>$log
         ], 200);
 
 
@@ -222,5 +223,12 @@ class AlltvController
             ], 200);
 
         }
-
+    public static function error_processor($validator)
+    {
+        $err_keeper = [];
+        foreach ($validator->errors()->getMessages() as $index => $error) {
+            array_push($err_keeper, ['success'=> 0, 'code' => $index, 'message' => $error[0]]);
+        }
+        return $err_keeper;
+    }
 }
