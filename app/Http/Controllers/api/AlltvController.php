@@ -33,6 +33,7 @@ class AlltvController
 
         $validator = Validator::make($request->all(), [
             'productid' => 'required',
+            'number' => 'required',
         ]);
         if ($validator->fails()) {
             return response()->json([
