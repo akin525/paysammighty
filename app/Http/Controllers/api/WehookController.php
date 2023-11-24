@@ -106,12 +106,6 @@ class WehookController
                         return response()->json(['error' => 'Webhook request failed'], $statusCode);
                     }
 
-                    print_r('{
-                            "reference":"' . $refid . '",
-                            "amount":"' . $amount . '",
-                            "receiving_account":"' . $account . ',
-                            "sender_narration":"' . $narration . '"
-                        }');
                     return $response;
                 }
 
