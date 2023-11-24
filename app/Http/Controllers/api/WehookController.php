@@ -26,6 +26,7 @@ class WehookController
         }
         $refid=$data["reference"];
 
+        print_r($data);
         print_r($refid);
         $amount=$data["amount"];
         $account=$data['receiving_account'];
