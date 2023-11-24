@@ -103,7 +103,12 @@ class WehookController
                     curl_close($curl);
                 }
 
-                print_r($data);
+                print_r(array(
+                    "reference"=>$refid,
+                    "amount"=>$amount,
+                    "receiving_account"=>$account,
+                    "sender_narration"=>$narration
+                ));
                 return $response;
 
 
