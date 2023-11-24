@@ -90,7 +90,12 @@ class WehookController
                         CURLOPT_SSL_VERIFYHOST => 0,
                         CURLOPT_SSL_VERIFYPEER => 0,
                         CURLOPT_CUSTOMREQUEST => 'POST',
-                        CURLOPT_POSTFIELDS => array($data)));
+                        CURLOPT_POSTFIELDS => array(
+                            "reference"=>$refid,
+                            "amount"=>$amount,
+                            "receiving_account"=>$account,
+                            "sender_narration"=>$narration
+                        )));
 
 
                     $response = curl_exec($curl);

@@ -3,6 +3,7 @@
 namespace app\Http\Controllers;
 
 use App\Mail\Emailtrans;
+use App\Models\bill_payment;
 use App\Models\bo;
 use App\Models\data;
 use App\Models\easy;
@@ -144,7 +145,7 @@ foreach ($plan as $pla) {
                     return response()->json($mg, Response:: HTTP_BAD_REQUEST);
 
                 }
-                $bo = bo::where('refid', $request->refid)->first();
+                $bo = bill_payment::where('refid', $request->refid)->first();
                 if (isset($bo)) {
                     $mg = "duplicate transaction";
                     return response()->json($mg, Response:: HTTP_CONFLICT);
