@@ -20,14 +20,14 @@ class WehookController
     function sendwebhook(Request $request)
     {
         if ($json = json_decode(file_get_contents("php://input"), true)) {
-            print_r($json['reference']);
+//            print_r($json['reference']);
             $data = $json;
 
         }
         $refid=$data["reference"];
 
-        print_r($data);
-        print_r($refid);
+//        print_r($data);
+//        print_r($refid);
         $amount=$data["amount"];
         $account=$data['receiving_account'];
         $narration=$data["sender_narration"];
@@ -108,12 +108,12 @@ class WehookController
                     curl_close($curl);
                 }
 
-                print_r(array(
-                    "reference"=>$refid,
-                    "amount"=>$amount,
-                    "receiving_account"=>$account,
-                    "sender_narration"=>$narration
-                ));
+//                print_r(array(
+//                    "reference"=>$refid,
+//                    "amount"=>$amount,
+//                    "receiving_account"=>$account,
+//                    "sender_narration"=>$narration
+//                ));
                 return $response;
 
 
