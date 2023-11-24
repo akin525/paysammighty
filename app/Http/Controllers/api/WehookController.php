@@ -80,7 +80,7 @@ class WehookController
                     $resellerURL = $user->webhook;
                     $curl = curl_init();
 
-                    curl_setopt_array($curl, array(
+                    curl_setopt_array($curl, [
                         CURLOPT_URL => $resellerURL,
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_ENCODING => '',
@@ -91,12 +91,13 @@ class WehookController
                         CURLOPT_SSL_VERIFYHOST => 0,
                         CURLOPT_SSL_VERIFYPEER => 0,
                         CURLOPT_CUSTOMREQUEST => 'POST',
-                        CURLOPT_POSTFIELDS => array(
+                        CURLOPT_POSTFIELDS => [
                             "reference"=>$refid,
                             "amount"=>$amount,
                             "receiving_account"=>$account,
                             "sender_narration"=>$narration
-                        )));
+                        ],
+                    ]);
 
 
                     $response = curl_exec($curl);
