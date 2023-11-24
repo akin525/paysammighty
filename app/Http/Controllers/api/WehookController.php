@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\VirtualAccounts;
 use App\Models\WalletTransaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 
@@ -78,39 +79,41 @@ class WehookController
                 if($user->webhook != null) {
 
                     $resellerURL = $user->webhook;
-                    $curl = curl_init();
 
-                    curl_setopt_array($curl, array(
-                        CURLOPT_URL => $resellerURL,
-                        CURLOPT_RETURNTRANSFER => true,
-                        CURLOPT_ENCODING => '',
-                        CURLOPT_MAXREDIRS => 10,
-                        CURLOPT_TIMEOUT => 0,
-                        CURLOPT_FOLLOWLOCATION => true,
-                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                        CURLOPT_SSL_VERIFYHOST => 0,
-                        CURLOPT_SSL_VERIFYPEER => 0,
-                        CURLOPT_CUSTOMREQUEST => 'POST',
-                        CURLOPT_POSTFIELDS => '{
-                            "reference":"'.$refid.'",
-                            "amount":"'.$amount.'",
-                            "receiving_account":"'.$account.',
-                            "sender_narration":"'.$narration.'"
-                        }',));
+                    $response = Http::withOptions([
+                        'verify' => false, // Disable SSL verification (use with caution)
+                    ])
+                        ->post($resellerURL, [
+                            'reference' => $refid,
+                            'amount' => $amount,
+                            'receiving_account' => $account,
+                            'sender_narration' => $narration,
+                        ]);
 
+// Access the response body
+                    $responseBody = $response->body();
 
-                    $response = curl_exec($curl);
+// Access the response status code
+                    $statusCode = $response->status();
 
-                    curl_close($curl);
-                }
+// You can check the status code and handle accordingly
+                    if ($statusCode == 200) {
+                        // Successful request
+                        return $responseBody;
+                    } else {
+                        // Handle the error
+                        // You might want to log the error or throw an exception
+                        return response()->json(['error' => 'Webhook request failed'], $statusCode);
+                    }
 
-                print_r('{
-                            "reference":"'.$refid.'",
-                            "amount":"'.$amount.'",
-                            "receiving_account":"'.$account.',
-                            "sender_narration":"'.$narration.'"
+                    print_r('{
+                            "reference":"' . $refid . '",
+                            "amount":"' . $amount . '",
+                            "receiving_account":"' . $account . ',
+                            "sender_narration":"' . $narration . '"
                         }');
-                return $response;
+                    return $response;
+                }
 
 
             }
