@@ -36,7 +36,7 @@ class GenerateAccountController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://app.paylony.com/api/v1/create_account',
+                CURLOPT_URL => 'https://api.paylony.com/api/v1/create_account',
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,

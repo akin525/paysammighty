@@ -34,7 +34,7 @@ class VertualController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://app.paylony.com/api/v1/create_account',
+                CURLOPT_URL => 'https://api.paylony.com/api/v1/create_account',
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
@@ -50,7 +50,7 @@ class VertualController
         "email": "'.$input['email'].'",
         "phone": "'.$business['phone'].'",
         "dob": "1995-03-13",
-        "provider": "providus"
+        "provider": "gtb"
 }',
                 CURLOPT_HTTPHEADER => array(
                     '1Content-Type: application/json',
