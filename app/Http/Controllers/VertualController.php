@@ -30,6 +30,10 @@ class VertualController
 //                    'message' => $msg,
 //                ]);
 //            }
+        return response()->json([
+            'status' => '1',
+            'message' => [$user, $business],
+        ]);
             $input=$user;
             $curl = curl_init();
 
