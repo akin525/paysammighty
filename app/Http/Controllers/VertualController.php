@@ -30,10 +30,7 @@ class VertualController
 //                    'message' => $msg,
 //                ]);
 //            }
-        return response()->json([
-            'status' => '1',
-            'message' => $user.$business,
-        ]);
+
             $input=$user;
             $curl = curl_init();
 
@@ -47,11 +44,11 @@ class VertualController
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                 CURLOPT_CUSTOMREQUEST => 'POST',
                 CURLOPT_POSTFIELDS =>'{
-    "firstname": "'.$input['account_prefix'].'",
-        "lastname": "'.$input['name'].'",
+    "firstname": "'.$user['account_prefix'].'",
+        "lastname": "'.$user['name'].'",
         "address": "lagos nigeria",
         "gender": "Male",
-        "email": "'.$input['email'].'",
+        "email": "'.$user['email'].'",
         "phone": "'.$business['phone'].'",
         "dob": "1995-03-13",
         "provider": "gtb"
