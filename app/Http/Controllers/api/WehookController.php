@@ -25,9 +25,6 @@ class WehookController
 
         }
         $refid=$data["reference"];
-
-//        print_r($data);
-//        print_r($refid);
         $amount=$data["amount"];
         $account=$data['receiving_account'];
         $narration=$data["sender_narration"];
@@ -83,7 +80,7 @@ class WehookController
                     $resellerURL = $user->webhook;
                     $curl = curl_init();
 
-                    curl_setopt_array($curl, [
+                    curl_setopt_array($curl, array(
                         CURLOPT_URL => $resellerURL,
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_ENCODING => '',
@@ -94,13 +91,12 @@ class WehookController
                         CURLOPT_SSL_VERIFYHOST => 0,
                         CURLOPT_SSL_VERIFYPEER => 0,
                         CURLOPT_CUSTOMREQUEST => 'POST',
-                        CURLOPT_POSTFIELDS => [
-                            "reference"=>$refid,
-                            "amount"=>$amount,
-                            "receiving_account"=>$account,
-                            "sender_narration"=>$narration
-                        ],
-                    ]);
+                        CURLOPT_POSTFIELDS => '{
+                            "reference":"'.$refid.'",
+                            "amount":"'.$amount.'",
+                            "receiving_account":"'.$account.',
+                            "sender_narration":"'.$narration.'"
+                        }',));
 
 
                     $response = curl_exec($curl);
@@ -108,12 +104,12 @@ class WehookController
                     curl_close($curl);
                 }
 
-//                print_r(array(
-//                    "reference"=>$refid,
-//                    "amount"=>$amount,
-//                    "receiving_account"=>$account,
-//                    "sender_narration"=>$narration
-//                ));
+                print_r('{
+                            "reference":"'.$refid.'",
+                            "amount":"'.$amount.'",
+                            "receiving_account":"'.$account.',
+                            "sender_narration":"'.$narration.'"
+                        }');
                 return $response;
 
 
