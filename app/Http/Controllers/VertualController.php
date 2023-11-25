@@ -110,8 +110,8 @@ class VertualController
                     'username' => $user->username,
                     'account_number' => $number,
                     'customer' => $account,
-                    'bank' => $bank,
-                    'ref' => $ref,
+                    'provider' => $bank,
+                    'refid' => $ref,
                 ]);
                 return response()->json([
                     'status' => '1',
