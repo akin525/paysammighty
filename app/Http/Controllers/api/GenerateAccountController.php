@@ -33,38 +33,36 @@ class GenerateAccountController
 
 
 
-            $curl = curl_init();
+        $url = 'https://api.paylony.com/api/v1/create_account';
 
-            curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://api.paylony.com/api/v1/create_account',
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => '',
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 0,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => 'POST',
-                CURLOPT_POSTFIELDS => '{
-   "firstname": "' . $request['firstname'] . '",
-        "lastname": "' . $request['lastname'] . '",
-        "address": "' . $request['address'] . '",
-        "gender": "' . $request['gender'] . '",
-        "email": "' . $request['email'] . '",
-        "phone": "' . $request['phone'] . '",
-        "dob": "' . $request['dob'] . '",
-        "provider": "providus"
-}',
-                CURLOPT_HTTPHEADER => array(
-                    'Content-Type: application/json',
-                    'Authorization: Bearer ' . env('PAYLONY')
-                ),
-            ));
+        $headers = array(
+            'Content-Type: application/json',
+            'Authorization: Bearer ' . env('PAYLONY')
+        );
 
-            $response = curl_exec($curl);
+        $data = array(
+            "firstname" =>$request['firstname'],
+            "lastname" => $request['lastname'],
+            "address" => $request['address'],
+            "gender" => $request['gender'],
+            "email" => $request['email'],
+            "phone" => $request['phone'],
+            "dob" => $request['dob'],
+            "provider" => "providus"
+        );
 
-            curl_close($curl);
-            $data = json_decode($response, true);
+        $options = array(
+            'http' => array(
+                'header' => implode("\r\n", $headers),
+                'method' => 'POST',
+                'content' => json_encode($data),
+            ),
+        );
 
+        $context = stream_context_create($options);
+        $response = file_get_contents($url, false, $context);
+
+        $data = json_decode($response, true);
             if ($data['success'] == "true") {
                 $account = $data["data"]["account_name"];
                 $number = $data["data"]["account_number"];

@@ -32,37 +32,6 @@ class VertualController
 //            }
 
             $input=$user;
-//            $curl = curl_init();
-//
-//            curl_setopt_array($curl, array(
-//                CURLOPT_URL => 'https://api.paylony.com/api/v1/create_account',
-//                CURLOPT_RETURNTRANSFER => true,
-//                CURLOPT_ENCODING => '',
-//                CURLOPT_MAXREDIRS => 10,
-//                CURLOPT_TIMEOUT => 0,
-//                CURLOPT_FOLLOWLOCATION => true,
-//                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-//                CURLOPT_CUSTOMREQUEST => 'POST',
-//                CURLOPT_POSTFIELDS =>'{
-//    "firstname": "'.$user['account_prefix'].'",
-//        "lastname": "'.$user['name'].'",
-//        "address": "lagos nigeria",
-//        "gender": "Male",
-//        "email": "'.$user['email'].'",
-//        "phone": "'.$business['phone'].'",
-//        "dob": "1995-03-13",
-//        "provider": "gtb"
-//}',
-//                CURLOPT_HTTPHEADER => array(
-//                    '1Content-Type: application/json',
-//                    'Authorization: Bearer '.env('PAYLONY')
-//                ),
-//            ));
-//
-//            $response = curl_exec($curl);
-//
-//            curl_close($curl);
-//            $data = json_decode($response, true);
 
         $url = 'https://api.paylony.com/api/v1/create_account';
 
