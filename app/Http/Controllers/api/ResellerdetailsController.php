@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\api;
 
 use App\Models\bill_payment;
 use App\Models\Messages;
