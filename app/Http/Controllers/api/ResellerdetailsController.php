@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\data;
-use App\Models\deposit;
+use App\Models\Deposit;
 
 
 
