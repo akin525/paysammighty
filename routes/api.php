@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ResellerdetailsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('paylony', [\App\Http\Controllers\api\WehookController::class, 'sendwebhook'])->name('paylony');
 
 Route::group(['middleware'=> 'apikey'], function () {
-Route::post('createaccount', [\App\Http\Controllers\api\GenerateAccountController::class, 'generateaccount'])->name('createaccount');
+    Route::get('dashboard', [ResellerdetailsController::class, 'details']);
+    Route::post('createaccount', [\App\Http\Controllers\api\GenerateAccountController::class, 'generateaccount'])->name('createaccount');
 Route::get('allvirtual', [\App\Http\Controllers\api\FetchVirtualAccountController::class, 'getallmyaccount'])->name('allvirtual');
 Route::post('data', [\App\Http\Controllers\api\BillController::class, 'data'])->name('data');
 Route::post('airtime', [\App\Http\Controllers\api\AirController::class, 'airtime'])->name('airtime');
