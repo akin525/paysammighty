@@ -3,12 +3,9 @@
 namespace App\Http\Controllers\api;
 
 use App\Models\bill_payment;
-use App\Models\Messages;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use App\Models\wallet;
-use App\Models\bo;
 use App\Models\data;
 use App\Models\deposit;
 
@@ -23,7 +20,7 @@ class ResellerdetailsController
         $user = User::where('apikey',$apikey)->first();
         if ($user) {
 
-            $deposite = deposit::where('username', $user->username)->get();
+            $deposite = Deposit::where('username', $user->username)->get();
             $totaldeposite = 0;
             foreach ($deposite as $depo){
                 $totaldeposite += $depo->amount;
