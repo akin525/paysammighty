@@ -80,6 +80,7 @@ class BillController
                 }
                 $gt = $user->wallet - $request->selling_amount;
 
+                $fbalance=$user->wallet;
 
                 $bon=$request->selling_amount- $bt->ramount  ;
 
@@ -98,6 +99,7 @@ class BillController
                     'transactionid' =>'api'. $request->refid,
                     'discountamount' => $bon,
                     'paymentmethod' => 'wallet',
+                    'fbalance'=>$fbalance,
                     'balance' => $gt,
                 ]);
 
@@ -137,7 +139,8 @@ class BillController
                                 $ph = $request->number;
 
 
-
+                                $admin="info@sammighty.com.ng";
+                                Mail::to($admin)->send(new Emailtrans($bo));
 
                                 return response()->json([
                                     'message' => $am, 'name' => $name, 'ph' => $ph, 'success' => $success,

@@ -129,7 +129,8 @@ class BillController extends Controller
                         $am = "$product->plan  was successful delivered to";
                         $ph = $request->number;
 
-
+                        $admin="info@sammighty.com.ng";
+                        Mail::to($admin)->send(new Emailtrans($bo));
 
                         return response()->json([
                             'status' => 'success',
