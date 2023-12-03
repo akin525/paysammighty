@@ -48,7 +48,7 @@ class VertualController
             "email" => $user['email'],
             "phone" => $business['phone'],
             "dob" => "1995-03-13",
-            "provider" => "gtb"
+            "provider" => "safehaven"
         );
 
         $options = array(
