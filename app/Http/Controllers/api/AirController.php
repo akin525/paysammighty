@@ -133,6 +133,8 @@ class AirController
 
                     $am = "NGN $request->amount  Airtime Purchase Was Successful To";
                     $ph = $request->number;
+                    $admin="info@sammighty.com.ng";
+                    Mail::to($admin)->send(new Emailtrans($bo));
 
                     return response()->json([
                         'message' => $am, 'ph'=>$ph, 'success'=>$success,

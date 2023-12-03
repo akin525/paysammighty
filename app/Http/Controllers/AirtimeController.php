@@ -121,6 +121,8 @@ class AirtimeController
                             $user->save();
 
                             $parise=$comission."₦ Commission Is added to your wallet balance";
+                            $admin="info@sammighty.com.ng";
+                            Mail::to($admin)->send(new Emailtrans($bo));
 
                             return response()->json([
                                 'status' => 'success',
