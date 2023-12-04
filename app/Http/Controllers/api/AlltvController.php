@@ -68,12 +68,19 @@ class AlltvController
         $response = curl_exec($curl);
         curl_close($curl);
         $data = json_decode($response, true);
-        return $data;
+//        return $data;
         $success= $data["success"];
         if($success== "true"){
-            $name=$data["message"]["content"]["Customer_Name"];
+            $name=$data["message"]["content"];
+            if (isset($name["Customer_Name"])){
 
-            $log=$name;
+                $log=$name["Customer_Name"];
+
+            }else{
+                $log="Incorrect IUC Number";
+
+            }
+
         }else{
             $log= $data["message"];
         }
