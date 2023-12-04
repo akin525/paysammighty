@@ -84,10 +84,11 @@
                 </style>
                 <div class="modal" id="editModal">
                     <div class="modal-content">
-                            @csrf
-                            <div class="card card-body bg-success text-white">
+                            <div class="card card-body bgl-primary text-primary">
+                                <div class="media-body">
                                 <p>Server Response</p>
-                                <textarea  class="form-control" id="id" name="id" value="" ></textarea>
+                                <h4  id="id"  value="" ></h4>
+                                </div>
                             </div>
                         <button class="btn btn-outline-danger" onclick="closeModal()">Cancel</button>
                     </div>
