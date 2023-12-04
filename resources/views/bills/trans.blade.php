@@ -87,7 +87,7 @@
                             @csrf
                             <div class="card card-body bg-success text-white">
                                 <p>Server Response</p>
-                                <input type="text" class="form-control" id="id" name="id" value="" readonly />
+                                <textarea  class="form-control" id="id" name="id" value="" ></textarea>
                             </div>
                         <button class="btn btn-outline-danger" onclick="closeModal()">Cancel</button>
                     </div>
