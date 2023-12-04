@@ -100,17 +100,9 @@
         function openModal(element) {
             const modal = document.getElementById('editModal');
             const newNameInput = document.getElementById('id');
-            const net = document.getElementById('plan');
-            const userId =element.getAttribute('data-user-id');
-            const userName = element.getAttribute('data-user-name');
-
-
-
-            newNameInput.value = userId;
-            net.value = userName;
+            newNameInput.value = element.getAttribute('data-user-id');
 
             console.log(newNameInput);
-            console.log(net);
             modal.style.display = 'block';
             // You can fetch user data using the userId and populate the input fields in the modal if needed
         }
