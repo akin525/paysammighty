@@ -85,9 +85,9 @@
                 <div class="modal" id="editModal">
                     <div class="modal-content">
                             @csrf
-                            <div class="card card-body bg-success">
+                            <div class="card card-body bg-success text-white">
                                 <p>Server Response</p>
-                                <h6 id="id"></h6>
+                                <input type="text" class="form-control" id="id" name="id" value="" readonly />
                             </div>
                         <button class="btn btn-outline-danger" onclick="closeModal()">Cancel</button>
                     </div>
