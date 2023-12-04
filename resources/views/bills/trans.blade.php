@@ -34,11 +34,11 @@
                                         @if($re->status =="1")
                                             <span class="badge badge-success">Deliver Successfully</span>
                                         @else
-                                            <span class="badge badge-success">Failed(contact Admin)</span>
+                                            <span class="badge badge-danger">Failed(contact Admin)</span>
                                         @endif
 
                                     </td>
-                                    <td ><button class="badge badge-danger" onclick="openModal(this)" data-user-id="{{$re->server_response}}">Check Response</button> </td>
+                                    <td ><button class="badge badge-info" onclick="openModal(this)" data-user-id="{{$re->server_response}}">Check Response</button> </td>
                                     <td>{{$re->fbalance}}</td>
                                     <td>{{$re->balance}}</td>
                                     <td>{{$re->number}}</td>
