@@ -17,6 +17,7 @@
                                 <th>Username</th>
                                 <th>Plan</th>
                                 <th>Amount</th>
+                                <th>Status</th>
                                 <th>Balance Before</th>
                                 <th>Balance After</th>
                                 <th>Phone No</th>
@@ -30,6 +31,14 @@
                                     <td>{{$re->username}}</td>
                                     <td>{{$re->product}}</td>
                                     <td>{{$re->amount}}</td>
+                                    <td>
+                                        @if($re->status =="1")
+                                            <span class="badge badge-success">Deliver Successfully</span>
+                                        @else
+                                            <span class="badge badge-success">Failed(contact Admin)</span>
+                                        @endif
+
+                                    </td>
                                     <td>{{$re->fbalance}}</td>
                                     <td>{{$re->balance}}</td>
                                     <td>{{$re->number}}</td>
