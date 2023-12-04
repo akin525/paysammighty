@@ -38,7 +38,7 @@
                                         @endif
 
                                     </td>
-                                    <td ><span class="badge badge-danger" onclick="openModal(this)" data-user-id="{{$re->server_response}}">Check Response</span> </td>
+                                    <td ><button class="badge badge-danger" onclick="openModal(this)" data-user-id="{{$re->server_response}}">Check Response</button> </td>
                                     <td>{{$re->fbalance}}</td>
                                     <td>{{$re->balance}}</td>
                                     <td>{{$re->number}}</td>
