@@ -87,7 +87,7 @@
                             <div class="card card-body bgl-primary text-primary">
                                 <div class="media-body">
                                 <p>Server Response</p>
-                                <h4  id="id"  value="" ></h4>
+                                <h4  id="id"></h4>
                                 </div>
                             </div>
                         <button class="btn btn-outline-danger" onclick="closeModal()">Cancel</button>
@@ -100,10 +100,12 @@
     <script>
         function openModal(element) {
             const modal = document.getElementById('editModal');
-            const newNameInput = document.getElementById('id');
-            newNameInput.value = element.getAttribute('data-user-id');
+            const idElement = document.getElementById('id');
 
-            console.log(newNameInput);
+            // Assuming you have a data attribute named 'data-user-id' in your HTML
+            // Set the text content of the h4 element with the user ID
+            idElement.textContent = element.getAttribute('data-user-id');
+
             modal.style.display = 'block';
             // You can fetch user data using the userId and populate the input fields in the modal if needed
         }
