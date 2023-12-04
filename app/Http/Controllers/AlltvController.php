@@ -93,11 +93,9 @@ foreach ($plan as $pla) {
         ));
         $response = curl_exec($curl);
         curl_close($curl);
-
-        return $response;
         $data = json_decode($response, true);
         $success= $data["success"];
-        return $data;
+//        return $data;
         if($success== "1"){
             $name=$data["message"];
 
