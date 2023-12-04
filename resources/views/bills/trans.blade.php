@@ -14,7 +14,7 @@
                             <thead>
                             <tr>
                                 <th>Date</th>
-                                <th>Username</th>
+                                <th>Response</th>
                                 <th>Plan</th>
                                 <th>Amount</th>
                                 <th>Status</th>
@@ -28,7 +28,7 @@
                             @foreach($bill as $re)
                                 <tr>
                                     <td>{{$re->timestamp}}</td>
-                                    <td>{{$re->username}}</td>
+                                    <td>{{$re->server_response}}</td>
                                     <td>{{$re->product}}</td>
                                     <td>{{$re->amount}}</td>
                                     <td>
