@@ -147,7 +147,9 @@ class BillController
                                 $zo = $user->wallet + $request->amount;
                                 $user->wallet = $zo;
                                 $user->save();
-
+                                $update=bill_payment::where('id', $bo->id)->update([
+                                    'server_response'=>$response,
+                                ]);
                                 $name = $bt->plan;
                                 $am = "NGN $request->amount Was Refunded To Your Wallet";
                                 $ph = ", Transaction fail";
