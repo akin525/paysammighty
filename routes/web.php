@@ -61,7 +61,7 @@ Route::middleware([
 
     Route::get('withdraw', [WithdrawController::class, 'allbank'])->name('withdraw');
 
-    Route::post('rbonus', [WithdrawController::class, 'withdrawtowallet'])->name('rbonus');
+    Route::post('rbonus', [WithdrawController::class, 'confirmto'])->name('rbonus');
 });
 Route::get('/logout', function(){
     Auth::logout();
