@@ -127,24 +127,15 @@ class WithdrawController
             $user->save();
 
 
-            $create=Withdraw::create([
-                'username'=>$user->username,
-                'amount'=>$request->amount,
-                'plan'=>$request->id,
-                'refid'=>$request->refid,
-                'bank'=>$request->bank,
-                'account_no'=>$request->number,
-                'name'=>$request->name,
-                'status'=>1,
-            ]);
-            $paload= array(
-                "account_number"=>$request->number,
-                "amount"=>$request->amount,
-                "bank_code"=>$request->id,
-                "narration"=>$request->narration,
-                "reference"=>$request->refid,
-                "sender_name"=>$request->name,
-            );
+
+            $paload= '{
+                 "account_number":'.$request->number.',
+                "amount":'.$request->amount.',
+                "bank_code":'.$request->id.',
+                "narration":'.$request->narration.',
+                "reference":'.$request->refid.',
+                "sender_name":'.$request->name.',
+    }';
 
             $hash=hash_hmac('SHA512', $paload, trim(env('ENCRYPTION_KEY')));
             $url = 'https://api.paylony.com/api/v1/bank_transfer';
@@ -176,6 +167,16 @@ class WithdrawController
             $response = file_get_contents($url, false, $context);
 
             $data = json_decode($response, true);
+            $create=Withdraw::create([
+                'username'=>$user->username,
+                'amount'=>$request->amount,
+                'plan'=>$request->id,
+                'refid'=>$request->refid,
+                'bank'=>$request->bank,
+                'account_no'=>$request->number,
+                'name'=>$request->name,
+                'status'=>1,
+            ]);
             return response()->json([
                 'status' => 'success',
                 'message' => $data,
