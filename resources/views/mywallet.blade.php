@@ -58,7 +58,9 @@
             box-shadow: -5px 6px 20px 0px rgba(88, 88, 88, 0.569);
         }
     </style>
-
+    <div class="loading-overlay" id="loadingSpinner" style="display: none;">
+        <div class="loading-spinner"></div>
+    </div>
 <div class="row">
     <div class="col-xl-6">
         <div class="card text-white bg-success">
@@ -227,5 +229,83 @@
         </div>
 
     </div>
+
+    <script>
+        $(document).ready(function() {
+
+
+            // Send the AJAX request
+            $('#dataForm').submit(function(e) {
+                e.preventDefault(); // Prevent the form from submitting traditionally
+
+                // Get the form data
+                var formData = $(this).serialize();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'Do you want to withdraw ₦' + document.getElementById("amount").value + ' to your wallet' ,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: 'Processing',
+                            text: 'Please wait...',
+                            icon: 'info',
+                            allowOutsideClick: false,
+                            showConfirmButton: false
+                        });
+
+                        $.ajax({
+                            url: "{{ route('rbonus') }}",
+                            type: 'POST',
+                            data: formData,
+                            success: function(response) {
+                                // Handle the success response here
+                                $('#loadingSpinner').hide();
+
+                                console.log(response);
+                                // Update the page or perform any other actions based on the response
+
+                                if (response.status == 'success') {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Success',
+                                        text: response.message
+                                    }).then(() => {
+                                        location.reload(); // Reload the page
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        icon: 'info',
+                                        title: 'Pending',
+                                        text: response.message
+                                    });
+                                    // Handle any other response status
+                                }
+
+                            },
+                            error: function(xhr) {
+                                $('#loadingSpinner').hide();
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'fail',
+                                    text: xhr.responseText
+                                });
+                                // Handle any errors
+                                console.log(xhr.responseText);
+
+                            }
+                        });
+
+                    }
+                });
+            });
+        });
+
+    </script>
 
 @endsection
