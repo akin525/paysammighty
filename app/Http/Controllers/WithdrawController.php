@@ -115,8 +115,8 @@ class WithdrawController
             $bonus=Auth::user()->bonus;
             $wallet=Auth::user()->wallet;
 
-            $ubonus=$bonus-$wallet;
-            $to=$bonus+$request->amount;
+            $ubonus=$bonus-$request->amount;
+            $to=$bonus+$wallet;
             $create=Bonus::create([
                 'username'=>$user->username,
                 'amount'=>$request->amount,
