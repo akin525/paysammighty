@@ -31,8 +31,7 @@ class WithdrawController
 
         $data = json_decode($response, true);
 
-        return $data;
-        $bank=$data["data"]["bank"];
+        $bank=$data["data"]["banks"];
         return view('withdraw', compact('bank'));
     }
 
