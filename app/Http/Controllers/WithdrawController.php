@@ -88,7 +88,7 @@ class WithdrawController
             'id'=>'required',
             'narration'=>'required',
             'name'=>'required',
-            'efid'=>'required',
+            'refid'=>'required',
         ]);
 
         $user = User::find($request->user()->id);
@@ -131,6 +131,7 @@ class WithdrawController
                 'username'=>$user->username,
                 'amount'=>$request->amount,
                 'plan'=>$request->id,
+                'refid'=>$request->refid,
                 'bank'=>$request->bank,
                 'account_no'=>$request->number,
                 'name'=>$request->name,
