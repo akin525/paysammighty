@@ -92,21 +92,9 @@
                                 </div>
                             </div>
                             <br/>
-                            <script>
-                                // Get the select element
-                                var firstSelect = document.getElementById('firstSelect');
 
-                                // Get the input element
-                                var secondInput = document.getElementById('secondInput');
 
-                                // Add an event listener to the select element
-                                firstSelect.addEventListener('change', function() {
-                                    // Update the value of the second input box with the selected option text
-                                    secondInput.value = firstSelect.options[firstSelect.selectedIndex].text;
-                                });
-                            </script>
-
-                            <input type="text" id="secondInput" name="secondInput" class="form-control" placeholder="Updated Value" readonly>
+                            <input type="text" id="secondInput" value="" name="secondInput" class="form-control" placeholder="Updated Value" readonly>
 
                             <div id="div_id_network" >
                                 <label for="network" class=" requiredField">
@@ -172,6 +160,19 @@
 
 
     </div>
+    <script>
+        // Get the select element
+        var firstSelect = document.getElementById('firstSelect');
+
+        // Get the input element
+        var secondInput = document.getElementById('secondInput');
+
+        // Add an event listener to the select element
+        firstSelect.addEventListener('change', function() {
+            // Update the value of the second input box with the selected option text
+            secondInput.value = firstSelect.options[firstSelect.selectedIndex].text;
+        });
+    </script>
     <script>
         $(document).ready(function() {
             $('#number').on('input', function() {
