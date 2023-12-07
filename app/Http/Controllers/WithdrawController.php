@@ -128,7 +128,7 @@ class WithdrawController
 
 
 
-            $paload= '{
+            $payload= '{
                  "account_number":'.$request->number.',
                 "amount":'.$request->amount.',
                 "bank_code":'.$request->id.',
@@ -137,7 +137,10 @@ class WithdrawController
                 "sender_name":'.$request->name.',
     }';
 
-            $hash=hash_hmac('SHA512', $paload, trim(env('ENCRYPTION_KEY')));
+            $trimmedKey = trim(env('ENCRYPTION_KEY'));
+
+// Calculate the hash using SHA512
+            $hash = hash_hmac('SHA512', $payload, $trimmedKey);
             $url = 'https://api.paylony.com/api/v1/bank_transfer';
 
             $headers = array(
