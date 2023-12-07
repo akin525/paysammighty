@@ -148,7 +148,7 @@ class WithdrawController
 // Calculate the hash using HMAC-512
             $hash = hash_hmac('SHA512', $payload, $trimmedKey);
 
-            $url = 'https://api.paylony.com/api/v1/bank_transfer';
+            $url = 'https://app.paylony.com/api/v1/bank_transfer';
 
             $headers = array(
                 'Content-Type: application/json',
