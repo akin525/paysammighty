@@ -17,7 +17,7 @@
                                 <th>Plan</th>
                                 <th>Amount</th>
                                 <th>Status</th>
-                                <th>Response</th>
+{{--                                <th>Response</th>--}}
                                 <th>Balance Before</th>
                                 <th>Balance After</th>
                                 <th>Phone No</th>

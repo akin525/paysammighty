@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bonus;
 use App\Models\User;
+use App\Models\Withdraw;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -79,6 +80,38 @@ class WithdrawController
 
     function withdraw(Request $request)
     {
+
+        $request->validate([
+            'amount'=>'required',
+            'number'=>'required',
+            'id'=>'required',
+            'narration'=>'required',
+            'name'=>'required',
+            'efid'=>'required',
+        ]);
+
+        $user = User::find($request->user()->id);
+
+        if ($user->wallet < $request->amount) {
+            $mg = "Insufficient Balance in your wallet";
+
+            return response()->json($mg, Response::HTTP_BAD_REQUEST);
+
+
+        }
+        if ($request->amount < 0) {
+
+            $mg = "error transaction";
+            return response()->json($mg, Response::HTTP_BAD_REQUEST);
+
+        }
+        if ($request->amount < 1000) {
+
+            $mg = "amount must be more than or 1000 above";
+            return response()->json($mg, Response::HTTP_BAD_REQUEST);
+
+        }
+        $bo = Withdraw::where('refid',$request->refid)->first();
 
     }
 
