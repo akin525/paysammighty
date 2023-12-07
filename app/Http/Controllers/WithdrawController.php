@@ -129,7 +129,8 @@ class WithdrawController
             $create=Withdraw::create([
                 'username'=>$user->username,
                 'amount'=>$request->amount,
-                'bank'=>$request->id,
+                'plan'=>$request->id,
+                'bank'=>$request->bank,
                 'account_no'=>$request->number,
                 'name'=>$request->name,
                 'status'=>1,
@@ -173,7 +174,10 @@ class WithdrawController
             $response = file_get_contents($url, false, $context);
 
             $data = json_decode($response, true);
-
+            return response()->json([
+                'status' => 'success',
+                'message' => $data,
+            ]);
 
         }
 

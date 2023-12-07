@@ -94,7 +94,7 @@
                             <br/>
 
 
-                            <input type="text" id="secondInput" value="" name="secondInput" class="form-control" placeholder="Updated Value" readonly>
+                            <input type="hidden" id="secondInput" value="" name="bank" class="form-control" placeholder="Updated Value" readonly>
 
                             <div id="div_id_network" >
                                 <label for="network" class=" requiredField">
@@ -222,7 +222,7 @@
                 var formData = $(this).serialize();
                 Swal.fire({
                     title: 'Are you sure?',
-                    text: 'Do you want to buy airtime of ₦' + document.getElementById("amount").value + ' on ' + document.getElementById("number").value +' ?',
+                    text: 'Do you want to withdraw ₦' + document.getElementById("amount").value + ' from your wallet ?',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
