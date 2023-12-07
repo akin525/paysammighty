@@ -7,6 +7,7 @@ use App\Http\Controllers\BusniessController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Transaction1Controller;
 use App\Http\Controllers\VertualController;
+use App\Http\Controllers\WithdrawController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -56,7 +57,9 @@ Route::middleware([
     Route::post('buyairtime', [AirtimeController::class, 'airtime'])->name('buyairtime');
 
     Route::get('virtual', [VertualController::class, 'vertual'])->name('virtual');
+    Route::get('verifyacct/{value1}/{value2}', [WithdrawController::class, 'verifyaccount'])->name('verifyacct');
 
+    Route::get('withdraw', [WithdrawController::class, 'allbank'])->name('withdraw');
 
 });
 Route::get('/logout', function(){
