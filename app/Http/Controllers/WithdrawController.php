@@ -4,7 +4,11 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Bonus;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class WithdrawController
 {
@@ -77,4 +81,52 @@ class WithdrawController
     {
 
     }
+
+    function withdrawtowallet()
+        {
+
+            return view('walletto');
+        }
+
+        function confirmto(Request $request)
+        {
+            $request->validate([
+                'amount' => ['required', 'numeric', 'min:4'],
+            ]);
+            $user = User::find($request->user()->id);
+
+            if ($user->bonus < $request->amount) {
+                $mg = "Insufficient Balance in your bonus";
+
+                return response()->json($mg, Response::HTTP_BAD_REQUEST);
+
+
+            }
+            if ($request->amount < 0) {
+
+                $mg = "error transaction";
+                return response()->json($mg, Response::HTTP_BAD_REQUEST);
+
+
+
+            }
+
+
+            $bonus=Auth::user()->bonus;
+            $wallet=Auth::user()->wallet;
+
+            $to=$bonus+$wallet;
+            $create=Bonus::create([
+                'username'=>$user->username,
+                'amount'=>$request->amount,
+                'tamount'=>$to,
+            ]);
+            $user->wallet=$to;
+            $user->save();
+            return response()->json([
+                'status' => 'success',
+                'message' => "Your Bonus has been added to your wallet successfully",
+            ]);
+
+        }
 }
