@@ -112,6 +112,70 @@ class WithdrawController
 
         }
         $bo = Withdraw::where('refid',$request->refid)->first();
+        if ($bo){
+            $mg = "duplicate transaction";
+            return response()->json([
+                'message' => $mg, 'user'=>$user
+            ], 200);
+        }else{
+
+
+            $tamount=$user->wallet-$request->amount;
+            $ramount=$tamount-20;
+            $user->wallet=$ramount;
+            $user->save();
+
+
+            $create=Withdraw::create([
+                'username'=>$user->username,
+                'amount'=>$request->amount,
+                'bank'=>$request->id,
+                'account_no'=>$request->number,
+                'name'=>$request->name,
+                'status'=>1,
+            ]);
+            $paload= array(
+                "account_number"=>$request->number,
+                "amount"=>$request->amount,
+                "bank_code"=>$request->id,
+                "narration"=>$request->narration,
+                "reference"=>$request->refid,
+                "sender_name"=>$request->name,
+            );
+
+            $hash=hash_hmac('SHA512', $paload, trim(env('ENCRYPTION_KEY')));
+            $url = 'https://api.paylony.com/api/v1/bank_transfer';
+
+            $headers = array(
+                'Content-Type: application/json',
+                'Authorization: Bearer ' . env('PAYLONY'),
+                'Signature:'.$hash
+            );
+
+            $data = array(
+                "account_number"=>$request->number,
+                "amount"=>$request->amount,
+                "bank_code"=>$request->id,
+                "narration"=>$request->narration,
+                "reference"=>$request->refid,
+                "sender_name"=>$request->name,
+            );
+
+            $options = array(
+                'http' => array(
+                    'header' => implode("\r\n", $headers),
+                    'method' => 'POST',
+                    'content' => json_encode($data),
+                ),
+            );
+
+            $context = stream_context_create($options);
+            $response = file_get_contents($url, false, $context);
+
+            $data = json_decode($response, true);
+
+
+        }
 
     }
 
