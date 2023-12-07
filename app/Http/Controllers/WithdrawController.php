@@ -31,6 +31,7 @@ class WithdrawController
 
         $data = json_decode($response, true);
 
+        return $data;
         $bank=$data["data"]["bank"];
         return view('withdraw', compact('bank'));
     }
@@ -62,7 +63,7 @@ class WithdrawController
 
         $data = json_decode($response, true);
 
-        return $data;
+
         if ($data["success"]=="true"){
             $name=$data['data'];
         }else{
