@@ -38,7 +38,7 @@
                                         @endif
 
                                     </td>
-                                    <td ><button class="badge badge-info" onclick="openModal(this)" data-user-id="{{$re->server_response}}">Check Response</button> </td>
+{{--                                    <td ><button class="badge badge-info" onclick="openModal(this)" data-user-id="{{$re->server_response}}">Check Response</button> </td>--}}
                                     <td>{{$re->fbalance}}</td>
                                     <td>{{$re->balance}}</td>
                                     <td>{{$re->number}}</td>
@@ -52,7 +52,7 @@
                                 <th>Plan</th>
                                 <th>Amount</th>
                                 <th>Status</th>
-                                <th>Response</th>
+{{--                                <th>Response</th>--}}
                                 <th>Balance Before</th>
                                 <th>Balance After</th>
                                 <th>Phone No</th>
