@@ -97,7 +97,7 @@
                                     Enter Account Number<span class="asteriskField">*</span>
                                 </label>
                                 <div class="">
-                                    <input type="number" id="number" name="number" min="100" max="4000" oninput="calc()" class="text-success form-control" required>
+                                    <input type="number" id="number" name="number"   class="text-success form-control" required>
                                 </div>
                             </div>
                             <br/>
@@ -156,7 +156,7 @@
                 var third = $('#name');
 
                 if (inputValue.length === 10 ) {
-                    $('#loadingSpinner1').show();
+                    $('#loadingSpinner').show();
 
                     $.ajax({
                         url: '{{ url('verifyacct') }}/' + inputValue + '/' + secondS.val(),
@@ -166,11 +166,11 @@
                             value2: secondS.val()
                         },
                         success: function(response) {
-                            $('#loadingSpinner1').hide();
+                            $('#loadingSpinner').hide();
                             $('#name').val(response);
                         },
                         error: function(xhr) {
-                            $('#loadingSpinner1').hide();
+                            $('#loadingSpinner').hide();
                             Swal.fire({
                                 icon: 'error',
                                 title: 'fail',
