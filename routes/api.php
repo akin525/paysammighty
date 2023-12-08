@@ -28,6 +28,9 @@ Route::post('data', [\App\Http\Controllers\api\BillController::class, 'data'])->
 Route::post('airtime', [\App\Http\Controllers\api\AirController::class, 'airtime'])->name('airtime');
 Route::post('verifytv', [\App\Http\Controllers\api\AlltvController::class, 'verifytv'])->name('verifytv');
 Route::post('paytv', [\App\Http\Controllers\api\AlltvController::class, 'paytv'])->name('paytv');
+Route::post('waec', [\App\Http\Controllers\api\EducationApiController::class, 'Waec'])->name('waec');
+Route::post('neco', [\App\Http\Controllers\api\EducationApiController::class, 'Neco'])->name('neco');
+Route::post('nabteb', [\App\Http\Controllers\api\EducationApiController::class, 'Nabteb'])->name('nabteb');
 
 
 });
