@@ -113,6 +113,7 @@ class AlltvController
             $validator = Validator::make($request->all(), [
                 'coded' => 'required',
                 'refid' => 'required',
+                'number'=>'required',
             ]);
             if ($validator->fails()) {
                 return response()->json([
@@ -207,11 +208,11 @@ class AlltvController
 
 
                         return response()->json([
-                            'user'=>$user, 'name'=>$name, 'am'=>$am, 'ph'=>$ph, 'success'=>$success
+                            'user'=>$user, 'name'=>$name, 'am'=>$am, 'ph'=>$ph, 'success'=>1
                         ], 200);
 
 
-                    }elseif ($success==0){
+                    }else{
                         $zo=$user->wallet+$tv->tamount;
                         $user->wallet = $zo;
                         $user->save();
@@ -220,7 +221,7 @@ class AlltvController
                         $am= "NGN $request->amount Was Refunded To Your Wallet";
                         $ph=", Transaction fail";
                         return response()->json([
-                            'user'=>$user, 'name'=>$name, 'am'=>$am, 'ph'=>$ph, 'success'=>$success
+                            'user'=>$user, 'name'=>$name, 'am'=>$am, 'ph'=>$ph, 'success'=>0
                         ], 200);
 
                     }
