@@ -95,13 +95,10 @@ class WehookController
                             'sender_narration' => $narration,
                         ]);
 
-// Access the response body
                     $responseBody = $response->body();
 
-// Access the response status code
                     $statusCode = $response->status();
 
-// You can check the status code and handle accordingly
                     if ($statusCode == 200) {
                         // Successful request
                         return $responseBody;
