@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\api;
 
 
+use App\Mail\Emailcharges;
+use App\Mail\Emailfund;
 use App\Models\Business;
 use App\Models\charp;
 use App\Models\Deposit;
@@ -75,6 +77,9 @@ class WehookController
                 $admin= 'info@sammighty.com.ng';
 
                 $receiver= $user->email;
+
+                Mail::to($receiver)->send(new Emailfund($deposit));
+                Mail::to($admin)->send(new Emailfund($deposit));
 
                 if($user->webhook != null) {
 
