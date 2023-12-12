@@ -61,6 +61,10 @@
                                 </li>
                                 <li class="nav-item"><a href="#about-me" data-bs-toggle="tab" class="nav-link"><i class="fa fa-user-check"></i> Business Profile</a>
                                 </li>
+                                <li class="nav-item"><a href="#bank" data-bs-toggle="tab" class="nav-link"><i class="fa fa-money-bill"></i>Add Bank</a>
+                                </li>
+                                <li class="nav-item"><a href="#bvn" data-bs-toggle="tab" class="nav-link"><i class="fa fa-money-check"></i>Add BVN</a>
+                                </li>
                                 <li class="nav-item"><a href="#profile-settings" data-bs-toggle="tab" class="nav-link"><i class="fa fa-key"></i>Transaction Pin</a>
                                 </li>
                             </ul>

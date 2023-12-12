@@ -228,9 +228,9 @@
                         <span class="nav-text">Transactions</span>
                     </a>
                 </li>
-                <li><a  href="#">
-                        <i class="fa fa-bookmark"></i>
-                        <span class="nav-text">Settlements</span>
+                <li><a  href="{{route('myaccount')}}">
+                        <i class=" flaticon-381-settings"></i>
+                        <span class="nav-text">Settings</span>
                     </a>
                 </li>
                 <li><a  href="{{route('credentials')}}">
