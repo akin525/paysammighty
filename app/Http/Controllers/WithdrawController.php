@@ -19,7 +19,7 @@ class WithdrawController
 
         $user=User::where('username', Auth::user()->username)->first();
         if ($user->withdraw == "0"){
-            $msg="Withdraw option not enable kindly contact the admin";
+            $msg="Transfer option not enable kindly contact the admin";
             return redirect('dashboard')->with('error', $msg);
         }else {
             $url = 'https://api.paylony.com/api/v1/bank_list';
