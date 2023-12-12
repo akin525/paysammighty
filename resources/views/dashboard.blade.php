@@ -289,7 +289,7 @@
                 var ctx = document.getElementById('transactionChart').getContext('2d');
 
                 var chart = new Chart(ctx, {
-                    type: 'line',
+                    type: 'bar',
                     data: {
                         labels: data.dates,
                         datasets: [{
@@ -319,14 +319,14 @@
                 var ctx = document.getElementById('transactionChart1').getContext('2d');
 
                 var chart = new Chart(ctx, {
-                    type: 'line',
+                    type: 'bar',
                     data: {
                         labels: data.dates,
                         datasets: [{
                             label: 'Wallet Transaction',
                             data: data.amounts,
-                            backgroundColor: 'rgb(169,137,21)',
-                            borderColor: 'rgb(169,137,21)',
+                            backgroundColor: 'rgb(4,108,181)',
+                            borderColor: 'rgb(4,108,181)',
                             borderWidth: 1,
                             fill: 'origin' // Fill the area below the line
 
