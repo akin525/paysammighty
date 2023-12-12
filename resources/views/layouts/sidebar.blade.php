@@ -243,7 +243,7 @@
                         <span class="nav-text">Virtual Accounts</span>
                     </a>
                 </li>
-                <li><a  href="#">
+                <li><a  href="{{route('withdraw')}}">
                         <i class="fa fa-money-check"></i>
                         <span class="nav-text">Make Transfer</span>
                     </a>
