@@ -28,6 +28,7 @@ class User extends Authenticatable
         'username',
         'business_name',
         'account_prefix',
+        'withdraw',
         'email',
         'wallet',
         'password',

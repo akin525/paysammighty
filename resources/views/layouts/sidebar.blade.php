@@ -83,6 +83,18 @@
 ***********************************-->
 <div id="main-wrapper">
 
+    @if(Session::has('error'))
+        <script>
+            Swal.fire({
+                title: 'Ooops..',
+                text: '{{ Session::get('error') }}',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+            })
+        </script>
+    @endif
     <!--**********************************
         Nav header start
     ***********************************-->

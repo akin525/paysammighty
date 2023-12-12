@@ -16,28 +16,35 @@ class WithdrawController
 
     function allbank()
     {
-        $url = 'https://api.paylony.com/api/v1/bank_list';
 
-        $headers = array(
-            'Content-Type: application/json',
-            'Authorization: Bearer ' . env('PAYLONY')
-        );
+        $user=User::where('username', Auth::user()->username)->first();
+        if ($user->withdraw == "0"){
+            $msg="Withdraw option not enable kindly contact the admin";
+            return redirect('dashboard')->with('error', $msg);
+        }else {
+            $url = 'https://api.paylony.com/api/v1/bank_list';
+
+            $headers = array(
+                'Content-Type: application/json',
+                'Authorization: Bearer ' . env('PAYLONY')
+            );
 
 
-        $options = array(
-            'http' => array(
-                'header' => implode("\r\n", $headers),
-                'method' => 'GET',
-            ),
-        );
+            $options = array(
+                'http' => array(
+                    'header' => implode("\r\n", $headers),
+                    'method' => 'GET',
+                ),
+            );
 
-        $context = stream_context_create($options);
-        $response = file_get_contents($url, false, $context);
+            $context = stream_context_create($options);
+            $response = file_get_contents($url, false, $context);
 
-        $data = json_decode($response, true);
+            $data = json_decode($response, true);
 
-        $bank=$data["data"]["banks"];
-        return view('withdraw', compact('bank'));
+            $bank = $data["data"]["banks"];
+            return view('withdraw', compact('bank'));
+        }
     }
 
     function verifyaccount($valuea, $valueb)
