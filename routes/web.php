@@ -73,3 +73,7 @@ Route::get('/logout', function(){
 Route::get('admin/login', [LoginController::class, 'index'])->name('admin/login');
 Route::post('admin/log',[LoginController::class, 'adminlogin'])->name('admin/log');
 
+Route::middleware(['auth', 'admin'])->group(function () {
+Route::get('admin/dashboard', [LoginController::class, 'admindashboard'])->name('admin/dashboard');
+
+});

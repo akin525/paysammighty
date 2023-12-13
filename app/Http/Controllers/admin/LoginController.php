@@ -80,6 +80,40 @@ class LoginController
         $paylonypending=$data['data']['pending'];
 
 
+        return view('admin/dashboard', compact('todaycollection', 'todaycollectionnumber',
+        'todaypurchase', 'todaypurchasenumber', 'todaydepositcharges', 'allcollection', 'allpurchase', 'allcharges',
+        'newuser', 'alluser', 'alluserwallet', 'alluserbonus', 'paylonybalance', 'paylonypending'
+        ));
 
+    }
+    public function getTransactions()
+    {
+        $transactions = Deposit::selectRaw('DATE(date) as date, SUM(amount) as total_amount')
+            ->groupBy('date')
+            ->orderBy('date', 'ASC')
+            ->get();
+
+        $dates = $transactions->pluck('date')->toArray();
+        $amounts = $transactions->pluck('total_amount')->toArray();
+
+        return response()->json([
+            'dates' => $dates,
+            'amounts' => $amounts,
+        ]);
+    }
+    public function getTransactions1()
+    {
+        $transactions = bill_payment::selectRaw('DATE(timestamp) as date, SUM(amount) as total_amount')
+            ->groupBy('date')
+            ->orderBy('date', 'ASC')
+            ->get();
+
+        $dates = $transactions->pluck('date')->toArray();
+        $amounts = $transactions->pluck('total_amount')->toArray();
+
+        return response()->json([
+            'dates' => $dates,
+            'amounts' => $amounts,
+        ]);
     }
 }
