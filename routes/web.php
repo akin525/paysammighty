@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\LoginController;
 use App\Http\Controllers\AirtimeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BillController;
@@ -68,3 +69,7 @@ Route::get('/logout', function(){
     Auth::logout();
     return redirect('login')->with('status', 'logout successful');
 });
+
+Route::get('admin/login', [LoginController::class, 'index'])->name('admin/login');
+Route::post('admin/log',[LoginController::class, 'adminlogin'])->name('admin/log');
+
