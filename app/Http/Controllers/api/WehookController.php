@@ -90,7 +90,7 @@ class WehookController
                             'reference' => $refid,
                             'amount' => $amount,
                             'receiving_account' => $account,
-                            'sender_narration' => $narration,
+//                            'sender_narration' => $narration,
                         ]);
 
                     $responseBody = $response->body();

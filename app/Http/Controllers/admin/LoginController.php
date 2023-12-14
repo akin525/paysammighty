@@ -116,4 +116,5 @@ class LoginController
             'amounts' => $amounts,
         ]);
     }
+
 }
