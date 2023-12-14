@@ -45,9 +45,13 @@ class LoginController
         $todaycollection=Deposit::where([['created_at', 'LIKE', '%' . $today . '%']])->sum('amount');
         $todaycollectionnumber=Deposit::where([['created_at', 'LIKE', '%' . $today . '%']])->count();
         $allcollection=Deposit::sum('amount');
+        $date = Carbon::now()->format("Y-m");
+        $thisweek= Deposit::where([['created_at', 'LIKE', $date . '%']])->sum('amount');
 
-        $todaypurchase=bill_payment::where(['created_at', 'LIKE', '%'.$today.'%'])->sum('amount');
-        $todaypurchasenumber=bill_payment::where(['created_at', 'LIKE', '%'.$today.'%'])->count();
+
+
+        $todaypurchase=bill_payment::where([['created_at', 'LIKE', '%'.$today.'%']])->sum('amount');
+        $todaypurchasenumber=bill_payment::where([['created_at', 'LIKE', '%'.$today.'%']])->count();
         $allpurchase=bill_payment::sum('amount');
 
         $todaydepositcharges=charp::where([['created_at', 'LIKE', '%' . $today . '%']])->sum('amount');
@@ -79,10 +83,10 @@ class LoginController
         $paylonybalance=$data['data']['balance'];
         $paylonypending=$data['data']['pending'];
 
-
+        ;
         return view('admin/dashboard', compact('todaycollection', 'todaycollectionnumber',
         'todaypurchase', 'todaypurchasenumber', 'todaydepositcharges', 'allcollection', 'allpurchase', 'allcharges',
-        'newuser', 'alluser', 'alluserwallet', 'alluserbonus', 'paylonybalance', 'paylonypending'
+        'newuser', 'alluser', 'alluserwallet', 'alluserbonus', 'paylonybalance', 'paylonypending', 'thisweek'
         ));
 
     }

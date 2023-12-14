@@ -31,13 +31,14 @@ class TransactionController
         $data = json_decode($response, true);
         $trans=$data['data']['data'];
 
+//        return $trans;
         return view('admin/paylonytrans', compact('trans'));
     }
 
     function alldeposit()
     {
         $all=Deposit::all();
-        return view('admin/deposit', compact('all'));
+        return view('admin/deposits', compact('all'));
     }
 
     function queryindex()

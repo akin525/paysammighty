@@ -70,10 +70,15 @@ Route::get('/logout', function(){
     return redirect('login')->with('status', 'logout successful');
 });
 
+Route::get('admin', [LoginController::class, 'index'])->name('admin');
 Route::get('admin/login', [LoginController::class, 'index'])->name('admin/login');
 Route::post('admin/log',[LoginController::class, 'adminlogin'])->name('admin/log');
 
 Route::middleware(['auth', 'admin'])->group(function () {
 Route::get('admin/dashboard', [LoginController::class, 'admindashboard'])->name('admin/dashboard');
+    Route::get('/transactions', [LoginController::class, 'getTransactions']);
+    Route::get('/transactions1', [LoginController::class, 'getTransactions1']);
+    Route::get('admin/deposits', [\App\Http\Controllers\admin\TransactionController::class, 'alldeposit'])->name('admin/deposits');
+    Route::get('admin/alltransfer',[\App\Http\Controllers\admin\TransactionController::class, 'allpaylonytransction'])->name('admin/alltransfer');
 
 });
