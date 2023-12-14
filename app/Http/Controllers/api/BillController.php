@@ -84,6 +84,7 @@ class BillController
                 $user->wallet = $gt;
                 $user->bonus= $bonus;
                 $user->save();
+
                 $bo = bill_payment::create([
                     'username' => $user->username,
                     'product' => $bt->network . '|' . $bt->plan,

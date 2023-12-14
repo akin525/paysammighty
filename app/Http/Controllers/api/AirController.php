@@ -89,6 +89,7 @@ class AirController
                     'transactionid' =>'api'. $request->refid,
                     'discountamount' => 0,
                     'balance'=>$gt,
+                    'fbalance'=>$user->wallet,
                 ]);
 
 
