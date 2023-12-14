@@ -254,8 +254,8 @@
                     </a>
                     <ul aria-expanded="false">
                         <li><a href="{{url('admin/report_daily')}}">Daily</a></li>
-                        <li><a href="chart-morris.html">Monthly</a></li>
-                        <li><a href="chart-chartjs.html">Yearly</a></li>
+                        <li><a href="{{url('admin/report_monthly')}}">Monthly</a></li>
+                        <li><a href="#">Yearly</a></li>
                     </ul>
                 </li>
             </ul>
