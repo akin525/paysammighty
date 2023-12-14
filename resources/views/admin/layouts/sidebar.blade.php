@@ -229,44 +229,24 @@
                         <span class="nav-text">My Transfer</span>
                     </a>
                 </li>
-                <li><a  href="{{route('myaccount')}}">
-                        <i class=" flaticon-381-settings"></i>
-                        <span class="nav-text">Settings</span>
+                <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                        <i class="flaticon-381-user-2"></i>
+                        <span class="nav-text">Virtual Account</span>
                     </a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{route('admin/allvirtual')}}">Sammighty</a></li>
+                        <li><a href="{{route('admin/payvirtual')}}">Paylony</a></li>
+                    </ul>
                 </li>
-                <li><a  href="{{route('credentials')}}">
-                        <i class="fa fa-user-alt"></i>
-                        <span class="nav-text">Api Credentials</span>
+                <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                        <i class="fa-regular fa-gear fw-bold"></i>
+                        <span class="nav-text">Fetch Trans</span>
+{{--                        <span class="badge badge-xs style-1 badge-danger">New</span>--}}
                     </a>
-                </li>
-                <li><a  href="{{route('allvirtual')}}">
-                        <i class="fa fa-user-check"></i>
-                        <span class="nav-text">Virtual Accounts</span>
-                    </a>
-                </li>
-                <li><a  href="{{route('withdraw')}}">
-                        <i class="fa fa-money-check"></i>
-                        <span class="nav-text">Make Transfer</span>
-                    </a>
-                </li>
-                <li><a  href="{{route('airtime')}}">
-                        <i class="fa fa-network-wired"></i>
-                        <span class="nav-text">Airtime</span>
-                        <span class="badge badge-xs style-1 badge-success">NEW</span>
-
-                    </a>
-                </li>
-                <li><a  href="{{route('select')}}">
-                        <i class="fa fa-book"></i>
-                        <span class="nav-text">Data</span>
-                        <span class="badge badge-xs style-1 badge-danger">HOT</span>
-
-                    </a>
-                </li>
-                <li><a  href="{{route('allbill')}}">
-                        <i class="fa fa-money-check"></i>
-                        <span class="nav-text">All Bills</span>
-                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{route('admin/depositquery')}}">Collection</a></li>
+                        <li><a href="{{route('admin/billquery')}}">Purchase</a></li>
+                    </ul>
                 </li>
             </ul>
 

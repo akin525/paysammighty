@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Models\bill_payment;
 use App\Models\Deposit;
+use App\Models\VirtualAccounts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -39,6 +40,35 @@ class TransactionController
     {
         $all=Deposit::all();
         return view('admin/deposits', compact('all'));
+    }
+    function allvirtual()
+    {
+        $all=VirtualAccounts::all();
+        return view('admin/allvirtual', compact('all'));
+    }
+    function allvirtualpaylony()
+    {
+        $url = 'https://api.paylony.com/api/v1/fetch_all_accounts';
+
+        $headers = array(
+            'Content-Type: application/json',
+            'Authorization: Bearer ' . env('PAYLONY')
+        );
+        $options = array(
+            'http' => array(
+                'header' => implode("\r\n", $headers),
+                'method' => 'GET',
+            ),
+        );
+
+        $context = stream_context_create($options);
+        $response = file_get_contents($url, false, $context);
+
+        $data = json_decode($response, true);
+        $trans=$data['data']['data'];
+
+        return view('admin/payvirtual', compact('trans') );
+
     }
 
     function queryindex()

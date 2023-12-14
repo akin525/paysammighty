@@ -80,5 +80,14 @@ Route::get('admin/dashboard', [LoginController::class, 'admindashboard'])->name(
     Route::get('/transactions1', [LoginController::class, 'getTransactions1']);
     Route::get('admin/deposits', [\App\Http\Controllers\admin\TransactionController::class, 'alldeposit'])->name('admin/deposits');
     Route::get('admin/alltransfer',[\App\Http\Controllers\admin\TransactionController::class, 'allpaylonytransction'])->name('admin/alltransfer');
+    Route::get('admin/allvirtual',[\App\Http\Controllers\admin\TransactionController::class, 'allvirtual'])->name('admin/allvirtual');
+    Route::get('admin/payvirtual',[\App\Http\Controllers\admin\TransactionController::class, 'allvirtualpaylony'])->name('admin/payvirtual');
+    Route::post('admin/date', [\App\Http\Controllers\admin\TransactionController::class, 'querydeposi'])->name('admin/date');
+    Route::get('admin/depositquery', [\App\Http\Controllers\admin\TransactionController::class, 'queryindex'])->name('admin/depositquery');
+
+    Route::post('admin/datebill', [\App\Http\Controllers\admin\TransactionController::class, 'querybilldate'])->name('admin/datebill');
+    Route::get('admin/billquery', [\App\Http\Controllers\admin\TransactionController::class, 'billdate'])->name('admin/billquery');
+
+
 
 });
