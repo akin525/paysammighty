@@ -25,8 +25,8 @@
                             @foreach($virtual as $depo)
                                 <tr>
                                     <td>{{$depo['refid']}}</td>
-                                    <td>{{$depo['account_name']}}</td>
-                                    <td>{{$depo['account_name']}}</td>
+                                    <td>{{$depo['customer']}}</td>
+                                    <td>{{$depo['account_number']}}</td>
                                     <td>{{$depo['provider']}}</td>
                                     <td>{{$depo['currency']}}</td>
                                     <td>{{$depo['created_at']}}</td>
