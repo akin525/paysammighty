@@ -78,6 +78,8 @@ class WehookController
 
                 $receiver= $user->email;
 
+                Mail::to($receiver)->send(new Emailfund($deposit));
+                Mail::to($admin)->send(new Emailfund($deposit));
 
                 if($user->webhook != null) {
 
@@ -106,12 +108,11 @@ class WehookController
                         return response()->json(['error' => 'Webhook request failed'], $statusCode);
                     }
 
-                    return $response;
+//                    return $response;
                 }
 
 
-                Mail::to($receiver)->send(new Emailfund($deposit));
-                Mail::to($admin)->send(new Emailfund($deposit));
+
 
             }
 
