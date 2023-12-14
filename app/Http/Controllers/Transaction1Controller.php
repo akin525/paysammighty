@@ -52,7 +52,7 @@ class Transaction1Controller extends Controller
 
     function myvirtualaccount()
     {
-        $virtual=VirtualAccounts::where('username', Auth::user()->name)->orderBy('id', 'desc')->get();
+        $virtual=VirtualAccounts::where('username', Auth::user()->username)->orderBy('id', 'desc')->get();
 
         return view('virtual', compact('virtual'));
     }
