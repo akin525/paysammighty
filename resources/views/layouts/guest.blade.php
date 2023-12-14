@@ -22,6 +22,16 @@
     <body class="h-100">
     <div class="login-account">
         <div class="row h-100">
+            @if(Session::has('error'))
+                <script>
+                    Swal.fire({
+                        title: 'Ooops..',
+                        text: '{{ Session::get('error') }}',
+                        icon: 'warning',
+                        confirmButtonColor: '#3085d6',
+                    })
+                </script>
+            @endif
             {{ $slot }}
         </div>
     </div>

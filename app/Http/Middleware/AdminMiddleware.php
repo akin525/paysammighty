@@ -19,7 +19,7 @@ class AdminMiddleware
             if (Auth::user()->role == 'admin') {
                 return $next($request);
             } else {
-                return back()->withErrors(['You are not assigned as admin']);
+                return back()->with('error','You are not assigned as admin');
             }
         }
     }
