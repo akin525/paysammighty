@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\LoginController;
+use App\Http\Controllers\admin\ReportController;
 use App\Http\Controllers\AirtimeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BillController;
@@ -87,6 +88,10 @@ Route::get('admin/dashboard', [LoginController::class, 'admindashboard'])->name(
 
     Route::post('admin/datebill', [\App\Http\Controllers\admin\TransactionController::class, 'querybilldate'])->name('admin/datebill');
     Route::get('admin/billquery', [\App\Http\Controllers\admin\TransactionController::class, 'billdate'])->name('admin/billquery');
+
+    Route::any('admin/report_yearly', [ReportController::class, 'yearly'])->name('report_yearly');
+    Route::any('admin/report_monthly', [ReportController::class, 'monthly'])->name('report_monthly');
+    Route::any('admin/report_daily', [ReportController::class, 'daily'])->name('report_daily');
 
 
 

@@ -248,6 +248,16 @@
                         <li><a href="{{route('admin/billquery')}}">Purchase</a></li>
                     </ul>
                 </li>
+                <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                        <i class="flaticon-381-controls-3"></i>
+                        <span class="nav-text">Report</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{url('admin/report_daily')}}">Daily</a></li>
+                        <li><a href="chart-morris.html">Monthly</a></li>
+                        <li><a href="chart-chartjs.html">Yearly</a></li>
+                    </ul>
+                </li>
             </ul>
 
             <div class="copyright">

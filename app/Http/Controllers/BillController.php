@@ -79,7 +79,7 @@ class BillController extends Controller
                 $user->save();
                 $bo = bill_payment::create([
                     'username' => $user->username,
-                    'product' => $product->network . '|' . $product->plan,
+                    'product' => 'data|' . $product->plan,
                     'amount' => $amount,
                     'samount' => $amount,
                     'server_response' => 'ur fault',

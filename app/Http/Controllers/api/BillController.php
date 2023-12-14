@@ -87,7 +87,7 @@ class BillController
 
                 $bo = bill_payment::create([
                     'username' => $user->username,
-                    'product' => $bt->network . '|' . $bt->plan,
+                    'product' =>   'data|' . $bt->plan,
                     'amount' => $bt->ramount,
                     'samount' => $request->selling_amount,
                     'server_response' => 'ur fault',
