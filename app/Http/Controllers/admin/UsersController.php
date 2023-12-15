@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Models\bill_payment;
+use App\Models\Business;
 use App\Models\charp;
 use App\Models\deposit;
 use App\Models\User;
@@ -12,18 +13,18 @@ use Illuminate\Support\Facades\DB;
 class UsersController
 {
 
-    public function index(Request $request)
+    public function index()
     {
         $u=User::get();
         $users=User::paginate(50);
         $reseller=DB::table('users')->where("apikey", "!=", "")->count();
         $t_users = DB::table('users')->count();
-        $f_users = DB::table('users')->where("role","=","users")->count();
+        $f_users = DB::table('users')->where("role","=","admin")->count();
 
         $a_users = DB::table('users')->where("role","=","users")->count();
 
 
-        return view('admin/users', ['users' => $users, 'res'=>$reseller, 't_users'=>$t_users,  'f_users'=>$f_users,'a_users'=>$a_users]);
+        return view('admin/allusers', ['users' => $users, 'res'=>$reseller, 't_users'=>$t_users,  'f_users'=>$f_users,'a_users'=>$a_users]);
 
     }
     public function fin()
@@ -67,6 +68,7 @@ class UsersController
             return redirect('admin/finds')->with('error', 'user does not exist');
         }
         $user =User::where('username', $username)->first();
+        $bus=Business::where('username', $username)->first();
         $sumtt = Deposit::where('username', $ap->username)->sum('amount');
         $tt = Deposit::where('username', $ap->username)->count();
         $td = Deposit::where('username', $ap->username)->orderBy('id', 'desc')->paginate(10);
@@ -78,6 +80,6 @@ class UsersController
         $cname=$user->name;
         $cphone=$user->phone;
         $cmail=$user->email;
-        return view('admin/profile', ['user' => $ap, 'sumtt'=>$sumtt, 'charge'=>$charge,  'sumch'=>$sumch, 'sumbo'=>$sumbo, 'tt' => $tt, 'td' => $td, 'cphone'=>$cphone, 'cname'=>$cname, 'cmail'=>$cmail,   'version' => $v,  'tat' =>$tat]);
+        return view('admin/profile', ['user' => $ap, 'sumtt'=>$sumtt, 'bus'=>$bus, 'charge'=>$charge,  'sumch'=>$sumch, 'sumbo'=>$sumbo, 'tt' => $tt, 'td' => $td, 'cphone'=>$cphone, 'cname'=>$cname, 'cmail'=>$cmail,   'version' => $v,  'tat' =>$tat]);
     }
 }

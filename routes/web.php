@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\admin\CandCController;
 use App\Http\Controllers\admin\LoginController;
 use App\Http\Controllers\admin\ReportController;
+use App\Http\Controllers\admin\UsersController;
 use App\Http\Controllers\AirtimeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BillController;
@@ -92,6 +94,17 @@ Route::get('admin/dashboard', [LoginController::class, 'admindashboard'])->name(
     Route::any('admin/report_yearly', [ReportController::class, 'yearly'])->name('report_yearly');
     Route::any('admin/report_monthly', [ReportController::class, 'monthly'])->name('report_monthly');
     Route::any('admin/report_daily', [ReportController::class, 'daily'])->name('report_daily');
+    Route::get('admin/allbills', [\App\Http\Controllers\admin\TransactionController::class, 'allpurchase'])->name('admin/allbills');
+    Route::get('admin/alluser', [\App\Http\Controllers\admin\UsersController::class, 'index'])->name('admin/alluser');
+    Route::get('admin/finds', [UsersController::class, 'fin'])->name('admin/finds');
+    Route::get('admin/profile/{username}', [UsersController::class, 'profile'])->name('admin/profile');
+
+
+    Route::post('admin/cr', [CandCController::class, 'credit'])->name('admin/cr');
+    Route::post('admin/ref', [CandCController::class, 'refund'])->name('admin/ref');
+    Route::post('admin/bonus', [CandCController::class, 'fundbonus'])->name('admin/bonus');
+    Route::post('admin/ch', [CandCController::class, 'charge'])->name('admin/ch');
+
 
 
 

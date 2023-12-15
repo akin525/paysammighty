@@ -41,6 +41,12 @@ class TransactionController
         $all=Deposit::all();
         return view('admin/deposits', compact('all'));
     }
+    function allpurchase()
+    {
+        $purchase=bill_payment::all();
+
+        return view('admin/allbills', compact('purchase'));
+    }
     function allvirtual()
     {
         $all=VirtualAccounts::all();

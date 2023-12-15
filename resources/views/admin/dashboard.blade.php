@@ -10,6 +10,9 @@
                     <div class="card-info text-white">
                         <p class="mb-1">Payonly Wallet</p>
                         <h2 class="fs-36 text-white mb-sm-4 mb-3">₦{{number_format(intval($paylonybalance *1),2)}}</h2>
+                        <hr>
+                        <p class="mb-1">MCD Wallet</p>
+                        <h2 class="fs-36 text-white mb-sm-4 mb-3">₦{{number_format(intval($mcd *1),2)}}</h2>
                         <div class="d-flex">
                             <div class="me-5">
                                 <p class="fs-14 mb-1 op6">Today Date</p>
@@ -30,10 +33,12 @@
                         <span class="text-black">Recent Collection</span>
                         <h3 class="text-black fs-20 mb-0 font-w600">₦{{number_format(intval($todaycollection *1),2)}}</h3>
                         <br>
-                        <br>
                         <hr>
-                    <span class="text-black">Paylony Pending Waller</span>
+                    <span class="text-black">Paylony Pending Wallet</span>
                         <h3 class="text-black fs-20 mb-0 font-w600">₦{{number_format(intval($paylonypending *1),2)}}</h3>
+                        <hr>
+                        <span class="text-black">MCD Commission</span>
+                        <h3 class="text-black fs-20 mb-0 font-w600">₦{{number_format(intval($mcdc *1),2)}}</h3>
                     </div>
 {{--                    <canvas id="lineChart" height="300" class="mt-auto line-chart-demo"></canvas>--}}
                 </div>
@@ -55,27 +60,10 @@
                 <div class="card">
                     <div class="card-header d-sm-flex d-block border-0 pb-0">
                         <div class="pr-3 mb-sm-0 mb-3 me-auto">
-                            <h4 class="fs-20 text-black mb-1">Fund Merchant</h4>
+                            <h4 class="fs-20 text-black mb-1">WALLET</h4>
                             <span class="fs-12">All Merchant Balance</span>
                         </div>
                         <span class="fs-24 text-black font-w600">₦{{number_format(intval($alluserwallet *1),2)}}</span>
-                    </div>
-                    <div class="card-body">
-                        <form>
-                            <div class="form-group mb-0 row style-1 align-items-center">
-                                <div class="col-sm-3">
-                                    <label class="fs-18 text-black font-w500">Amount</label>
-                                </div>
-                                <div class="col-sm-9">
-                                    <div class="input-group">
-                                        <input type="number" class="form-control">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary rounded" type="button">FUND NOW</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -172,28 +160,12 @@
                                 <div class="card">
                                     <div class="card-header d-sm-flex d-block border-0 pb-0">
                                         <div class="pr-3 mb-sm-0 mb-3 me-auto">
-                                            <h4 class="fs-20 text-black mb-1">CHARGE Merchant</h4>
+                                            <h4 class="fs-20 text-black mb-1">CHARGE</h4>
                                             <span class="fs-12">All Merchant Charges</span>
                                         </div>
                                         <span class="fs-24 text-black font-w600">₦{{number_format(intval($allcharges *1),2)}}</span>
                                     </div>
-                                    <div class="card-body">
-                                        <form>
-                                            <div class="form-group mb-0 row style-1 align-items-center">
-                                                <div class="col-sm-3">
-                                                    <label class="fs-18 text-black font-w500">Amount</label>
-                                                </div>
-                                                <div class="col-sm-9">
-                                                    <div class="input-group">
-                                                        <input type="number" class="form-control">
-                                                        <div class="input-group-append">
-                                                            <button class="btn btn-primary rounded" type="button">CHARGE NOW</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+
                                 </div>
                             </div>
 

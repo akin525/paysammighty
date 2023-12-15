@@ -224,6 +224,13 @@
 
                     </a>
                 </li>
+                <li><a  href="<?php echo e(route('admin/allbills')); ?>">
+                        <i class="fa fa-cart-plus"></i>
+                        <span class="nav-text">All Purchase</span>
+
+
+                    </a>
+                </li>
                 <li><a  href="<?php echo e(route('admin/alltransfer')); ?>">
                         <i class="fa fa-network-wired"></i>
                         <span class="nav-text">My Transfer</span>
@@ -257,6 +264,11 @@
                         <li><a href="<?php echo e(url('admin/report_monthly')); ?>">Monthly</a></li>
                         <li><a href="#">Yearly</a></li>
                     </ul>
+                </li>
+                <li><a  href="<?php echo e(route('admin/alluser')); ?>">
+                        <i class="fa fa-users"></i>
+                        <span class="nav-text">All Merchant</span>
+                    </a>
                 </li>
             </ul>
 

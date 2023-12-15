@@ -49,6 +49,29 @@ class LoginController
         $thisweek= Deposit::where([['created_at', 'LIKE', $date . '%']])->sum('amount');
 
 
+        $url1 = 'https://integration.mcd.5starcompany.com.ng/api/reseller/me';
+
+        $headers1 = array(
+            'Content-Type: application/json',
+            'Authorization: MCDKEY_903sfjfi0ad833mk8537dhc03kbs120r0h9a',
+        );
+        $data = array(
+            'service' => 'balance'
+        );
+        $options = array(
+            'http' => array(
+                'header' => implode("\r\n", $headers1),
+                'method' => 'POST',
+                'content' => json_encode($data),
+            ),
+        );
+
+        $context = stream_context_create($options);
+        $response = file_get_contents($url1, false, $context);
+
+        $data = json_decode($response, true);
+        $mcd = $data["data"]["wallet"];
+        $mcdc=$data["data"]["commission"];
 
         $todaypurchase=bill_payment::where([['created_at', 'LIKE', '%'.$today.'%']])->sum('amount');
         $todaypurchasenumber=bill_payment::where([['created_at', 'LIKE', '%'.$today.'%']])->count();
@@ -86,7 +109,7 @@ class LoginController
         ;
         return view('admin/dashboard', compact('todaycollection', 'todaycollectionnumber',
         'todaypurchase', 'todaypurchasenumber', 'todaydepositcharges', 'allcollection', 'allpurchase', 'allcharges',
-        'newuser', 'alluser', 'alluserwallet', 'alluserbonus', 'paylonybalance', 'paylonypending', 'thisweek'
+        'newuser', 'alluser', 'alluserwallet', 'mcdc',  'alluserbonus', 'paylonybalance', 'paylonypending', 'thisweek', 'mcd'
         ));
 
     }
