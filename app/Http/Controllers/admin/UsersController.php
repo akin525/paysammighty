@@ -5,7 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Models\bill_payment;
 use App\Models\Business;
 use App\Models\charp;
-use App\Models\deposit;
+use App\Models\Deposit;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
