@@ -12,6 +12,7 @@ use App\Models\waec;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use GuzzleHttp\Client;
 
 
 class EducationApiController
@@ -153,6 +154,70 @@ class EducationApiController
             ], 200);
 
         }
+
+    }
+    function Jamb(Request $request)
+    {
+        $request->validate([
+            'number'=>'required',
+        ]);
+        $apikey = $request->header('apikey');
+        $user = User::where('apikey',$apikey)->first();
+        $bt = easy::where("network", "Jamb")->first();
+        if ($user) {
+
+            if ($user->wallet < $bt->ramount) {
+                $mg = "You Cant Make Purchase Above " . "NGN" . $bt->ramount . " from your wallet. Your wallet balance is NGN $user->waller. Please Fund Wallet And Retry or Pay Online Using Our Alternative Payment Methods.";
+
+                return response()->json([
+                    'message' => $mg,
+                    'user' => $user,
+                    'success' => 0
+                ], 200);
+
+            }
+            if ($bt->ramount < 0) {
+
+                $mg = "error transaction";
+                return response()->json([
+                    'message' => $mg,
+                    'user' => $user,
+                    'success' => 0
+                ], 200);
+
+            }
+            $bo = bill_payment::where('transactionid', 'api' . $request->refid)->first();;
+            if (isset($bo)) {
+                $mg = "duplicate transaction";
+                return response()->json([
+                    'message' => $mg,
+                    'user' => $user,
+                    'success' => 0
+                ], 200);
+
+            }
+
+            $userId = 'CK100308875';
+            $apiKey = 'UV50MI2W89VZ5945LZ97UBQXU4YNJF7J146G953D6Q4I6VUC962PEOSAK8742479';
+            $examCode = 'utme';
+            $recipientPhoneNo = $request['number'];
+            $requestId = 'request_id';
+            $callbackUrl = 'https://pay.sammighty.com.ng/api/callback_url';
+
+            $url = "https://www.nellobytesystems.com/APIJAMBV1.asp?UserID=$userId&APIKey=$apiKey&ExamType=$examCode&PhoneNo=$recipientPhoneNo&CallBackURL=$callbackUrl";
+
+            $client = new Client();
+
+            $response = $client->request('GET', $url);
+
+
+            $responseBody = $response->getBody()->getContents();
+
+
+
+        }
+
+
 
     }
     function Waec(Request $request)
