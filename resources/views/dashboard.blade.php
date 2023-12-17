@@ -231,7 +231,17 @@
 
         </div>
     </div>
-
+    <script>
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                Swal.fire({
+                    title: 'Hi {{Auth::user()->username}}',
+                    text: '{{$me->message}}',
+                    icon: 'info'
+                });
+            }, 1000); // 5000 milliseconds = 5 seconds
+        });
+    </script>
     <script>
         $(document).ready(function() {
             $('#virtual').change(function() {

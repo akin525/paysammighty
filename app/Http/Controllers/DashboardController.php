@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Business;
 use App\Models\Deposit;
+use App\Models\Messages;
 use App\Models\WalletTransaction;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +19,8 @@ class DashboardController
             ->where([['created_at', 'LIKE', '%' . $today . '%']])->sum('amount');
 
         $bus=Business::where('username', Auth::user()->username)->first();
-        return view('dashboard', compact('deposit', 'todaydepo', 'bus'));
+        $me=Messages::where('status', 1)->first();
+        return view('dashboard', compact('deposit', 'todaydepo', 'bus', 'me'));
 
 
     }
