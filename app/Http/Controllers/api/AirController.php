@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\api;
 
 use App\Console\encription;
+use App\Http\Controllers\AirtimeserverController;
 use App\Mail\Emailtrans;
+use App\Models\airtimecon;
 use App\Models\bill_payment;
 use App\Models\bo;
 use App\Models\Comission;
@@ -67,9 +69,8 @@ class AirController
 
             } else {
 
-                $per=2/100;
-                $comission=$per*$request->amount;
-
+                $per = 2 / 100;
+                $comission = $per * $request->amount;
 
 
                 $gt = $user->wallet - $request->amount;
@@ -79,86 +80,147 @@ class AirController
                 $user->save();
                 $bo = bill_payment::create([
                     'username' => $user->username,
-                    'product' => $request->id.'Airtime',
+                    'product' => $request->id . 'Airtime',
                     'amount' => $request->amount,
                     'samount' => $request->amount,
                     'server_response' => 0,
                     'status' => 0,
                     'number' => $request->number,
-                    'paymentmethod'=>'wallet',
-                    'transactionid' =>'api'. $request->refid,
+                    'paymentmethod' => 'wallet',
+                    'transactionid' => 'api' . $request->refid,
                     'discountamount' => 0,
-                    'balance'=>$gt,
-                    'fbalance'=>$user->wallet,
+                    'balance' => $gt,
+                    'fbalance' => $user->wallet,
                 ]);
+                $daterserver = new AirtimeserverController();
+                $mcd = airtimecon::where('status', "1")->first();
+                if ($mcd->server == "mcd") {
+                    $response = $daterserver->mcdbill($request);
+                    $data = json_decode($response, true);
+                    $success = $data["success"];
+                    if ($success == 1) {
 
-                $resellerURL = 'https://integration.mcd.5starcompany.com.ng/api/reseller/';
-//                $resellerURL = 'https://test.mcd.5starcompany.com.ng/api/reseller';
-                $curl = curl_init();
+                        $update = bill_payment::where('id', $bo->id)->update([
+                            'server_response' => $response,
+                            'status' => 1,
+                        ]);
+                        $com = $user->wallet + $comission;
+                        $user->wallet = $com;
+                        $user->save();
 
-                curl_setopt_array($curl, array(
-                    CURLOPT_URL =>$resellerURL.'pay',
-                    CURLOPT_RETURNTRANSFER => true,
-                    CURLOPT_ENCODING => '',
-                    CURLOPT_MAXREDIRS => 10,
-                    CURLOPT_TIMEOUT => 0,
-                    CURLOPT_FOLLOWLOCATION => true,
-                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                    CURLOPT_SSL_VERIFYHOST => 0,
-                    CURLOPT_SSL_VERIFYPEER => 0,
-                    CURLOPT_CUSTOMREQUEST => 'POST',
-                    CURLOPT_POSTFIELDS => array('service' => 'airtime', 'coded' => $request->name, 'phone' => $request->number, 'amount' => $request->amount, 'reseller_price' => $request->amount),
+                        $am = "NGN $request->amount  Airtime Purchase Was Successful To";
+                        $ph = $request->number;
+                        $admin = "info@sammighty.com.ng";
+                        Mail::to($admin)->send(new Emailtrans($bo));
 
-                    CURLOPT_HTTPHEADER => array(
-                        'Authorization: MCDKEY_903sfjfi0ad833mk8537dhc03kbs120r0h9a'
-                    )));
+                        return response()->json([
+                            'message' => $am, 'ph' => $ph, 'success' => $success,
+                            'user' => $user
+                        ], 200);
+                    } elseif ($success == 0) {
 
-                $response = curl_exec($curl);
-
-                curl_close($curl);
-                $data = json_decode($response, true);
-                $success = $data["success"];
-                if ($success == 1) {
-
-                    $update=bill_payment::where('id', $bo->id)->update([
-                        'server_response'=>$response,
-                        'status'=>1,
-                    ]);
-                    $com=$user->wallet+$comission;
-                    $user->wallet=$com;
-                    $user->save();
-
-                    $am = "NGN $request->amount  Airtime Purchase Was Successful To";
-                    $ph = $request->number;
-                    $admin="info@sammighty.com.ng";
-                    Mail::to($admin)->send(new Emailtrans($bo));
-
-                    return response()->json([
-                        'message' => $am, 'ph'=>$ph, 'success'=>$success,
-                        'user' => $user
-                    ], 200);
-                } elseif ($success == 0) {
-
-                    $update=bill_payment::where('id', $bo->id)->update([
-                        'server_response'=>$response,
-                        'status'=>0,
-                    ]);
+                        $update = bill_payment::where('id', $bo->id)->update([
+                            'server_response' => $response,
+                            'status' => 0,
+                        ]);
 
 //                    $name = $bt->plan;
-                    $am = "NGN $request->amount Was Refunded To Your Wallet";
-                    $ph = ", Transaction fail";
+                        $am = "NGN $request->amount Was Refunded To Your Wallet";
+                        $ph = ", Transaction fail";
 
-                    return response()->json([
-                        'message' => $am,  'ph'=>$ph, 'success'=>$success,
-                        'user' => $user
-                    ], 200);
+                        return response()->json([
+                            'message' => $am, 'ph' => $ph, 'success' => $success,
+                            'user' => $user
+                        ], 200);
+
+                    }
+
+
+                } elseif ($mcd->server == "easyaccess") {
+                    $response = $daterserver->easyaccess($request);
+                    $data = json_decode($response, true);
+                    $success = $data["success"];
+
+                    if ($success == "true") {
+
+                        $update = bill_payment::where('id', $bo->id)->update([
+                            'server_response' => $response,
+                            'status' => 1,
+                        ]);
+                        $com = $user->wallet + $comission;
+                        $user->wallet = $com;
+                        $user->save();
+
+                        $am = "NGN $request->amount  Airtime Purchase Was Successful To";
+                        $ph = $request->number;
+                        $admin = "info@sammighty.com.ng";
+                        Mail::to($admin)->send(new Emailtrans($bo));
+
+                        return response()->json([
+                            'message' => $am, 'ph' => $ph, 'success' => $success,
+                            'user' => $user
+                        ], 200);
+                    } else {
+
+                        $update = bill_payment::where('id', $bo->id)->update([
+                            'server_response' => $response,
+                            'status' => 0,
+                        ]);
+
+//                    $name = $bt->plan;
+                        $am = "NGN $request->amount Was Refunded To Your Wallet";
+                        $ph = ", Transaction fail";
+
+                        return response()->json([
+                            'message' => $am, 'ph' => $ph, 'success' => $success,
+                            'user' => $user
+                        ], 200);
+                    }
+
+                } elseif ($mcd->server == "clubk") {
+                    $response = $daterserver->Clubkonnect($request);
+                    $data = json_decode($response, true);
+                    $success = $data["statuscode"];
+
+                    if ($success == "100") {
+
+                        $update = bill_payment::where('id', $bo->id)->update([
+                            'server_response' => $response,
+                            'status' => 1,
+                        ]);
+                        $com = $user->wallet + $comission;
+                        $user->wallet = $com;
+                        $user->save();
+
+                        $am = "NGN $request->amount  Airtime Purchase Was Successful To";
+                        $ph = $request->number;
+                        $admin = "info@sammighty.com.ng";
+                        Mail::to($admin)->send(new Emailtrans($bo));
+
+                        return response()->json([
+                            'message' => $am, 'ph' => $ph, 'success' => $success,
+                            'user' => $user
+                        ], 200);
+                    } else {
+
+                        $update = bill_payment::where('id', $bo->id)->update([
+                            'server_response' => $response,
+                            'status' => 0,
+                        ]);
+
+//                    $name = $bt->plan;
+                        $am = "NGN $request->amount Was Refunded To Your Wallet";
+                        $ph = ", Transaction fail";
+
+                        return response()->json([
+                            'message' => $am, 'ph' => $ph, 'success' => $success,
+                            'user' => $user
+                        ], 200);
+
+                    }
 
                 }
-
-
-
-
-                }
+            }
         }else {
             return response()->json([
                 'message' => "User not found",
