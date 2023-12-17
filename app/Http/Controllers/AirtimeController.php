@@ -29,7 +29,7 @@ class AirtimeController
     public function airtime(Request $request)
     {
         $request->validate([
-            'id' => 'required',
+            'name' => 'required',
         ]);
 
             $user = User::find($request->user()->id);

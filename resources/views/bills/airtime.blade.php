@@ -84,7 +84,7 @@
                                     Network<span class="asteriskField">*</span>
                                 </label>
                                 <div class="">
-                                    <select name="id" class="text-success form-control" required="">
+                                    <select name="name" class="text-success form-control" required="">
 
                                         <option value="m">MTN</option>
                                         <option value="g">GLO</option>
