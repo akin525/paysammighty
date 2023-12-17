@@ -19,20 +19,11 @@ class DatacardController
 
     function datacardpurchase(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'network' => 'required',
-            'selling_amount'=>'required',
 
-        ]);
-        if ($validator->fails()) {
-            return response()->json([
-                'errors' => $this->error_processor($validator)
-            ], 403);
-        }
 
         $apikey = $request->header('apikey');
         $user = User::where('apikey',$apikey)->first();
-        $bt = easy::where("cat_id", $request->code)->first();
+        $bt = easy::where("network", 'DATACARD')->first();
 
         if ($user) {
 
@@ -108,9 +99,9 @@ class DatacardController
                 );
 
                 $data = array(
-                    "network" =>$request['network'],
+                    "network" =>01,
                     "no_of_pins" => 1,
-                    "dataplan" => $request['plan']
+                    "dataplan" => 165,
                 );
 
                 $options = array(
@@ -139,6 +130,7 @@ class DatacardController
                     $update=bill_payment::where('id', $bo->id)->update([
                         'server_response'=>$response,
                         'status'=>1,
+                        'token'=>$data['pin'],
                     ]);
                     $name = $bt->plan;
                     $am = "$bt->plan  was successful| Pin: ".$data['pin'];
@@ -149,7 +141,7 @@ class DatacardController
                     Mail::to($admin)->send(new Emailtrans($bo));
 
                     return response()->json([
-                        'message' => $am,  'success' => $success,
+                        'message' => $am, 'pin'=>$data['pin'],  'success' => $success,
                         'user' => $user
                     ], 200);
                 }else {
