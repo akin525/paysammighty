@@ -4,7 +4,9 @@
 @section('content')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
+    <marquee>
+        <b>{{$me->message}}</b>
+    </marquee>
     <div class="col-xl-9 col-xxl-12">
         <div class="row">
 
