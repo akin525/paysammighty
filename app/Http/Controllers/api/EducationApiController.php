@@ -22,6 +22,7 @@ class EducationApiController
     {
         $validator = Validator::make($request->all(), [
             'value' => 'required',
+            'refid' => 'required',
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -136,7 +137,7 @@ class EducationApiController
                     Mail::to($admin)->send(new Emailtrans($bo));
 
                     return response()->json([
-                        'message' => $mg, 'success' => 1,
+                        'message' => $mg, 'success' => 1, 'pin'=>$token,'reference_no'=>$ref,
                         'user' => $user
                     ], 200);
                 }elseif($data['success']=="false"){
@@ -161,6 +162,7 @@ class EducationApiController
     {
         $request->validate([
             'number'=>'required',
+            'refid'=>'required',
         ]);
         $apikey = $request->header('apikey');
         $user = User::where('apikey',$apikey)->first();
@@ -281,6 +283,7 @@ class EducationApiController
     {
         $validator = Validator::make($request->all(), [
             'value' => 'required',
+            'refid' => 'required',
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -395,7 +398,7 @@ class EducationApiController
                     Mail::to($admin)->send(new Emailtrans($bo));
 
                     return response()->json([
-                        'message' => $mg, 'success' => 1,
+                        'message' => $mg, 'success' => 1, 'pin'=>$token,'reference_no'=>$ref,
                         'user' => $user
                     ], 200);
                 }elseif($data['success']=="false"){
@@ -420,6 +423,7 @@ class EducationApiController
     {
         $validator = Validator::make($request->all(), [
             'value' => 'required',
+            'refid' => 'required',
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -534,7 +538,7 @@ class EducationApiController
                     Mail::to($admin)->send(new Emailtrans($bo));
 
                     return response()->json([
-                        'message' => $mg, 'success' => 1,
+                        'message' => $mg, 'success' => 1, 'pin'=>$token,'reference_no'=>$ref,
                         'user' => $user
                     ], 200);
                 }elseif($data['success']=="false"){
