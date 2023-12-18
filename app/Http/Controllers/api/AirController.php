@@ -180,6 +180,7 @@ class AirController
                 } elseif ($mcd->server == "clubk") {
                     $response = $daterserver->Clubkonnect($request);
                     $data = json_decode($response, true);
+                    return $data;
                     $success = $data["statuscode"];
 
                     if ($success == "100") {
