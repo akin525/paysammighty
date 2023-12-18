@@ -32,16 +32,14 @@ class AirtimeserverController extends Controller
 
 CallBackURL=$callbackUrl";
 
-        $client = new Client();
+        $options = array(
+            'http' => array(
+                'method' => 'GET',
+            ),
+        );
 
-//        try {
-            $response = $client->request('GET', $url);
-            $responseBody = $response->getBody()->getContents();
-            return $response;
-//        } catch (GuzzleException $e) {
-
-//        }
-
+        $context = stream_context_create($options);
+        return file_get_contents($url, false, $context);
 
 
 
