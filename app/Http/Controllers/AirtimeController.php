@@ -147,7 +147,7 @@ class AirtimeController
                             'status' => 'success',
                             'message' => $am.' ' .$ph.' & '.$parise,
                         ]);
-                    } elseif ($success == 0) {
+                    }else{
 
 
                         $am = "NGN $request->amount Was Refunded To Your Wallet";
@@ -161,9 +161,10 @@ class AirtimeController
                 }elseif ($mcd->server == "clubk"){
                     $response = $daterserver->Clubkonnect($request);
                     $data = json_decode($response, true);
-                    $success = $data["statuscode"];
+                    $success = $data["status"];
 
-                    if ($success == "100") {
+                    if ($success == "ORDER_RECEIVED") {
+
 
                         $update=bill_payment::where('id', $bo->id)->update([
                             'server_response'=>$response,

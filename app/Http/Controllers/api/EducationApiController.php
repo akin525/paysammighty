@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Mail\Emailtrans;
 use App\Models\bill_payment;
 use App\Models\easy;
+use App\Models\Jamb;
 use App\Models\Nabteb;
 use App\Models\neco;
 use App\Models\User;
@@ -220,8 +221,8 @@ class EducationApiController
                 'fbalance'=>$fbalance,
                 'balance' => $gt,
             ]);
-            $userId = 'CK100308875';
-            $apiKey = 'UV50MI2W89VZ5945LZ97UBQXU4YNJF7J146G953D6Q4I6VUC962PEOSAK8742479';
+            $userId ='CK100308875';
+            $apiKey ='UG6R05ZA5015Q0WIZ78OBNY82GN56K302U79697814HAQ8ZJ0N27IKKDJ5DP12QE';
             $examCode = 'utme';
             $recipientPhoneNo = $request['number'];
             $requestId = 'request_id';
@@ -229,25 +230,29 @@ class EducationApiController
 
             $url = "https://www.nellobytesystems.com/APIJAMBV1.asp?UserID=$userId&APIKey=$apiKey&ExamType=$examCode&PhoneNo=$recipientPhoneNo&CallBackURL=$callbackUrl";
 
-            $client = new Client();
 
-            $response = $client->request('GET', $url);
+            $options = array(
+                'http' => array(
+                    'method' => 'GET',
+                ),
+            );
 
+            $context = stream_context_create($options);
+            $responseBody= file_get_contents($url, false, $context);
 
-            $responseBody = $response->getBody()->getContents();
             $data = json_decode($responseBody, true);
 
-            if ($data["statuscode"] =="200"){
+            if ($data["status"] =="ORDER_COMPLETED"){
                 $ref=$data['Serial No'];
                 $token=$data['pin'];
-                $insert=waec::create([
+                $insert=Jamb::create([
                     'username'=>$user->username,
-                    'seria'=>'serial_number',
+                    'serial'=>$data['Serial No'],
                     'pin'=>$token,
-                    'ref'=>$ref,
+                    'response'=>$data,
                 ]);
 
-                $mg='Waec Checker Successful Generated, kindly check your pin';
+                $mg='Jamb Pin Successful Generated, kindly check your pin: '.$token;
                 $admin="info@sammighty.com.ng";
                 Mail::to($admin)->send(new Emailtrans($bo));
 
@@ -260,7 +265,8 @@ class EducationApiController
 
                 return response()->json([
                     'status' => 'fail',
-                    'message' => $response,
+                    'message' => $data,
+                    'success' => 0
                 ]);
             }
 

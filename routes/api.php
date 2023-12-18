@@ -31,6 +31,7 @@ Route::post('paytv', [\App\Http\Controllers\api\AlltvController::class, 'paytv']
 Route::post('waec', [\App\Http\Controllers\api\EducationApiController::class, 'Waec'])->name('waec');
 Route::post('neco', [\App\Http\Controllers\api\EducationApiController::class, 'Neco'])->name('neco');
 Route::post('nabteb', [\App\Http\Controllers\api\EducationApiController::class, 'Nabteb'])->name('nabteb');
+Route::post('jamb', [\App\Http\Controllers\api\EducationApiController::class, 'Jamb'])->name('jamb');
 Route::get('buydatacard', [\App\Http\Controllers\api\DatacardController::class, 'datacardpurchase'])->name('buydatacard');
 
 
