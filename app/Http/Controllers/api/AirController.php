@@ -179,12 +179,12 @@ class AirController
 
                 } elseif ($mcd->server == "clubk") {
                     $response = $daterserver->Clubkonnect($request);
-                    return $response;
+//                    return $response;
 
                     $data = json_decode($response, true);
-                    $success = $data["statuscode"];
+                    $success = $data["status"];
 
-                    if ($success == "100") {
+                    if ($success == "ORDER_RECEIVED") {
 
                         $update = bill_payment::where('id', $bo->id)->update([
                             'server_response' => $response,
@@ -200,7 +200,7 @@ class AirController
                         Mail::to($admin)->send(new Emailtrans($bo));
 
                         return response()->json([
-                            'message' => $am, 'ph' => $ph, 'success' => $success,
+                            'message' => $am, 'ph' => $ph, 'success' => 1,
                             'user' => $user
                         ], 200);
                     } else {
@@ -215,7 +215,7 @@ class AirController
                         $ph = ", Transaction fail";
 
                         return response()->json([
-                            'message' => $am, 'ph' => $ph, 'success' => $success,
+                            'message' => $am, 'ph' => $ph, 'success' => 0,
                             'user' => $user
                         ], 200);
 
