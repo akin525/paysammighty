@@ -123,7 +123,7 @@ class AlltvController
             $apikey = $request->header('apikey');
             $user = User::where('apikey',$apikey)->first();
             if ($user) {
-                $tv = easy::where('plan_id', $request->code)->first();
+                $tv = easy::where('plan_id', $request->coded)->first();
 //                return $tv;
 
 
@@ -156,6 +156,7 @@ class AlltvController
 
                     $user->wallet = $gt;
                     $user->save();
+
 
                     $curl = curl_init();
                     curl_setopt_array($curl, array(

@@ -158,7 +158,6 @@ foreach ($plan as $pla) {
                     $user->wallet= $gt;
                     $user->save();
 
-                    $resellerURL = 'https://renomobilemoney.com/api/';
 
                     $curl = curl_init();
                     curl_setopt_array($curl, array(
