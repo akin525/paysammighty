@@ -184,7 +184,7 @@ class AirtimeController
                             'status' => 'success',
                             'message' => $am.' ' .$ph.' & '.$parise,
                         ]);
-                    } elseif ($success == 0) {
+                    } else{
 
 
                         $am = "NGN $request->amount Was Refunded To Your Wallet";

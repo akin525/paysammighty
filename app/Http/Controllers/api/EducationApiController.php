@@ -196,7 +196,30 @@ class EducationApiController
                 ], 200);
 
             }
+            $gt = $user->wallet - $request->selling_amount;
 
+            $fbalance=$user->wallet;
+
+            $bon=$request->selling_amount- $bt->ramount  ;
+
+            $bonus=$user->bonus + $bon;
+            $user->wallet = $gt;
+            $user->bonus= $bonus;
+            $user->save();
+            $bo = bill_payment::create([
+                'username' => $user->username,
+                'product' => $bt->network,
+                'amount' => $bt->ramount,
+                'samount' => $request->selling_amount,
+                'server_response' => 'ur fault',
+                'status' => 0,
+                'number' => $request->number,
+                'transactionid' =>'api'. $request->refid,
+                'discountamount' => $bon,
+                'paymentmethod' => 'wallet',
+                'fbalance'=>$fbalance,
+                'balance' => $gt,
+            ]);
             $userId = 'CK100308875';
             $apiKey = 'UV50MI2W89VZ5945LZ97UBQXU4YNJF7J146G953D6Q4I6VUC962PEOSAK8742479';
             $examCode = 'utme';
@@ -212,6 +235,34 @@ class EducationApiController
 
 
             $responseBody = $response->getBody()->getContents();
+            $data = json_decode($responseBody, true);
+
+            if ($data["statuscode"] =="200"){
+                $ref=$data['Serial No'];
+                $token=$data['pin'];
+                $insert=waec::create([
+                    'username'=>$user->username,
+                    'seria'=>'serial_number',
+                    'pin'=>$token,
+                    'ref'=>$ref,
+                ]);
+
+                $mg='Waec Checker Successful Generated, kindly check your pin';
+                $admin="info@sammighty.com.ng";
+                Mail::to($admin)->send(new Emailtrans($bo));
+
+                return response()->json([
+                    'message' => $mg, 'success' => 1,
+                    'user' => $user
+                ], 200);
+
+            }else{
+
+                return response()->json([
+                    'status' => 'fail',
+                    'message' => $response,
+                ]);
+            }
 
 
 
