@@ -34,13 +34,13 @@ CallBackURL=$callbackUrl";
 
         $client = new Client();
 
-        try {
+//        try {
             $response = $client->request('GET', $url);
             $responseBody = $response->getBody()->getContents();
             return $response;
-        } catch (GuzzleException $e) {
+//        } catch (GuzzleException $e) {
 
-        }
+//        }
 
 
 
