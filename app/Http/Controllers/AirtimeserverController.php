@@ -28,7 +28,7 @@ class AirtimeserverController extends Controller
         $amount= $request['amount'];
         $callbackUrl = 'https://pay.sammighty.com.ng/api/callback_url';
 
-        $url = "https://www.nellobytesystems.com/APIAirtimeV1.asp?UserID=$userId&Key=$apiKey&MobileNetwork=$network&Amount=$amount&MobileNumber=$recipientPhoneNo&
+        $url = "https://www.nellobytesystems.com/APIAirtimeV1.asp?UserID=$userId&APIKey=$apiKey&MobileNetwork=$network&Amount=$amount&MobileNumber=$recipientPhoneNo&
 
 CallBackURL=$callbackUrl";
 
