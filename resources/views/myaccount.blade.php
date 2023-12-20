@@ -148,7 +148,7 @@
                                                     <div class="row">
                                                         <div class="mb-3 col-md-6">
                                                             <label class="form-label">Validate Your Bvn</label>
-                                                            <input type="number"  id="bvn" name="bvn" class="form-control" required/>
+                                                            <input type="number"  id="bvn" name="bvn" class="form-control" placeholder="" required/>
                                                             <span class="text-info" id="message"></span>
                                                         </div>
                                                         <div class="mb-3 col-md-6">
@@ -209,7 +209,8 @@
                     var inputElement = document.getElementById("bvn");
                     var inputValue = inputElement.value;
 
-                    if (inputValue.length === 11) {
+                    // Check if inputValue is not undefined and has a length property
+                    if (inputValue && inputValue.length === 11) {
                         $('#loadingSpinner1').show();
 
                         $.ajax({
@@ -234,6 +235,7 @@
                 });
             });
         </script>
+
 
 
 
