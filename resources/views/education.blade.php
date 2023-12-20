@@ -45,6 +45,8 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
@@ -87,7 +89,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-12">
+    </div>
+    <div class="row">
+    <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">All Nabteb pin History</h4>
@@ -129,7 +133,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-12">
+    </div>
+    <div class="row">
+    <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">All Jamb Pin History</h4>
@@ -171,6 +177,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 @endsection
