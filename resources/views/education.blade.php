@@ -54,7 +54,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="example" class="display min-w850">
+                        <table id="example5" class="display min-w850">
                             <thead>
                             <tr>
                                 <th>ID</th>
@@ -98,7 +98,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="example" class="display min-w850">
+                        <table id="example2" class="display min-w850">
                             <thead>
                             <tr>
                                 <th>ID</th>
@@ -142,7 +142,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="example" class="display min-w850">
+                        <table id="example4" class="display min-w850">
                             <thead>
                             <tr>
                                 <th>ID</th>
