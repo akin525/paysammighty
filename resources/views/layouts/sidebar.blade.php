@@ -267,6 +267,11 @@
                         <span class="nav-text">All Bills</span>
                     </a>
                 </li>
+                <li><a  href="{{route('alledu')}}">
+                        <i class="fa fa-school"></i>
+                        <span class="nav-text">All Education</span>
+                    </a>
+                </li>
             </ul>
 
             <div class="copyright">

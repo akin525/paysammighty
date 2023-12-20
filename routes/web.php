@@ -67,6 +67,8 @@ Route::middleware([
 
     Route::post('rbonus', [WithdrawController::class, 'confirmto'])->name('rbonus');
     Route::post('withdrawnow', [WithdrawController::class, 'withdraw'])->name('withdrawnow');
+
+    Route::get('alledu', [\App\Http\Controllers\EduController::class, 'alledulist'])->name('alledu');
 });
 Route::get('/logout', function(){
     Auth::logout();
