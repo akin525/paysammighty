@@ -144,6 +144,7 @@
                                                 @if(Auth::user()->bvn == null)
                                                 <h4 class="text-primary">Add Your Bvn</h4>
                                                 <form id="updatebvn" >
+                                                    @csrf
                                                     <div class="row">
                                                         <div class="mb-3 col-md-6">
                                                             <label class="form-label">Validate Your Bvn</label>
@@ -207,19 +208,12 @@
                 $('#bvn').on('input', function() {
                     var inputElement = document.getElementById("bvn");
                     var inputValue = inputElement.value;
-                    var secondS = $('#bvn');
-                    var third = $('#name');
-
                     if (inputValue.length === 11 ) {
                         $('#loadingSpinner1').show();
 
                         $.ajax({
                             url: '{{ url('bvn') }}/' + inputValue,
                             type: 'GET',
-                            data: {
-                                value1: inputValue,
-                                value2: secondS.val()
-                            },
                             success: function(response) {
                                 $('#loadingSpinner1').hide();
                                 $('#name').val(response.name);
