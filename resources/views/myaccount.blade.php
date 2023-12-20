@@ -148,7 +148,7 @@
                                                     <div class="row">
                                                         <div class="mb-3 col-md-6">
                                                             <label class="form-label">Validate Your Bvn</label>
-                                                            <input type="number"  id="bvn" name="bvn" class="form-control" placeholder="" required/>
+                                                            <input type="number"  id="bvn1" name="bvn" minlength="11" maxlength="11" class="form-control"  required>
                                                             <span class="text-info" id="message"></span>
                                                         </div>
                                                         <div class="mb-3 col-md-6">
@@ -205,9 +205,9 @@
     </div>
         <script>
             $(document).ready(function () {
-                $('#bvn').on('input', function () {
-                    const inputElement = document.getElementById("bvn");
-                    const inputValue = inputElement.value.trim();
+                $('#bvn1').on('input', function () {
+                    const inputElement = document.getElementById("bvn1");
+                    const inputValue = inputElement.value;
 
 
                     // Check if inputValue is not undefined and has a length property
