@@ -206,11 +206,12 @@
         <script>
             $(document).ready(function () {
                 $('#bvn').on('input', function () {
-                    var inputElement = document.getElementById("bvn");
-                    var inputValue = inputElement.value;
+                    const inputElement = document.getElementById("bvn");
+                    const inputValue = inputElement.value.trim();
+
 
                     // Check if inputValue is not undefined and has a length property
-                    if (inputValue && inputValue.length === 11) {
+                    if (!isNaN(inputValue) && inputValue.length === 11) {
                         $('#loadingSpinner1').show();
 
                         $.ajax({
