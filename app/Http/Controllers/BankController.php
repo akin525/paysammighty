@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\WalletTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class BankController
 {
@@ -14,7 +15,7 @@ class BankController
     {
 
         $amount=100;
-        $user = User::find($request->user()->id);
+        $user = User::where('username', Auth::user()->username)->first();
 
         if ($user->wallet < $amount) {
             $mg = "You Cant Make Purchase Above" . "NGN" . $amount . " from your wallet. Your wallet balance is NGN $user->wallet. Please Fund Wallet And Retry or Pay Online Using Our Alternative Payment Methods.";
