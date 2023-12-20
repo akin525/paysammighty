@@ -3,6 +3,9 @@
 @section('page', 'Profile')
 @section('content')
     <div class="row">
+        <div class="loading-overlay" id="loadingSpinner" style="display: none;">
+        <div class="loading-spinner"></div>
+    </div>
         <div class="col-lg-12">
             <div class="profile card card-body px-3 pt-3 pb-0">
                 <div class="profile-head">
@@ -134,6 +137,37 @@
                                     </div>
 
                                 </div>
+                                <div id="bvn" class="tab-pane fade">
+                                    <div class="my-post-content pt-3">
+                                        <div class="pt-3">
+                                            <div class="settings-form">
+                                                @if(Auth::user()->bvn == null)
+                                                <h4 class="text-primary">Add Your Bvn</h4>
+                                                <form id="updatebvn" >
+                                                    <div class="row">
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label">Validate Your Bvn</label>
+                                                            <input type="number"  id="bvn" name="bvn" class="form-control" required/>
+                                                            <span class="text-info" id="message"></span>
+                                                        </div>
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label">Bvn Name</label>
+                                                            <input type="text" name="name" value="" class="form-control" readonly/>
+                                                        </div>
+                                                    </div>
+
+                                                    <button class="btn btn-primary" type="submit">Submit Bvn</button>
+                                                </form>
+                                                @else
+                                                    <h4 class="text-primary">My Bvn</h4>
+                                                    <span class="badge badge-success" >{{Auth::user()->bvn}}</span>
+
+                                                @endif
+                                            </div>
+
+                                    </div>
+
+                                </div>
                                 <div id="profile-settings" class="tab-pane fade">
                                     <div class="card card-body">
                                         <b><h4 class="text-center">Coming Soon</h4> </b>
@@ -168,9 +202,47 @@
         </div>
 
     </div>
+        <script>
+            $(document).ready(function() {
+                $('#bvn').on('input', function() {
+                    var inputElement = document.getElementById("bvn");
+                    var inputValue = inputElement.value;
+                    var secondS = $('#bvn');
+                    var third = $('#name');
+
+                    if (inputValue.length === 11 ) {
+                        $('#loadingSpinner1').show();
+
+                        $.ajax({
+                            url: '{{ url('bvn') }}/' + inputValue,
+                            type: 'GET',
+                            data: {
+                                value1: inputValue,
+                                value2: secondS.val()
+                            },
+                            success: function(response) {
+                                $('#loadingSpinner1').hide();
+                                $('#name').val(response.name);
+                                $('#message').val(response.message);
+                            },
+                            error: function(xhr) {
+                                $('#loadingSpinner1').hide();
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'fail',
+                                    text: xhr.responseText
+                                });
+                                console.log(xhr.responseText);
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
 
 
-    <script>
+
+        <script>
         $(document).ready(function() {
 
 
@@ -261,6 +333,74 @@
 
                         $.ajax({
                             url: "{{ route('updates') }}",
+                            type: 'POST',
+                            data: formData,
+                            success: function(response) {
+                                // Handle the success response here
+                                $('#loadingSpinner').hide();
+
+                                console.log(response);
+                                // Update the page or perform any other actions based on the response
+
+                                if (response.status == '1') {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Success',
+                                        text: response.message
+                                    }).then(() => {
+                                        location.reload(); // Reload the page
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        icon: 'info',
+                                        title: 'Pending',
+                                        text: response.message
+                                    });
+                                    // Handle any other response status
+                                }
+
+                            },
+                            error: function(xhr) {
+                                $('#loadingSpinner').hide();
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'fail',
+                                    text: xhr.responseText
+                                });
+                                // Handle any errors
+                                console.log(xhr.responseText);
+
+                            }
+                        });
+
+
+            });
+        });
+
+    </script>
+    <script>
+        $(document).ready(function() {
+
+
+            // Send the AJAX request
+            $('#updatebvn').submit(function(e) {
+                e.preventDefault(); // Prevent the form from submitting traditionally
+
+                // Get the form data
+                var formData = $(this).serialize();
+                        // The user clicked "Yes", proceed with the action
+                        // Add your jQuery code here
+                        // For example, perform an AJAX request or update the page content
+                Swal.fire({
+                    title: 'Processing',
+                    text: 'Please wait...',
+                    icon: 'info',
+                    allowOutsideClick: false,
+                    showConfirmButton: false
+                });
+
+                        $.ajax({
+                            url: "{{ route('updatebvn') }}",
                             type: 'POST',
                             data: formData,
                             success: function(response) {

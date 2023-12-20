@@ -45,6 +45,7 @@ class User extends Authenticatable
         'two_factor_recovery_codes',
         'two_factor_secret',
         'apikey',
+        'bvn',
         'role',
         'webhook',
     ];

@@ -69,6 +69,9 @@ Route::middleware([
     Route::post('withdrawnow', [WithdrawController::class, 'withdraw'])->name('withdrawnow');
 
     Route::get('alledu', [\App\Http\Controllers\EduController::class, 'alledulist'])->name('alledu');
+
+    Route::get('bvn', [\App\Http\Controllers\BankController::class, 'checkbvn'])->name('bvn');
+    Route::post('updatebvn', [\App\Http\Controllers\BankController::class, 'updatekbvn'])->name('updatebvn');
 });
 Route::get('/logout', function(){
     Auth::logout();
