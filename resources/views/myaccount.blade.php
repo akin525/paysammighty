@@ -215,7 +215,7 @@
                         $('#loadingSpinner1').show();
 
                         $.ajax({
-                            url: '/bvn/' + inputValue,
+                            url: '{{ url('bvn') }}/' + inputValue,
                             type: 'GET',
                             success: function (response) {
                                 $('#loadingSpinner1').hide();
