@@ -204,26 +204,27 @@
 
     </div>
         <script>
-            $(document).ready(function() {
-                $('#bvn').on('input', function() {
+            $(document).ready(function () {
+                $('#bvn').on('input', function () {
                     var inputElement = document.getElementById("bvn");
                     var inputValue = inputElement.value;
-                    if (inputValue.length === 11 ) {
+
+                    if (inputValue.length === 11) {
                         $('#loadingSpinner1').show();
 
                         $.ajax({
-                            url: '{{ url('bvn') }}/' + inputValue,
+                            url: '/bvn/' + inputValue,
                             type: 'GET',
-                            success: function(response) {
+                            success: function (response) {
                                 $('#loadingSpinner1').hide();
                                 $('#name').val(response.name);
                                 $('#message').val(response.message);
                             },
-                            error: function(xhr) {
+                            error: function (xhr) {
                                 $('#loadingSpinner1').hide();
                                 Swal.fire({
                                     icon: 'error',
-                                    title: 'fail',
+                                    title: 'Fail',
                                     text: xhr.responseText
                                 });
                                 console.log(xhr.responseText);
