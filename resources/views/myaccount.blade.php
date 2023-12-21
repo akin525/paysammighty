@@ -153,7 +153,7 @@
                                                         </div>
                                                         <div class="mb-3 col-md-6">
                                                             <label class="form-label">Bvn Name</label>
-                                                            <input type="text" name="name" value="" class="form-control" readonly/>
+                                                            <input type="text" name="name" class="form-control" readonly/>
                                                         </div>
                                                     </div>
 
@@ -212,18 +212,18 @@
 
                     // Check if inputValue is not undefined and has a length property
                     if (!isNaN(inputValue) && inputValue.length === 11) {
-                        $('#loadingSpinner1').show();
+                        $('#loadingSpinner').show();
 
                         $.ajax({
                             url: '{{ url('bvn') }}/' + inputValue,
                             type: 'GET',
                             success: function (response) {
-                                $('#loadingSpinner1').hide();
+                                $('#loadingSpinner').hide();
                                 $('#name').val(response.name);
                                 $('#message').val(response.message);
                             },
                             error: function (xhr) {
-                                $('#loadingSpinner1').hide();
+                                $('#loadingSpinner').hide();
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Fail',
