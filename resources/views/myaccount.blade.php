@@ -219,8 +219,7 @@
                             type: 'GET',
                             success: function (response) {
                                 $('#loadingSpinner').hide();
-                                $('#name').val(response.data.name);
-                                $('#message').val(response.data.message);
+
                                 console.log(response.data.message);
                                 console.log(response.message);
                                 console.log(response);
