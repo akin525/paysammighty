@@ -219,8 +219,8 @@
                             type: 'GET',
                             success: function (response) {
                                 $('#loadingSpinner').hide();
-                                $('#name').val(response.name);
-                                $('#message').val(response.message);
+                                $('#name').val(response.data.name);
+                                $('#message').val(response.data.message);
                             },
                             error: function (xhr) {
                                 $('#loadingSpinner').hide();
