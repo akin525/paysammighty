@@ -82,6 +82,7 @@ class BankController
                 'status'=>1,
             ]);
             return response()->json([
+                'status'=>1,
                 'name'=>$name,
                 'message'=>$msg
             ]);
@@ -89,6 +90,7 @@ class BankController
             $msg=$data['message'];
 
             return response()->json([
+                'status'=>0,
                 'name'=>$msg,
                 'message'=>$msg
             ]);

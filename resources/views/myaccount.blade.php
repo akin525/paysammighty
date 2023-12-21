@@ -153,11 +153,11 @@
                                                         </div>
                                                         <div class="mb-3 col-md-6">
                                                             <label class="form-label">Bvn Name</label>
-                                                            <input type="text" name="name" class="form-control" readonly/>
+                                                            <input type="text" id="name" name="name" class="form-control text-success" readonly/>
                                                         </div>
                                                     </div>
 
-                                                    <button class="btn btn-primary" type="submit">Submit Bvn</button>
+                                                    <button class="btn btn-primary" type="submit" id="sub" style="display: none;">Submit Bvn</button>
                                                 </form>
                                                 @else
                                                     <h4 class="text-primary">My Bvn</h4>
@@ -219,6 +219,24 @@
                             type: 'GET',
                             success: function (response) {
                                 $('#loadingSpinner').hide();
+                                if (response && response.name) {
+                                    $('#name').val(response.name);
+                                } else {
+                                    // Handle the case when 'name' property is missing or undefined
+                                    $('#name').val('Name not available');
+                                }
+
+                                // Check if 'response' and 'message' properties exist
+                                if (response && response.message) {
+                                    $('#message').val(response.message);
+                                } else {
+                                    // Handle the case when 'message' property is missing or undefined
+                                    $('#message').val('Message not available');
+                                }
+                                if(response.status ===1){
+                                    $('#sub').show();
+
+                                }
                                 // $('#name').val(response.data.name);
                                 // $('#message').val(response.data.message);
                                 // console.log(response.data.message);
