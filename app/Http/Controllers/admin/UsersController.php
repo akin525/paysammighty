@@ -80,6 +80,6 @@ class UsersController
         $cname=$user->name;
         $cphone=$user->phone;
         $cmail=$user->email;
-        return view('admin/profile', ['user' => $ap, 'sumtt'=>$sumtt, 'bus'=>$bus, 'charge'=>$charge,  'sumch'=>$sumch, 'sumbo'=>$sumbo, 'tt' => $tt, 'td' => $td, 'cphone'=>$cphone, 'cname'=>$cname, 'cmail'=>$cmail,   'version' => $v,  'tat' =>$tat]);
+        return view('admin/profile', ['user' => $ap, 'sumtt'=>$sumtt, 'bus'=>$bus, 'charge'=>$charge,  'sumch'=>$sumch, 'sumbo'=>$sumbo, 'tt' => $tt, 'td' => $td, 'cphone'=>$cphone, 'cname'=>$cname, 'cmail'=>$cmail,   'v' => $v,  'tat' =>$tat]);
     }
 }
