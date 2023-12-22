@@ -266,7 +266,7 @@
                                                 </div>
                                                 <div class="card-body">
                                                     <div class="table-responsive">
-                                                        <table id="exampl2" class="display min-w850">
+                                                        <table id="example2" class="display min-w850">
                                                             <thead>
                                                             <tr>
                                                                 <th>Date</th>
