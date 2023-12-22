@@ -18,6 +18,11 @@ class WithdrawController
     {
 
         $user=User::where('username', Auth::user()->username)->first();
+        if ($user->bvn == null){
+            $msg="Kindly Update your BVN On Sammighty";
+            return redirect('dashboard')->with('error', $msg);
+        }
+
         if ($user->withdraw == "0"){
             $msg="Transfer option not enable kindly contact the admin";
             return redirect('dashboard')->with('error', $msg);
