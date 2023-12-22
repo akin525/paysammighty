@@ -13,6 +13,9 @@
                         <hr>
                         <p class="mb-1">MCD Wallet</p>
                         <h2 class="fs-36 text-white mb-sm-4 mb-3">₦{{number_format(intval($mcd *1),2)}}</h2>
+                        <hr>
+                        <p class="mb-1">Easyaccess Wallet</p>
+                        <h2 class="fs-36 text-white mb-sm-4 mb-3">₦{{number_format(intval($easy *1),2)}}</h2>
                         <div class="d-flex">
                             <div class="me-5">
                                 <p class="fs-14 mb-1 op6">Today Date</p>
@@ -39,6 +42,10 @@
                         <hr>
                         <span class="text-black">MCD Commission</span>
                         <h3 class="text-black fs-20 mb-0 font-w600">₦{{number_format(intval($mcdc *1),2)}}</h3>
+                        <hr>
+                        <span class="text-black">Clubkonnect Wallet</span>
+                        <h3 class="text-black fs-20 mb-0 font-w600">₦{{number_format(intval($club *1),2)}}</h3>
+                        <hr>
                     </div>
 {{--                    <canvas id="lineChart" height="300" class="mt-auto line-chart-demo"></canvas>--}}
                 </div>

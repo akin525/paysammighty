@@ -106,10 +106,47 @@ class LoginController
         $paylonybalance=$data['data']['balance'];
         $paylonypending=$data['data']['pending'];
 
-        ;
+
+        $url2 = 'https://easyaccess.com.ng/api/wallet_balance.php';
+
+        $headers1 = array(
+            'Content-Type: application/json',
+            "AuthorizationToken:  fed2524ba6cae4b443f65f60a30a8731", //replace this with your authorization_token
+
+        );
+        $options = array(
+            'http' => array(
+                'header' => implode("\r\n", $headers1),
+                'method' => 'GET',
+            ),
+        );
+
+        $context2 = stream_context_create($options);
+        $response2= file_get_contents($url2, false, $context2);
+
+        $data2 = json_decode($response2, true);
+        if ($data2['success']=='true'){
+            $easy=$data2['balance'];
+        }
+
+
+        $userId ='CK100308875';
+        $apiKey ='UG6R05ZA5015Q0WIZ78OBNY82GN56K302U79697814HAQ8ZJ0N27IKKDJ5DP12QE';
+        $url3 = "https://www.nellobytesystems.com/APIWalletBalanceV1.asp?UserID=$userId&APIKey=$apiKey";
+
+        $options = array(
+            'http' => array(
+                'method' => 'GET',
+            ),
+        );
+
+        $context = stream_context_create($options);
+        $res=file_get_contents($url3, false, $context);
+        $data3 = json_decode($response2, true);
+            $club=$data3['balance'];
         return view('admin/dashboard', compact('todaycollection', 'todaycollectionnumber',
         'todaypurchase', 'todaypurchasenumber', 'todaydepositcharges', 'allcollection', 'allpurchase', 'allcharges',
-        'newuser', 'alluser', 'alluserwallet', 'mcdc',  'alluserbonus', 'paylonybalance', 'paylonypending', 'thisweek', 'mcd'
+        'newuser', 'alluser', 'club', 'alluserwallet', 'mcdc',  'alluserbonus', 'paylonybalance', 'easy',  'paylonypending', 'thisweek', 'mcd'
         ));
 
     }
