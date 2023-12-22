@@ -71,8 +71,8 @@ class UsersController
         $bus=Business::where('username', $username)->first();
         $sumtt = Deposit::where('username', $ap->username)->sum('amount');
         $tt = Deposit::where('username', $ap->username)->count();
-        $td = Deposit::where('username', $ap->username)->orderBy('id', 'desc')->paginate(10);
-        $v = DB::table('bill_payments')->where('username', $ap->username)->orderBy('id', 'desc')->paginate(25);
+        $td = Deposit::where('username', $ap->username)->orderBy('id', 'desc')->get();
+        $v = DB::table('bill_payments')->where('username', $ap->username)->orderBy('id', 'desc')->get();
         $tat = bill_payment::where('username', $ap->username)->count();
         $sumbo = bill_payment::where('username', $ap->username)->sum('amount');
         $sumch = charp::where('username', $ap->username)->sum('amount');
