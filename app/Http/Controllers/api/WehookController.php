@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class WehookController
 {
@@ -121,4 +122,75 @@ class WehookController
 
 
     }
+    function sendwebhook1(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'amount' => 'required',
+            'refid' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $this->error_processor($validator)
+            ], 403);
+        }
+        $refid=$request["refid"];
+        $amount=$request["amount"];
+        $apikey = $request->header('apikey');
+        $user = User::where('apikey',$apikey)->first();
+        $pt=$user['wallet'];
+
+            $depo = Deposit::where('refid', $refid)->first();
+            if (isset($depo)) {
+                echo "payment refid the same";
+            }else {
+
+                $char = setting::first();
+                $amount1 = $amount - $char->charges;
+
+
+                $gt = $amount1 + $pt;
+                $reference=$refid;
+
+//                $deposit['narration']=$narration;
+                $deposit = Deposit::create([
+                    'username' => $user->username,
+                    'refid' =>$refid,
+                    'amount' => $amount,
+                    'iwallet' => $pt,
+                    'fwallet' => $gt,
+                ]);
+                $wt=WalletTransaction::create([
+                    'username' => $user->username,
+                    'refid' =>$refid,
+                    'amount' => $amount,
+                    'bb' => $pt,
+                    'bf' => $gt,
+                ]);
+                $user->wallet = $gt;
+                $user->save();
+                $charp = charp::create([
+                    'username' => $user->username,
+                    'refid' => $reference,
+                    'amount' => $char->charges,
+                    'iwallet' => $pt,
+                    'fwallet' => $gt,
+                ]);
+
+
+                $admin= 'info@sammighty.com.ng';
+
+                $receiver= $user->email;
+
+                Mail::to($receiver)->send(new Emailfund($deposit));
+                Mail::to($admin)->send(new Emailfund($deposit));
+
+
+
+
+
+            }
+
+
+        }
+
 }
