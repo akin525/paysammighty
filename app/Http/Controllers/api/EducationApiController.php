@@ -10,6 +10,7 @@ use App\Models\Nabteb;
 use App\Models\neco;
 use App\Models\User;
 use App\Models\waec;
+use App\Models\WalletTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -96,6 +97,14 @@ class EducationApiController
                     'balance' => $gt,
                 ]);
 
+                $wt=WalletTransaction::create([
+                    'username' => $user->username,
+                    'source'=>$bt->plan,
+                    'refid' =>$request->refid,
+                    'amount' => $bt->ramount,
+                    'bb' => $fbalance,
+                    'bf' => $gt,
+                ]);
                 $curl = curl_init();
                 curl_setopt_array($curl, array(
                     CURLOPT_URL => "https://easyaccess.com.ng/api/nabteb_v2.php",
@@ -222,6 +231,14 @@ class EducationApiController
                 'paymentmethod' => 'wallet',
                 'fbalance'=>$fbalance,
                 'balance' => $gt,
+            ]);
+            $wt=WalletTransaction::create([
+                'username' => $user->username,
+                'source'=>$bt->plan,
+                'refid' =>$request->refid,
+                'amount' => $bt->ramount,
+                'bb' => $fbalance,
+                'bf' => $gt,
             ]);
             $userId ='CK100308875';
             $apiKey ='UG6R05ZA5015Q0WIZ78OBNY82GN56K302U79697814HAQ8ZJ0N27IKKDJ5DP12QE';
@@ -357,6 +374,14 @@ class EducationApiController
                     'balance' => $gt,
                 ]);
 
+                $wt=WalletTransaction::create([
+                    'username' => $user->username,
+                    'source'=>$bt->plan,
+                    'refid' =>$request->refid,
+                    'amount' => $bt->ramount,
+                    'bb' => $fbalance,
+                    'bf' => $gt,
+                ]);
                 $curl = curl_init();
                 curl_setopt_array($curl, array(
                     CURLOPT_URL => "https://easyaccess.com.ng/api/waec_v2.php",
@@ -497,6 +522,14 @@ class EducationApiController
                     'balance' => $gt,
                 ]);
 
+                $wt=WalletTransaction::create([
+                    'username' => $user->username,
+                    'source'=>$bt->plan,
+                    'refid' =>$request->refid,
+                    'amount' => $bt->ramount,
+                    'bb' => $fbalance,
+                    'bf' => $gt,
+                ]);
                 $curl = curl_init();
                 curl_setopt_array($curl, array(
                     CURLOPT_URL => "https://easyaccess.com.ng/api/neco_v2.php",

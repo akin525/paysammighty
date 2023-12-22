@@ -9,6 +9,7 @@ use App\Models\bill_payment;
 use App\Models\easy;
 use App\Models\profit;
 use App\Models\User;
+use App\Models\WalletTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -90,7 +91,14 @@ class DatacardController
                     'balance' => $gt,
                 ]);
 
-
+                $wt=WalletTransaction::create([
+                    'username' => $user->username,
+                    'source'=>$bt->plan,
+                    'refid' =>$request->refid,
+                    'amount' => $bt->ramount,
+                    'bb' => $fbalance,
+                    'bf' => $gt,
+                ]);
                 $url = 'https://easyaccess.com.ng/api/datacard.php';
 
                 $headers = array(

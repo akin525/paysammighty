@@ -12,6 +12,7 @@ use App\Models\Comission;
 use App\Models\data;
 use App\Models\User;
 use App\Models\wallet;
+use App\Models\WalletTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -69,6 +70,7 @@ class AirController
 
             } else {
 
+                $bo=$user->wallet;
                 $per = 2 / 100;
                 $comission = $per * $request->amount;
 
@@ -90,7 +92,16 @@ class AirController
                     'transactionid' => 'api' . $request->refid,
                     'discountamount' => 0,
                     'balance' => $gt,
-                    'fbalance' => $user->wallet,
+                    'fbalance' => $bo,
+                ]);
+
+                $wt=WalletTransaction::create([
+                    'username' => $user->username,
+                    'source'=>"Purchase airtime",
+                    'refid' =>$request->refid,
+                    'amount' => $request->amount,
+                    'bb' => $bo,
+                    'bf' => $gt,
                 ]);
                 $daterserver = new AirtimeserverController();
                 $mcd = airtimecon::where('status', "1")->first();
@@ -123,6 +134,7 @@ class AirController
                             'server_response' => $response,
                             'status' => 0,
                         ]);
+
 
 //                    $name = $bt->plan;
                         $am = "NGN $request->amount Was Refunded To Your Wallet";

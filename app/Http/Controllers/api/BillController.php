@@ -9,6 +9,7 @@ use App\Models\data;
 use App\Models\easy;
 use App\Models\profit;
 use App\Models\server;
+use App\Models\WalletTransaction;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
@@ -100,6 +101,14 @@ class BillController
                     'balance' => $gt,
                 ]);
 
+                $wt=WalletTransaction::create([
+                    'username' => $user->username,
+                    'source'=>$bt->plan,
+                    'refid' =>$request->refid,
+                    'amount' => $bt->ramount,
+                    'bb' => $fbalance,
+                    'bf' => $gt,
+                ]);
                     $daterserver = new DataserverController();
 
                         $object = json_decode($bt);
