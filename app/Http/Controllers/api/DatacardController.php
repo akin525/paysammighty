@@ -31,6 +31,7 @@ class DatacardController
             if ($user->wallet < $bt->ramount) {
                 $mg = "You Cant Make Purchase Above " . "NGN" . $bt->ramount . " from your wallet. Your wallet balance is NGN $user->waller. Please Fund Wallet And Retry or Pay Online Using Our Alternative Payment Methods.";
 
+
                 return response()->json([
                     'message' => $mg,
                     'user' => $user,

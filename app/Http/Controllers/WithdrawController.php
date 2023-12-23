@@ -201,7 +201,7 @@ class WithdrawController
             ]);
             return response()->json([
                 'status' => 'success',
-                'message' => $data,
+                'message' => $data['message'],
                 "pay"=> $payload ,
                 "has"=>$hash,
             ]);
