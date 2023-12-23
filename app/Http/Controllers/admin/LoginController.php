@@ -131,7 +131,7 @@ class LoginController
 
 
         $userId ='CK100308875';
-        $apiKey ='UG6R05ZA5015Q0WIZ78OBNY82GN56K302U79697814HAQ8ZJ0N27IKKDJ5DP12QE';
+        $apiKey ='X2BEB752CE2OK5Y75CA5316Q8PLV94AEJOA80A2O7A0FGKN60FZ435ZT6372077D';
         $url3 = "https://www.nellobytesystems.com/APIWalletBalanceV1.asp?UserID=$userId&APIKey=$apiKey";
 
         $options = array(
