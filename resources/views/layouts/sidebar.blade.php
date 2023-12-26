@@ -13,7 +13,6 @@
 
     <!-- Mobile Specific -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- include libraries(jQuery, bootstrap) -->
 
     <!-- Title -->
     <title>@yield('tittle')</title>
@@ -28,9 +27,7 @@
     <link href="{{asset('user/vendor/lightgallery/css/lightgallery.min.css')}}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
-    <!-- include summernote css/js -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
     <!-- SweetAlert JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
