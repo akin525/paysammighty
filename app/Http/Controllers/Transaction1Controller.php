@@ -16,7 +16,7 @@ class Transaction1Controller extends Controller
     {
         $transactions = Deposit::where('username', Auth::user()->username)->selectRaw('DATE(date) as date, SUM(amount) as total_amount')
             ->groupBy('date')
-            ->orderBy('date', 'ASC')
+            ->orderBy('date', 'ASC')->limit(15)
             ->get();
 
         $dates = $transactions->pluck('date')->toArray();
@@ -31,7 +31,7 @@ class Transaction1Controller extends Controller
     {
         $transactions = WalletTransaction::where('username', Auth::user()->username)->selectRaw('DATE(date) as date, SUM(amount) as total_amount')
             ->groupBy('date')
-            ->orderBy('date', 'ASC')
+            ->orderBy('date', 'ASC')->limit(15)
             ->get();
 
         $dates = $transactions->pluck('date')->toArray();
