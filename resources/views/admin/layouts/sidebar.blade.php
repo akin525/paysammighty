@@ -1,4 +1,4 @@
-<head>
+00000000000000000000000000000<head>
     <!-- All Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -319,6 +319,7 @@
 <script src="{{asset('user/js/demo.js')}}"></script>
 <script src="{{asset('user/js/styleSwitcher.js')}}"></script>
 
+<script src="{{asset('user/vendor/ckeditor/ckeditor.js')}}"></script>
 
 <!-- Chart piety plugin files -->
 <script src="{{asset('user/vendor/peity/jquery.peity.min.js')}}"></script>
