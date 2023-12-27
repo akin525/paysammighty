@@ -10,8 +10,10 @@
                     <input type="text" class="form-control" placeholder="Title">
                 </div>
             </form>
-            <label class="form-label">Description</label>
-            <div id="ckeditor"></div>
+            <label  class="form-label" for="ckeditor">Broadcast Message</label>
+            <textarea id="ckeditor"></textarea>
         </div>
     </div>
+    <script src="{{asset('user/vendor/ckeditor/ckeditor.js')}}"></script>
+
 @endsection

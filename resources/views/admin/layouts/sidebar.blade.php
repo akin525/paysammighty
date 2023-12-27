@@ -247,7 +247,7 @@
                 </li>
                 <li><a  href="{{route('admin/message')}}">
                         <i class="fa fa-envelope-open-text"></i>
-                        <span class="nav-text">Post Message</span>
+                        <span class="nav-text">Message</span>
                         <span class="badge badge-xs style-1 badge-danger">HOT</span>
 
                     </a>
