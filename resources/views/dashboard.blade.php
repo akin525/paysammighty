@@ -12,7 +12,7 @@
 
                 Swal.fire({
                     title: 'Hi ' + username,
-                    text: message,
+                    html: message,
                     icon: 'info'
                 });
             }, 1000);
