@@ -217,6 +217,15 @@
 
                     </a>
                 </li>
+                <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                        <i class="flaticon-381-network"></i>
+                        <span class="nav-text">Server Switch</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="#">Data Server</a></li>
+                        <li><a href="#">Airtime Server</a></li>
+                    </ul>
+                </li>
                 <li><a  href="{{route('admin/deposits')}}">
                         <i class="fa fa-wallet"></i>
                         <span class="nav-text">Deposits</span>

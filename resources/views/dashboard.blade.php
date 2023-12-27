@@ -4,6 +4,20 @@
 @section('content')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        window.onload = function() {
+            setTimeout(function() {
+                var username = @json(Auth::user()->username);
+                var message = @json($me->message);
+
+                Swal.fire({
+                    title: 'Hi ' + username,
+                    text: message,
+                    icon: 'info'
+                });
+            }, 1000);
+        };
+    </script>
     <marquee>
         <b>{{$me->message}}</b>
     </marquee>
@@ -233,17 +247,7 @@
 
         </div>
     </div>
-    <script>
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                Swal.fire({
-                    title: 'Hi {{Auth::user()->username}}',
-                    text: '{{$me->message}}',
-                    icon: 'info'
-                });
-            }, 1000); // 5000 milliseconds = 5 seconds
-        });
-    </script>
+
     <script>
         $(document).ready(function() {
             $('#virtual').change(function() {
