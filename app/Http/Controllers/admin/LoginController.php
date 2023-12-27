@@ -143,6 +143,7 @@ class LoginController
         $context = stream_context_create($options);
         $res=file_get_contents($url3, false, $context);
         $data3 = json_decode($res, true);
+
             $club=$data3['balance'];
         return view('admin/dashboard', compact('todaycollection', 'todaycollectionnumber',
         'todaypurchase', 'todaypurchasenumber', 'todaydepositcharges', 'allcollection', 'allpurchase', 'allcharges',

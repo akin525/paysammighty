@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\CandCController;
 use App\Http\Controllers\admin\LoginController;
+use App\Http\Controllers\admin\MessageController;
 use App\Http\Controllers\admin\ReportController;
 use App\Http\Controllers\admin\UsersController;
 use App\Http\Controllers\AirtimeController;
@@ -110,7 +111,6 @@ Route::get('admin/dashboard', [LoginController::class, 'admindashboard'])->name(
     Route::post('admin/bonus', [CandCController::class, 'fundbonus'])->name('admin/bonus');
     Route::post('admin/ch', [CandCController::class, 'charge'])->name('admin/ch');
 
-
-
+    Route::get('admin/message', [MessageController::class, 'messageindexload'])->name('admin/message');
 
 });

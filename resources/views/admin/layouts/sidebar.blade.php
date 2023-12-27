@@ -245,6 +245,13 @@
                         <span class="nav-text">My Transfer</span>
                     </a>
                 </li>
+                <li><a  href="{{route('admin/message')}}">
+                        <i class="fa fa-envelope-open-text"></i>
+                        <span class="nav-text">Post Message</span>
+                        <span class="badge badge-xs style-1 badge-danger">HOT</span>
+
+                    </a>
+                </li>
                 <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                         <i class="flaticon-381-user-2"></i>
                         <span class="nav-text">Virtual Account</span>
