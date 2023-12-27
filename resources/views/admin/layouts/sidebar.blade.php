@@ -19,8 +19,8 @@
 
     <!-- Favicon icon -->
     <link rel="icon" sizes="16x16" href="{{asset('user/wall.png')}}">
-{{--    <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>--}}
-    <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/balloon-block/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
+{{--    <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/balloon-block/ckeditor.js"></script>--}}
 
     <link href="{{asset('user/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet')}}">
     <link rel="stylesheet" href="{{asset('user/vendor/chartist/css/chartist.min.css')}}">

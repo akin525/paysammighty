@@ -27,7 +27,7 @@ class MessageController
      $message->save();
 
      return response()->json([
-         'success'=>0,
+         'status'=>1,
          'message' => 'Notification Updated',
      ]);
  }

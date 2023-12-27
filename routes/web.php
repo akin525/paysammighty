@@ -112,5 +112,6 @@ Route::get('admin/dashboard', [LoginController::class, 'admindashboard'])->name(
     Route::post('admin/ch', [CandCController::class, 'charge'])->name('admin/ch');
 
     Route::get('admin/message', [MessageController::class, 'messageindexload'])->name('admin/message');
+    Route::post('admin/mes', [MessageController::class, 'updatemessage'])->name('admin/mes');
 
 });
