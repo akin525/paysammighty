@@ -1,4 +1,4 @@
-00000000000000000000000000000<head>
+<head>
     <!-- All Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,6 +19,7 @@
 
     <!-- Favicon icon -->
     <link rel="icon" sizes="16x16" href="{{asset('user/wall.png')}}">
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
 
     <link href="{{asset('user/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet')}}">
     <link rel="stylesheet" href="{{asset('user/vendor/chartist/css/chartist.min.css')}}">
@@ -326,6 +327,14 @@
     </div>
 </div>
 @yield('script')
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+
 <script src="{{asset('user/vendor/global/global.min.js')}}"></script>
 <script src="{{asset('user/vendor/bootstrap-select/dist/js/bootstrap-select.min.js')}}"></script>
 <script src="{{asset('user/vendor/chart-js/chart.bundle.min.js')}}"></script>

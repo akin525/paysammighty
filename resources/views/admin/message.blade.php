@@ -11,7 +11,9 @@
                 </div>
             </form>
             <label  class="form-label" for="ckeditor">Broadcast Message</label>
-            <textarea id="ckeditor"></textarea>
+{{--            <textarea id="ckeditor"></textarea>--}}
+            <div id="editor"></div>
+
         </div>
     </div>
     <script src="{{asset('user/vendor/ckeditor/ckeditor.js')}}"></script>
