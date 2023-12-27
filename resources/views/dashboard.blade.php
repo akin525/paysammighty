@@ -8,7 +8,7 @@
         window.onload = function() {
             setTimeout(function() {
                 var username = @json(Auth::user()->username);
-                var message = {!!$me->message!!};
+                var message = {!! json_encode($me->message) !!};
 
                 Swal.fire({
                     title: 'Hi ' + username,
