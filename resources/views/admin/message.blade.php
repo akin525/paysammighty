@@ -5,6 +5,7 @@
     <div class="card h-auto">
         <div class="card-body">
             <form id="postm">
+                @csrf
             <label  class="form-label" for="editor">Broadcast Message</label>
 {{--            <textarea id="ckeditor"></textarea>--}}
             <textarea name="message" id="editor">{{$message->message}}</textarea><br>
