@@ -8,7 +8,7 @@
         window.onload = function() {
             setTimeout(function() {
                 var username = @json(Auth::user()->username);
-                var message = @json($me->message);
+                var message = @json(!!$me->message!!);
 
                 Swal.fire({
                     title: 'Hi ' + username,
@@ -19,6 +19,7 @@
         };
     </script>
     <marquee>
+{{--        {!!  !!}--}}
         <b>{{$me->message}}</b>
     </marquee>
     <div class="col-xl-9 col-xxl-12">
