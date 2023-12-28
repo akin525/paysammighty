@@ -144,7 +144,7 @@ class LoginController
         $res=file_get_contents($url3, false, $context);
         $data3 = json_decode($res, true);
 
-            $club=$data3['balance'];
+            $club=4000;
         return view('admin/dashboard', compact('todaycollection', 'todaycollectionnumber',
         'todaypurchase', 'todaypurchasenumber', 'todaydepositcharges', 'allcollection', 'allpurchase', 'allcharges',
         'newuser', 'alluser', 'club', 'alluserwallet', 'mcdc',  'alluserbonus', 'paylonybalance', 'easy',  'paylonypending', 'thisweek', 'mcd'
