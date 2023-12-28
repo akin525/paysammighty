@@ -241,7 +241,7 @@ class EducationApiController
                 'bf' => $gt,
             ]);
             $userId ='CK100308875';
-            $apiKey ='QEOZE849JE7T04EWM56J3J5H5088G30U857OOJLI72TKNWG8T080MC59KK1P8490';
+            $apiKey ='653FSKG22H839L7Z00B2598ANE339LL6OZ790MKGDJ10S6G2QSX53RELA331RES2';
             $examCode = 'utme';
             $recipientPhoneNo = $request['number'];
             $requestId = 'request_id';
