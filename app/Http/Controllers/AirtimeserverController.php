@@ -22,7 +22,7 @@ class AirtimeserverController extends Controller
             $network="03";
         }
         $userId ='CK100308875';
-        $apiKey ='653FSKG22H839L7Z00B2598ANE339LL6OZ790MKGDJ10S6G2QSX53RELA331RES2';
+        $apiKey ='961MT1M6C4DD542FL648614W41Q2OLDERYYOQMK6M66XZC2DPPP6671064N8TB94';
         $examCode = 'utme';
         $recipientPhoneNo = $request['number'];
         $amount= $request['amount'];
