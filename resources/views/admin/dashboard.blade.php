@@ -44,7 +44,7 @@
                         <h3 class="text-black fs-20 mb-0 font-w600">₦{{number_format(intval($mcdc *1),2)}}</h3>
                         <hr>
                         <span class="text-black">Clubkonnect Wallet</span>
-                        <h3 class="text-black fs-20 mb-0 font-w600">₦{{number_format(intval($club *1),2)}}</h3>
+                        <h3 class="text-black fs-20 mb-0 font-w600">₦{{number_format(intval($club *1))}}</h3>
                         <hr>
                     </div>
 {{--                    <canvas id="lineChart" height="300" class="mt-auto line-chart-demo"></canvas>--}}
