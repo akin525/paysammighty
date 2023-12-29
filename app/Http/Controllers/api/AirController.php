@@ -95,14 +95,14 @@ class AirController
                     'fbalance' => $bo,
                 ]);
 
-                $wt=WalletTransaction::create([
-                    'username' => $user->username,
-                    'source'=>"Purchase airtime",
-                    'refid' =>$request->refid,
-                    'amount' => $request->amount,
-                    'bb' => $bo,
-                    'bf' => $gt,
-                ]);
+//                $wt=WalletTransaction::create([
+//                    'username' => $user->username,
+//                    'source'=>"Purchase airtime",
+//                    'refid' =>$request->refid,
+//                    'amount' => $request->amount,
+//                    'bb' => $bo,
+//                    'bf' => $gt,
+//                ]);
                 $daterserver = new AirtimeserverController();
                 $mcd = airtimecon::where('status', "1")->first();
                 if ($mcd->server == "mcd") {
