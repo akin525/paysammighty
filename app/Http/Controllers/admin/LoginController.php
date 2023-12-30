@@ -144,7 +144,11 @@ class LoginController
         $res=file_get_contents($url3, false, $context);
         $data3 = json_decode($res, true);
 //        return $res;
-        $club=$data3['balance'];
+        if (isset($data3['balance'])) {
+            $club = $data3['balance'];
+        }else{
+            $club=0.00;
+        }
 
         return view('admin/dashboard', compact('todaycollection', 'todaycollectionnumber',
         'todaypurchase', 'todaypurchasenumber', 'todaydepositcharges', 'allcollection', 'allpurchase', 'allcharges',
