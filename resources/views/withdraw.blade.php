@@ -115,7 +115,7 @@
                                     Enter Amount<span class="asteriskField">*</span>
                                 </label>
                                 <div class="">
-                                    <input type="number" id="amount" name="amount" min="1000"   class="text-success form-control" required>
+                                    <input type="number" id="amount" name="amount" min="100"   class="text-success form-control" required>
                                 </div>
                             </div>
                             <br/>
