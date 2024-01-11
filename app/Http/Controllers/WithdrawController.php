@@ -118,9 +118,9 @@ class WithdrawController
             return response()->json($mg, Response::HTTP_BAD_REQUEST);
 
         }
-        if ($request->amount < 1000) {
+        if ($request->amount < 100) {
 
-            $mg = "amount must be more than or 1000 above";
+            $mg = "amount must be more than or 100 above";
             return response()->json($mg, Response::HTTP_BAD_REQUEST);
 
         }
