@@ -169,10 +169,17 @@ class EducationApiController
     }
     function Jamb(Request $request)
     {
-        $request->validate([
+        $validator=Validator::make($request->all(), [
             'number'=>'required',
+            'profileid'=>'required',
+            'code'=>'required',
             'refid'=>'required',
         ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $this->error_processor($validator)
+            ], 403);
+        }
         $apikey = $request->header('apikey');
         $user = User::where('apikey',$apikey)->first();
         $bt = easy::where("network", "Jamb")->first();
@@ -241,13 +248,13 @@ class EducationApiController
                 'bf' => $gt,
             ]);
             $userId ='CK100308875';
-            $apiKey ='961MT1M6C4DD542FL648614W41Q2OLDERYYOQMK6M66XZC2DPPP6671064N8TB94';
-            $examCode = 'utme';
+            $apiKey ='5S99TYA4OJ8T7A13I9H4C24MV4Z7THCR82Q2037GVN516LT77W48J00EFOP738QL';
+            $examCode = $request['code'];
             $recipientPhoneNo = $request['number'];
-            $requestId = 'request_id';
+            $requestId = $request['profileid'];
             $callbackUrl = 'https://pay.sammighty.com.ng/api/callback_url';
 
-            $url = "https://www.nellobytesystems.com/APIJAMBV1.asp?UserID=$userId&APIKey=$apiKey&ExamType=$examCode&PhoneNo=$recipientPhoneNo&CallBackURL=$callbackUrl";
+            $url = "https://www.nellobytesystems.com/APIJAMBV1.asp?UserID=$userId&APIKey=$apiKey&ExamType=$examCode&PhoneNo=$recipientPhoneNo&RequestID=$requestId&CallBackURL=$callbackUrl";
 
 
             $options = array(
@@ -294,6 +301,39 @@ class EducationApiController
         }
 
 
+
+    }
+    function verifyprofile(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'profileid' => 'required',
+
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $this->error_processor($validator)
+            ], 403);
+        }
+        $userId ='CK100308875';
+        $apiKey ='5S99TYA4OJ8T7A13I9H4C24MV4Z7THCR82Q2037GVN516LT77W48J00EFOP738QL';
+        $examtype="jamb";
+        $profileid=$request->profileid;
+        $url = "https://www.nellobytesystems.com/APIVerifyJAMBV1.asp?UserID=$userId&APIKey=$apiKey&ExamType=jamb&ProfileID=$profileid";
+
+
+        $options = array(
+            'http' => array(
+                'method' => 'GET',
+            ),
+        );
+
+        $context = stream_context_create($options);
+        $responseBody= file_get_contents($url, false, $context);
+
+        $data = json_decode($responseBody, true);
+        return response()->json([
+            'message' => $data['customer_name'], 'success' => 1,
+        ], 200);
 
     }
     function Waec(Request $request)
