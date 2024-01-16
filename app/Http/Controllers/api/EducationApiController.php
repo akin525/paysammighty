@@ -516,7 +516,7 @@ class EducationApiController
 
 
 
-        return $response;
+//        return $response;
 
         $data = json_decode($response, true);
         return response()->json([
