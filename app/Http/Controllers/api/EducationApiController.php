@@ -383,7 +383,7 @@ class EducationApiController
                 'bb' => $fbalance,
                 'bf' => $gt,
             ]);
-            $url = "https://resellertest.mcd.5starcompany.com.ng/api/v1/jamb";
+            $url = "https://reseller.mcd.5starcompany.com.ng/api/v1/jamb";
             $headers = array(
                 'Authorization: Bearer rocqaIlgQZ7S22pno8kiXwgaGsRANJEHD5ai49nX7CrXBfZVS7vvRfCzYmdzZ2GuqmB6JgrUZBmFjwNXUDF9zEV25tWH7ADv7SjcJuOlWypRxpoy28KQU0U2D3XWjKQybBYjNixsMCBv1GJxQPNMcC',
                 'Content-Type: application/json'
