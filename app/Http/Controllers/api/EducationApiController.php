@@ -492,56 +492,56 @@ class EducationApiController
         }
 
         $url = "https://reseller.mcd.5starcompany.com.ng/api/v1/validate";
-        $headers = array(
-            'Authorization: Bearer rocqaIlgQZ7S22pno8kiXwgaGsRANJEHD5ai49nX7CrXBfZVS7vvRfCzYmdzZ2GuqmB6JgrUZBmFjwNXUDF9zEV25tWH7ADv7SjcJuOlWypRxpoy28KQU0U2D3XWjKQybBYjNixsMCBv1GJxQPNMcC',
-            'Content-Type: application/json'
-
-        );
-        $data = array(
-            "service"=>"jamb",
-            "provider"=>"utme",
-            "number"=>$request->profileid,
-        );
-
-        $options = array(
-            'http' => array(
-                'header' => implode("\r\n", $headers),
-                'method' => 'POST',
-                'content' => json_encode($data),
-            ),
-        );
-
-        $context = stream_context_create($options);
-        $response = file_get_contents($url, false, $context);
-
-
-//        $curl = curl_init();
+//        $headers = array(
+//            'Authorization: Bearer rocqaIlgQZ7S22pno8kiXwgaGsRANJEHD5ai49nX7CrXBfZVS7vvRfCzYmdzZ2GuqmB6JgrUZBmFjwNXUDF9zEV25tWH7ADv7SjcJuOlWypRxpoy28KQU0U2D3XWjKQybBYjNixsMCBv1GJxQPNMcC',
+//            'Content-Type: application/json'
 //
-//        curl_setopt_array($curl, array(
-//            CURLOPT_URL => 'https://reseller.mcd.5starcompany.com.ng/api/v1/validate',
-//            CURLOPT_RETURNTRANSFER => true,
-//            CURLOPT_ENCODING => '',
-//            CURLOPT_MAXREDIRS => 10,
-//            CURLOPT_TIMEOUT => 0,
-//            CURLOPT_FOLLOWLOCATION => true,
-//            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-//            CURLOPT_SSL_VERIFYHOST => 0,
-//            CURLOPT_SSL_VERIFYPEER => 0,
-//            CURLOPT_CUSTOMREQUEST => 'POST',
-//            CURLOPT_POSTFIELDS => '{
-//    "service": "jamb",
-//    "provider": "utme",
-//    "number": "'.$request->profileid.'"
-//}',
-//            CURLOPT_HTTPHEADER => array(
-//                'Authorization: Bearer rocqaIlgQZ7S22pno8kiXwgaGsRANJEHD5ai49nX7CrXBfZVS7vvRfCzYmdzZ2GuqmB6JgrUZBmFjwNXUDF9zEV25tWH7ADv7SjcJuOlWypRxpoy28KQU0U2D3XWjKQybBYjNixsMCBv1GJxQPNMcC',
-//                'Content-Type: application/json'
+//        );
+//        $data = array(
+//            "service"=>"jamb",
+//            "provider"=>"utme",
+//            "number"=>$request->profileid,
+//        );
+//
+//        $options = array(
+//            'http' => array(
+//                'header' => implode("\r\n", $headers),
+//                'method' => 'POST',
+//                'content' => json_encode($data),
 //            ),
-//        ));
+//        );
 //
-//        $response = curl_exec($curl);
-//
-//        curl_close($curl);
+//        $context = stream_context_create($options);
+//        $response = file_get_contents($url, false, $context);
+
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://reseller.mcd.5starcompany.com.ng/api/v1/validate',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_SSL_VERIFYPEER => 0,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => '{
+    "service": "jamb",
+    "provider": "utme",
+    "number": "988877655"
+}',
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: Bearer rocqaIlgQZ7S22pno8kiXwgaGsRANJEHD5ai49nX7CrXBfZVS7vvRfCzYmdzZ2GuqmB6JgrUZBmFjwNXUDF9zEV25tWH7ADv7SjcJuOlWypRxpoy28KQU0U2D3XWjKQybBYjNixsMCBv1GJxQPNMcC',
+                'Content-Type: application/json'
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
         return $response;
 
         $data = json_decode($response, true);
