@@ -530,11 +530,11 @@ class EducationApiController
             CURLOPT_SSL_VERIFYHOST => 0,
             CURLOPT_SSL_VERIFYPEER => 0,
             CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => array(
-                'service' => "jamb",
-                'provider' => "utmw",
-                'number' => $request->profileid,
-            ),
+            CURLOPT_POSTFIELDS => '{
+    "service": "jamb",
+    "provider": "utme",
+    "number": "988877655"
+}',
             CURLOPT_HTTPHEADER => array(
                 'Authorization: Bearer rocqaIlgQZ7S22pno8kiXwgaGsRANJEHD5ai49nX7CrXBfZVS7vvRfCzYmdzZ2GuqmB6JgrUZBmFjwNXUDF9zEV25tWH7ADv7SjcJuOlWypRxpoy28KQU0U2D3XWjKQybBYjNixsMCBv1GJxQPNMcC',
                 'Content-Type: application/json'
