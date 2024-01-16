@@ -303,6 +303,149 @@ class EducationApiController
 
 
     }
+    function mcdJamb(Request $request)
+    {
+        $validator=Validator::make($request->all(), [
+            'number'=>'required',
+            'profileid'=>'required',
+            'code'=>'required',
+            'refid'=>'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $this->error_processor($validator)
+            ], 403);
+        }
+        $apikey = $request->header('apikey');
+        $user = User::where('apikey',$apikey)->first();
+        $bt = easy::where("network", "Jamb")->first();
+        if ($user) {
+
+            if ($user->wallet < $bt->ramount) {
+                $mg = "You Cant Make Purchase Above " . "NGN" . $bt->ramount . " from your wallet. Your wallet balance is NGN $user->waller. Please Fund Wallet And Retry or Pay Online Using Our Alternative Payment Methods.";
+
+                return response()->json([
+                    'message' => $mg,
+                    'user' => $user,
+                    'success' => 0
+                ], 200);
+
+            }
+            if ($bt->ramount < 0) {
+
+                $mg = "error transaction";
+                return response()->json([
+                    'message' => $mg,
+                    'user' => $user,
+                    'success' => 0
+                ], 200);
+
+            }
+            $bo = bill_payment::where('transactionid', 'api' . $request->refid)->first();;
+            if (isset($bo)) {
+                $mg = "duplicate transaction";
+                return response()->json([
+                    'message' => $mg,
+                    'user' => $user,
+                    'success' => 0
+                ], 200);
+
+            }
+            $gt = $user->wallet - $request->selling_amount;
+
+            $fbalance=$user->wallet;
+
+            $bon=$request->selling_amount- $bt->ramount  ;
+
+            $bonus=$user->bonus + $bon;
+            $user->wallet = $gt;
+            $user->bonus= $bonus;
+            $user->save();
+            $bo = bill_payment::create([
+                'username' => $user->username,
+                'product' => $bt->network,
+                'amount' => $bt->ramount,
+                'samount' => $request->selling_amount,
+                'server_response' => 'ur fault',
+                'status' => 0,
+                'number' => $request->number,
+                'transactionid' =>'api'. $request->refid,
+                'discountamount' => $bon,
+                'paymentmethod' => 'wallet',
+                'fbalance'=>$fbalance,
+                'balance' => $gt,
+            ]);
+            $wt=WalletTransaction::create([
+                'username' => $user->username,
+                'source'=>$bt->plan,
+                'refid' =>$request->refid,
+                'amount' => $bt->ramount,
+                'bb' => $fbalance,
+                'bf' => $gt,
+            ]);
+            $url = "https://resellertest.mcd.5starcompany.com.ng/api/v1/jamb";
+            $headers = array(
+                'Authorization: Bearer rocqaIlgQZ7S22pno8kiXwgaGsRANJEHD5ai49nX7CrXBfZVS7vvRfCzYmdzZ2GuqmB6JgrUZBmFjwNXUDF9zEV25tWH7ADv7SjcJuOlWypRxpoy28KQU0U2D3XWjKQybBYjNixsMCBv1GJxQPNMcC',
+                'Content-Type: application/json'
+
+            );
+            $data = array(
+                "provider"=>"jamb",
+                "amount"=>"utme",
+                "number"=>"number",
+                "payment"=>"wallet",
+                "coded"=>$request->code,
+                "ref"=>$request->refid
+            );
+
+            $options = array(
+                'http' => array(
+                    'header' => implode("\r\n", $headers),
+                    'method' => 'POST',
+                    'content' => json_encode($data),
+                ),
+            );
+
+            $context = stream_context_create($options);
+            $response = file_get_contents($url, false, $context);
+
+            $data = json_decode($response, true);
+
+            if ($data["success"] ==1){
+//                $ref=$data['Serial No'];
+                $token=$data['token'];
+                $insert=Jamb::create([
+                    'username'=>$user->username,
+                    'serial'=>"serial",
+                    'pin'=>$token,
+                    'response'=>$data,
+                ]);
+
+                $mg='Jamb Pin Successful Generated, kindly check your pin: '.$token;
+                $admin="info@sammighty.com.ng";
+                Mail::to($admin)->send(new Emailtrans($bo));
+
+                return response()->json([
+                    'message' => $mg, 'success' => 1,
+                    'user' => $user
+                ], 200);
+
+            }else{
+
+                return response()->json([
+                    'status' => 'fail',
+                    'message' => $data,
+                    'success' => 0
+                ]);
+            }
+
+
+
+        }
+
+
+
+    }
     function verifyprofile(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -333,6 +476,47 @@ class EducationApiController
         $data = json_decode($responseBody, true);
         return response()->json([
             'message' => $data['customer_name'], 'success' => 1,
+        ], 200);
+
+    }
+    function mcdverifyprofile(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'profileid' => 'required',
+
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $this->error_processor($validator)
+            ], 403);
+        }
+
+        $url = "https://resellertest.mcd.5starcompany.com.ng/api/v1/validate";
+        $headers = array(
+            'Authorization: Bearer rocqaIlgQZ7S22pno8kiXwgaGsRANJEHD5ai49nX7CrXBfZVS7vvRfCzYmdzZ2GuqmB6JgrUZBmFjwNXUDF9zEV25tWH7ADv7SjcJuOlWypRxpoy28KQU0U2D3XWjKQybBYjNixsMCBv1GJxQPNMcC',
+            'Content-Type: application/json'
+
+        );
+        $data = array(
+            "service"=>"jamb",
+            "provider"=>"utme",
+            "number"=>"number",
+        );
+
+        $options = array(
+            'http' => array(
+                'header' => implode("\r\n", $headers),
+                'method' => 'POST',
+                'content' => json_encode($data),
+            ),
+        );
+
+        $context = stream_context_create($options);
+        $response = file_get_contents($url, false, $context);
+
+        $data = json_decode($response, true);
+        return response()->json([
+            'message' => $data['data'], 'success' => 1,
         ], 200);
 
     }
