@@ -483,6 +483,7 @@ class EducationApiController
     {
         $validator = Validator::make($request->all(), [
             'profileid' => 'required',
+            'code'=>'required',
 
         ]);
         if ($validator->fails()) {
@@ -499,7 +500,7 @@ class EducationApiController
         );
         $data = array(
             "service"=>"jamb",
-            "provider"=>"utme",
+            "provider"=>$request->code,
             "number"=>$request->profileid,
         );
 
