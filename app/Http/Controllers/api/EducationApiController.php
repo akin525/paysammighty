@@ -355,7 +355,7 @@ class EducationApiController
 
             $fbalance=$user->wallet;
 
-            $bon=$request->selling_amount- $bt->ramount  ;
+            $bon=$bt->ramount  ;
 
             $bonus=$user->bonus + $bon;
             $user->wallet = $gt;
@@ -391,8 +391,9 @@ class EducationApiController
             );
             $data = array(
                 "provider"=>"jamb",
-                "amount"=>"utme",
+                "amount"=>6500,
                 "number"=>"number",
+                "promo" => "0",
                 "payment"=>"wallet",
                 "coded"=>$request->code,
                 "ref"=>$request->refid
