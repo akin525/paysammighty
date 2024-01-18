@@ -351,7 +351,7 @@ class EducationApiController
                 ], 200);
 
             }
-            $gt = $user->wallet - $request->selling_amount;
+            $gt = $user->wallet - $bt->ramount;
 
             $fbalance=$user->wallet;
 
