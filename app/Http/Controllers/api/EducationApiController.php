@@ -483,7 +483,7 @@ class EducationApiController
     {
         $validator = Validator::make($request->all(), [
             'profileid' => 'required',
-            'code'=>'required',
+
 
         ]);
         if ($validator->fails()) {
