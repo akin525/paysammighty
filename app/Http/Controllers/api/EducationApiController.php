@@ -500,7 +500,7 @@ class EducationApiController
         );
         $data = array(
             "service"=>"jamb",
-            "provider"=>$request->code,
+            "provider"=>"de",
             "number"=>$request->profileid,
         );
 
@@ -521,7 +521,7 @@ class EducationApiController
 
         $data = json_decode($response, true);
         return response()->json([
-            'message' => $data['message'], 'success' => 1,
+            'message' => $data['data'], 'success' => 1,
         ], 200);
 
     }
