@@ -267,7 +267,7 @@ class EducationApiController
             $responseBody= file_get_contents($url, false, $context);
 
             $data = json_decode($responseBody, true);
-
+return $data;
             if ($data["status"] =="ORDER_COMPLETED"){
                 $ref=$data['Serial No'];
                 $token=$data['pin'];
