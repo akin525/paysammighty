@@ -248,7 +248,7 @@ class EducationApiController
                 'bf' => $gt,
             ]);
             $userId ='CK100308875';
-            $apiKey ='5S99TYA4OJ8T7A13I9H4C24MV4Z7THCR82Q2037GVN516LT77W48J00EFOP738QL';
+            $apiKey ='Z0338P2HA3W4H7VP7S8P7T478MKP90H6E95285ZZY465NDIZSS0J8PUA640E47TY';
             $examCode = $request['code'];
             $recipientPhoneNo = $request['number'];
             $requestId = $request['profileid'];
@@ -283,7 +283,7 @@ class EducationApiController
                 Mail::to($admin)->send(new Emailtrans($bo));
 
                 return response()->json([
-                    'message' => $mg, 'success' => 1,
+                    'message' => $mg, 'success' => 1, 'pin'=>$token,
                     'user' => $user
                 ], 200);
 
@@ -459,7 +459,7 @@ class EducationApiController
             ], 403);
         }
         $userId ='CK100308875';
-        $apiKey ='5S99TYA4OJ8T7A13I9H4C24MV4Z7THCR82Q2037GVN516LT77W48J00EFOP738QL';
+        $apiKey ='Z0338P2HA3W4H7VP7S8P7T478MKP90H6E95285ZZY465NDIZSS0J8PUA640E47TY';
         $examtype="jamb";
         $profileid=$request->profileid;
         $url = "https://www.nellobytesystems.com/APIVerifyJAMBV1.asp?UserID=$userId&APIKey=$apiKey&ExamType=jamb&ProfileID=$profileid";
