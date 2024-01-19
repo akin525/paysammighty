@@ -34,7 +34,7 @@ Route::post('waec', [\App\Http\Controllers\api\EducationApiController::class, 'W
 Route::post('neco', [\App\Http\Controllers\api\EducationApiController::class, 'Neco'])->name('neco');
 Route::post('nabteb', [\App\Http\Controllers\api\EducationApiController::class, 'Nabteb'])->name('nabteb');
 Route::post('jamb', [\App\Http\Controllers\api\EducationApiController::class, 'mcdJamb'])->name('jamb');
-Route::post('verifyid', [\App\Http\Controllers\api\EducationApiController::class, 'verifyprofile'])->name('verifyid');
+Route::post('verifyid', [\App\Http\Controllers\api\EducationApiController::class, 'mcdverifyprofile'])->name('verifyid');
 Route::get('buydatacard', [\App\Http\Controllers\api\DatacardController::class, 'datacardpurchase'])->name('buydatacard');
 
 
