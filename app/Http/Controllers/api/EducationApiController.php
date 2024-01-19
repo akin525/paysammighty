@@ -267,7 +267,7 @@ class EducationApiController
             $responseBody= file_get_contents($url, false, $context);
 
             $data = json_decode($responseBody, true);
-return $data;
+
             if ($data["status"] =="ORDER_COMPLETED"){
                 $ref=$data['Serial No'];
                 $token=$data['pin'];
@@ -473,7 +473,7 @@ return $data;
 
         $context = stream_context_create($options);
         $responseBody= file_get_contents($url, false, $context);
-
+return $responseBody;
         $data = json_decode($responseBody, true);
         return response()->json([
             'message' => $data['customer_name'], 'success' => 1,
