@@ -473,6 +473,7 @@ class EducationApiController
 
         $context = stream_context_create($options);
         $responseBody= file_get_contents($url, false, $context);
+        echo $url;
 return $responseBody;
         $data = json_decode($responseBody, true);
         return response()->json([
