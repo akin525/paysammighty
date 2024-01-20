@@ -414,7 +414,11 @@ class EducationApiController
 
             if ($data["success"] ==1){
 //                $ref=$data['Serial No'];
-                $token=$data['token'];
+                if ($data['token']) {
+                    $token = $data['token'];
+                }else{
+                    $token="pending";
+                }
                 $insert=Jamb::create([
                     'username'=>$user->username,
                     'serial'=>"serial",
