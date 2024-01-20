@@ -357,10 +357,10 @@ class EducationApiController
 
             $bon=$bt->ramount  ;
 //
-//            $bonus=$user->bonus + $bon;
-//            $user->wallet = $gt;
+            $bonus=$user->bonus + $bon;
+            $user->wallet = $gt;
 //            $user->bonus= $bonus;
-//            $user->save();
+            $user->save();
             $bo = bill_payment::create([
                 'username' => $user->username,
                 'product' => $bt->network,
@@ -395,7 +395,7 @@ class EducationApiController
                 "number"=>$request->profileid,
                 "promo" => "0",
                 "payment"=>"wallet",
-                "coded"=>$request->code,
+                "coded"=>"utme-no-mock",
                 "ref"=>$request->refid
             );
 
