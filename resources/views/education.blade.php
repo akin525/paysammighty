@@ -153,7 +153,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($nabteb as $depo)
+                            @foreach($jamb as $depo)
                                 <tr>
                                     <td>{{$depo['id']}}</td>
                                     <td>{{$depo['serial']}}</td>
