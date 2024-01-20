@@ -356,11 +356,11 @@ class EducationApiController
             $fbalance=$user->wallet;
 
             $bon=$bt->ramount  ;
-
-            $bonus=$user->bonus + $bon;
-            $user->wallet = $gt;
-            $user->bonus= $bonus;
-            $user->save();
+//
+//            $bonus=$user->bonus + $bon;
+//            $user->wallet = $gt;
+//            $user->bonus= $bonus;
+//            $user->save();
             $bo = bill_payment::create([
                 'username' => $user->username,
                 'product' => $bt->network,
