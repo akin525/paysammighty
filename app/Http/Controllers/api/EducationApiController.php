@@ -391,7 +391,7 @@ class EducationApiController
             );
             $data = array(
                 "provider"=>"jamb",
-                "amount"=>6500,
+                "amount"=>6200,
                 "number"=>$request->profileid,
                 "promo" => "0",
                 "payment"=>"wallet",
