@@ -351,6 +351,13 @@ class EducationApiController
                 ], 200);
 
             }
+            if ($request->code=="utme-no-mock"){
+                $amount=6200;
+            }elseif ($request->code=="utme-mock"){
+                $amount=7700;
+            }elseif ($request->code=="de"){
+                $amount=6200;
+            }
             $gt = $user->wallet - $bt->ramount;
 
             $fbalance=$user->wallet;
@@ -364,8 +371,8 @@ class EducationApiController
             $bo = bill_payment::create([
                 'username' => $user->username,
                 'product' => $bt->network,
-                'amount' => $bt->ramount,
-                'samount' => $bt->ramount,
+                'amount' => $amount,
+                'samount' => $amount,
                 'server_response' => 'ur fault',
                 'status' => 0,
                 'number' => $request->number,
@@ -391,11 +398,12 @@ class EducationApiController
             );
             $data = array(
                 "provider"=>"jamb",
-                "amount"=>6200,
+                "amount"=>$amount,
                 "number"=>$request->profileid,
                 "promo" => "0",
                 "payment"=>"wallet",
-                "coded"=>"utme-no-mock",
+//                "coded"=>"utme-no-mock",
+                "coded"=>$request->code,
                 "ref"=>$request->refid
             );
 
