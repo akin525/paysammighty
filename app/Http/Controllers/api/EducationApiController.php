@@ -357,15 +357,12 @@ class EducationApiController
             }elseif ($request->code=="de"){
                 $amount=6200;
             }
-            $gt = $user->wallet - $bt->ramount;
+            $gt = $user->wallet - $amount;
 
             $fbalance=$user->wallet;
 
-            $bon=$bt->ramount  ;
-//
-            $bonus=$user->bonus + $bon;
+
             $user->wallet = $gt;
-//            $user->bonus= $bonus;
             $user->save();
             $bo = bill_payment::create([
                 'username' => $user->username,
@@ -376,7 +373,7 @@ class EducationApiController
                 'status' => 0,
                 'number' => $request->number,
                 'transactionid' =>'api'. $request->refid,
-                'discountamount' => $bon,
+                'discountamount' => 0,
                 'paymentmethod' => 'wallet',
                 'fbalance'=>$fbalance,
                 'balance' => $gt,
@@ -398,10 +395,9 @@ class EducationApiController
             $data = array(
                 "provider"=>"jamb",
                 "amount"=>$amount,
-                "number"=>$request->profileid,
+                "number"=>$request->number,
                 "promo" => "0",
                 "payment"=>"wallet",
-//                "coded"=>"utme-no-mock",
                 "coded"=>$request->code,
                 "ref"=>$request->refid
             );
@@ -420,7 +416,6 @@ class EducationApiController
             $data = json_decode($response, true);
 
             if ($data["success"] ==1){
-//                $ref=$data['Serial No'];
                 if ($data['token']) {
                     $token = $data['token'];
                 }else{
