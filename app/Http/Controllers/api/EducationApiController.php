@@ -171,7 +171,7 @@ class EducationApiController
     {
         $validator=Validator::make($request->all(), [
             'number'=>'required',
-            'profileid'=>'required',
+//            'profileid'=>'required',
             'code'=>'required',
             'refid'=>'required',
         ]);
