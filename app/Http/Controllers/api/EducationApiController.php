@@ -439,7 +439,7 @@ class EducationApiController
                 Mail::to($admin)->send(new Emailtrans($bo));
 
                 return response()->json([
-                    'message' => $mg, 'success' => 1,
+                    'message' => $mg, 'success' => 1, 'pin'=>$token,
                     'user' => $user
                 ], 200);
 
