@@ -63,9 +63,9 @@ class ReportController
         $data['electricity_amount'] = bill_payment::where([['product', 'like', '%electricity%'], ['status', 'like', '1'], ['timestamp', 'LIKE', $date . '%']])->sum('amount');
         $data['deposit_amount'] = Deposit::where([['date', 'LIKE', $date . '%']])->sum('amount');
         $data['deposit'] = Deposit::where([['date', 'LIKE', $date . '%']])->count();
-        $data['jamb'] = Jamb::where([['date', 'LIKE', $date . '%']])->count();
-        $data['waec'] = waec::where([['date', 'LIKE', $date . '%']])->count();
-        $data['neco'] = neco::where([['date', 'LIKE', $date . '%']])->count();
+        $data['jamb'] = Jamb::where([['created_at', 'LIKE', $date . '%']])->count();
+        $data['waec'] = waec::where([['created_at', 'LIKE', $date . '%']])->count();
+        $data['neco'] = neco::where([['created_at', 'LIKE', $date . '%']])->count();
         $data['jamb_amount'] =  bill_payment::where([['product', 'like', '%jamb%'],  ['timestamp', 'LIKE', $date . '%']])->sum('amount');
         $data['waec_amount'] =  bill_payment::where([['product', 'like', '%waec%'],  ['timestamp', 'LIKE', $date . '%']])->sum('amount');
         $data['neco_amount'] =  bill_payment::where([['product', 'like', '%neco%'],  ['timestamp', 'LIKE', $date . '%']])->sum('amount');
@@ -95,9 +95,9 @@ class ReportController
         $data['electricity_amount'] = bill_payment::where([['product', 'like', '%electricity%'], ['timestamp', 'LIKE', $date . '%']])->sum('amount');
         $data['deposit_amount'] = Deposit::where([['date', 'LIKE', $date . '%']])->sum('amount');
         $data['deposit'] = Deposit::where([['date', 'LIKE', $date . '%']])->count();
-        $data['jamb'] = Jamb::where([['date', 'LIKE', $date . '%']])->count();
-        $data['waec'] = waec::where([['date', 'LIKE', $date . '%']])->count();
-        $data['neco'] = neco::where([['date', 'LIKE', $date . '%']])->count();
+        $data['jamb'] = Jamb::where([['created_at', 'LIKE', $date . '%']])->count();
+        $data['waec'] = waec::where([['created_at', 'LIKE', $date . '%']])->count();
+        $data['neco'] = neco::where([['created_at', 'LIKE', $date . '%']])->count();
         $data['jamb_amount'] =  bill_payment::where([['product', 'like', '%jamb%'],  ['timestamp', 'LIKE', $date . '%']])->sum('amount');
         $data['waec_amount'] =  bill_payment::where([['product', 'like', '%waec%'],  ['timestamp', 'LIKE', $date . '%']])->sum('amount');
         $data['neco_amount'] =  bill_payment::where([['product', 'like', '%neco%'],  ['timestamp', 'LIKE', $date . '%']])->sum('amount');
