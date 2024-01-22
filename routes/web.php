@@ -73,6 +73,8 @@ Route::middleware([
 
     Route::get('bvn/{id}', [\App\Http\Controllers\BankController::class, 'checkbvn'])->name('bvn');
     Route::post('updatebvn', [\App\Http\Controllers\BankController::class, 'updatekbvn'])->name('updatebvn');
+
+    Route::get('viewjamb/{id}', [\App\Http\Controllers\EduController::class, 'viewjamb'])->name('viewjamb');
 });
 Route::get('/logout', function(){
     Auth::logout();
@@ -113,5 +115,6 @@ Route::get('admin/dashboard', [LoginController::class, 'admindashboard'])->name(
 
     Route::get('admin/message', [MessageController::class, 'messageindexload'])->name('admin/message');
     Route::post('admin/mes', [MessageController::class, 'updatemessage'])->name('admin/mes');
+
 
 });

@@ -18,6 +18,12 @@ class EduController
         $nabteb=Nabteb::where('username', Auth::user()->username)->get();
         $jamb=Jamb::where('username', Auth::user()->username)->get();
 
+
         return view('education', compact('waec', 'neco', 'nabteb', 'jamb'));
+    }
+    function viewjamb($request)
+    {
+        $jamb=Jamb::where('id', $request)->first();
+        return view('edupin', compact('jamb'));
     }
 }

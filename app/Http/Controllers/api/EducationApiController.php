@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api;
 
+use App\Mail\Emailedu;
 use App\Mail\Emailtrans;
 use App\Models\bill_payment;
 use App\Models\easy;
@@ -430,7 +431,10 @@ class EducationApiController
 
                 $mg='Jamb Pin Successful Generated, kindly check your pin: '.$token;
                 $admin="info@sammighty.com.ng";
+                $main=$user->email;
                 Mail::to($admin)->send(new Emailtrans($bo));
+                Mail::to($admin)->send(new Emailedu($insert));
+                Mail::to($main)->send(new Emailedu($insert));
 
                 return response()->json([
                     'message' => $mg, 'success' => 1, 'pin'=>$token,

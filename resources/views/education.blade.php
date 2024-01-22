@@ -146,6 +146,7 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>Action</th>
                                 <th>SERIAL NO</th>
                                 <th>PIN</th>
                                 <th>RESPONSE</th>
@@ -156,6 +157,11 @@
                             @foreach($jamb as $depo)
                                 <tr>
                                     <td>{{$depo['id']}}</td>
+                                    <th>
+                                        <a href="{{route('viewjamb', $depo['id'])}}" class="btn btn-primary">
+                                            <i class="fa fa-eye-slash"></i>View
+                                        </a>
+                                    </th>
                                     <td>{{$depo['serial']}}</td>
                                     <td>{{$depo['pin']}}</td>
                                     <td>{{$depo['response']}}</td>

@@ -8,18 +8,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class Emailwaec extends Mailable
+class Emailedu extends Mailable
 {
     use Queueable, SerializesModels;
-    protected $waec;
+    protected $insert;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($waec)
+    public function __construct($insert)
     {
-        $this->waec = $waec;
+        $this->insert = $insert;
     }
 
     /**
@@ -29,7 +29,7 @@ class Emailwaec extends Mailable
      */
     public function build()
     {
-        $waec= $this->waec;
-        return $this->markdown('email.waec',['bo' => $waec])->subject(   $waec['username'].' |WAEC-PIN|'.'Amazing-Data');
+        $insert= $this->insert;
+        return $this->markdown('email.edupin',['insert' => $insert])->subject(   $insert['username'].' |PIN|'.'Sammighty');
     }
 }
