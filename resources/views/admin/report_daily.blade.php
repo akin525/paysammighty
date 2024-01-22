@@ -95,6 +95,21 @@
                             <td> ₦{{number_format(intval($electricity_amount *1),2)}}</td>
                             <td> {{number_format(intval($electricity *1))}}</td>
                         </tr>
+                        <tr>
+                            <td>Waec</td>
+                            <td> ₦{{number_format(intval($waec_amount *1),2)}}</td>
+                            <td> {{number_format(intval($waec *1))}}</td>
+                        </tr>
+                        <tr>
+                            <td>Neco</td>
+                            <td> ₦{{number_format(intval($neco_amount *1),2)}}</td>
+                            <td> {{number_format(intval($neco *1))}}</td>
+                        </tr>
+                        <tr>
+                            <td>jamb</td>
+                            <td> ₦{{number_format(intval($jamb_amount *1),2)}}</td>
+                            <td> {{number_format(intval($jamb *1))}}</td>
+                        </tr>
                         </tbody>
                     </table>
 
