@@ -425,7 +425,7 @@ class EducationApiController
                     'username'=>$user->username,
                     'serial'=>"serial",
                     'pin'=>$token,
-                    'response'=>$data,
+                    'response'=>"Check purchase",
                 ]);
 
                 $mg='Jamb Pin Successful Generated, kindly check your pin: '.$token;
