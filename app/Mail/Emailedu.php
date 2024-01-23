@@ -30,6 +30,6 @@ class Emailedu extends Mailable
     public function build()
     {
         $insert= $this->insert;
-        return $this->markdown('email.edupin',['insert' => $insert])->subject(   $insert['username'].' |PIN|'.'Sammighty');
+        return $this->markdown('emails.edupin',['insert' => $insert])->subject(   $insert['username'].' |PIN|'.'Sammighty');
     }
 }
