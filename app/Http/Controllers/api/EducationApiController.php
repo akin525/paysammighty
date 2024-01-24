@@ -310,6 +310,7 @@ class EducationApiController
             'number'=>'required',
             'code'=>'required',
             'refid'=>'required',
+            'name'=>'required',
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -341,8 +342,8 @@ class EducationApiController
                 ], 200);
 
             }
-            $bo = bill_payment::where('transactionid', 'api' . $request->refid)->first();;
-            if (isset($bo)) {
+            $bo1 = bill_payment::where('transactionid', 'api' . $request->refid)->first();;
+            if (isset($bo1)) {
                 $mg = "duplicate transaction";
                 return response()->json([
                     'message' => $mg,
@@ -425,9 +426,10 @@ class EducationApiController
                 $insert=Jamb::create([
                     'username'=>$user->username,
                     'serial'=>"serial",
-                    'pin'=>$token,
-                    'response'=>"Check purchase",
+                    'pin'=>$token. ' '.$request->name,
+                    'response'=>$response,
                 ]);
+
 
                 $mg='Jamb Pin Successful Generated, kindly check your pin: '.$token;
                 $admin="info@sammighty.com.ng";
@@ -435,7 +437,10 @@ class EducationApiController
                 Mail::to($admin)->send(new Emailtrans($bo));
                 Mail::to($admin)->send(new Emailedu($insert));
                 Mail::to($main)->send(new Emailedu($insert));
-
+                $update = bill_payment::where('id', $bo->id)->update([
+                    'server_response' => $response,
+                    'status' => 1,
+                ]);
                 return response()->json([
                     'message' => $mg, 'success' => 1, 'pin'=>$token,
                     'user' => $user
