@@ -196,7 +196,7 @@
                             @foreach($wallet as $depo)
                             <tr>
                                 <td>{{$depo['id']}}</td>
-                                <td>{{$depo['settlement']}}</td>
+                                <td>{{$depo['source']}}</td>
                                 <td>₦{{number_format(intval($depo['amount']*1),2)}}</td>
                                 <td>₦{{number_format(intval($depo['bb']*1),2)}}</td>
                                 <td>₦{{number_format(intval($depo['bf']*1),2)}}</td>
