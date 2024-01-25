@@ -57,9 +57,9 @@ class TransferController
                 'success' => 0
             ], 200);
         }
-        if ($request->amount < 1000) {
+        if ($request->amount < 10) {
 
-            $mg = "amount must be more than or 1000 above";
+            $mg = "amount must be more than or 10 above";
 //            return response()->json($mg, Response::HTTP_BAD_REQUEST);
             return response()->json([
                 'message' => $mg,
@@ -86,6 +86,7 @@ class TransferController
 
 
             $payloadData = array(
+                "account_name"=>$request->name,
                 "account_number" => $request->number,
                 "amount" => $request->amount,
                 "bank_code" => $request->id,
@@ -105,7 +106,7 @@ class TransferController
 // Calculate the hash using HMAC-512
             $hash = hash_hmac('SHA512', $payload, $trimmedKey);
 
-            $url = 'https://app.paylony.com/api/v1/bank_transfer';
+            $url = 'https://api.paylony.com/api/v1/bank_transfer';
 
             $headers = array(
                 'Content-Type: application/json',
@@ -114,6 +115,7 @@ class TransferController
             );
 
             $data = array(
+                "account_name"=>$request->name,
                 "account_number"=>$request->number,
                 "amount"=>$request->amount,
                 "bank_code"=>$request->id,
@@ -145,10 +147,8 @@ class TransferController
                 'status'=>1,
             ]);
             return response()->json([
-                'status' => 'success',
+                'success' => 1,
                 'message' => $data['message'],
-                "pay"=> $payload ,
-                "has"=>$hash,
             ]);
 
         }
