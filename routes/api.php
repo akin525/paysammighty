@@ -36,6 +36,7 @@ Route::post('nabteb', [\App\Http\Controllers\api\EducationApiController::class, 
 Route::post('jamb', [\App\Http\Controllers\api\EducationApiController::class, 'mcdJamb'])->name('jamb');
 Route::post('verifyid', [\App\Http\Controllers\api\EducationApiController::class, 'mcdverifyprofile'])->name('verifyid');
 Route::get('buydatacard', [\App\Http\Controllers\api\DatacardController::class, 'datacardpurchase'])->name('buydatacard');
+Route::post('transfer', [\App\Http\Controllers\api\TransferController::class, 'withdraw'])->name('transfer');
 
 
 });

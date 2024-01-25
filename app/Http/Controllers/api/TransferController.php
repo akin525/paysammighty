@@ -79,7 +79,7 @@ class TransferController
 
 
             $tamount=$user->wallet-$request->amount;
-            $ramount=$tamount-20;
+            $ramount=$tamount-25;
             $user->wallet=$ramount;
             $user->save();
 
