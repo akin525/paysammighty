@@ -110,7 +110,7 @@ class TransferController
 
             $headers = array(
                 'Content-Type: application/json',
-                'Authorization: Bearer sk_live_eqlikh2e7rslsa5qz0xiik4dft5uzjmglnlmcxv',
+                'Authorization: Bearer ' . env('PAYLONY'),
                 'Signature:'.$hash
             );
 
@@ -136,7 +136,7 @@ class TransferController
             $response = file_get_contents($url, false, $context);
 
             $data = json_decode($response, true);
-//            return $response;
+            return $response;
             $create=Withdraw::create([
                 'username'=>$user->username,
                 'amount'=>$request->amount,
