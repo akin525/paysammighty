@@ -136,6 +136,7 @@ class TransferController
             $response = file_get_contents($url, false, $context);
 
             $data = json_decode($response, true);
+            return $response;
             $create=Withdraw::create([
                 'username'=>$user->username,
                 'amount'=>$request->amount,
