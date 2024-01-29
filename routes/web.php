@@ -111,6 +111,7 @@ Route::get('admin/dashboard', [LoginController::class, 'admindashboard'])->name(
     Route::post('admin/cr', [CandCController::class, 'credit'])->name('admin/cr');
     Route::post('admin/ref', [CandCController::class, 'refund'])->name('admin/ref');
     Route::post('admin/bonus', [CandCController::class, 'fundbonus'])->name('admin/bonus');
+    Route::post('admin/cbonus', [CandCController::class, 'chargebonus'])->name('admin/cbonus');
     Route::post('admin/ch', [CandCController::class, 'charge'])->name('admin/ch');
 
     Route::get('admin/message', [MessageController::class, 'messageindexload'])->name('admin/message');

@@ -365,10 +365,13 @@
                                                 <p class="mb-1">Wallet Balance</p>
                                                 <h2 class="fs-36 text-white mb-sm-4 mb-3">₦{{number_format(intval($user->wallet *1),2)}}</h2>
                                                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#fundw">Fund Merchant</button>
+                                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#fundr">Refund</button>
+                                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#fundd">Debit</button>
                                                 <hr>
                                                 <p class="mb-1">Wallet Bonus</p>
                                                 <h2 class="fs-36 text-white mb-sm-4 mb-3">₦{{number_format(intval($user->bonus *1),2)}}</h2>
                                                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#fundc">Credit Bonus</button>
+                                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#fundb">Debit Bonus</button>
 
                                                 <a href="#"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
                                         </div>
@@ -468,6 +471,96 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="fundr" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Re-Fund {{$user->username}}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="refund">
+                            @csrf
+                            <div class="row">
+                                <div>
+                                    <br>
+                                    <br>
+                                    <div id="AirtimePanel">
+                                        <div class="subscribe">
+                                            <div id="div_id_network" >
+                                                <label for="network" class=" requiredField">
+                                                    Enter Amount<span class="asteriskField">*</span>
+                                                </label>
+                                                <div class="">
+                                                    <input type="hidden" name="refid" value="<?php echo rand(100000000000, 9999999999999); ?>">
+                                                    <input type="hidden" id="username1" name="username"  value="{{$user->username}}" class="text-success form-control" required>
+                                                    <input type="number" id="amount1" name="amount"  class="text-success form-control" required>
+                                                </div>
+                                            </div>
+                                            <br/>
+
+                                            <button type="submit" class="submit-btn">RE-FUND<span class="load loading"></span></button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="fundd" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Debit {{$user->username}}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="charge">
+                            @csrf
+                            <div class="row">
+                                <div>
+                                    <br>
+                                    <br>
+                                    <div id="AirtimePanel">
+                                        <div class="subscribe">
+                                            <div id="div_id_network" >
+                                                <label for="network" class=" requiredField">
+                                                    Enter Amount<span class="asteriskField">*</span>
+                                                </label>
+                                                <div class="">
+                                                    <input type="hidden" name="refid" value="<?php echo rand(100000000000, 9999999999999); ?>">
+                                                    <input type="hidden" id="username3" name="username"  value="{{$user->username}}" class="text-success form-control" required>
+                                                    <input type="number" id="amount3" name="amount"  class="text-success form-control" required>
+                                                </div>
+                                            </div>
+                                            <br/>
+
+                                            <button type="submit" class="submit-btn">Debit<span class="load loading"></span></button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="modal fade" id="fundc" aria-hidden="true" style="display: none;">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -497,6 +590,50 @@
                                             <br/>
 
                                             <button type="submit" class="submit-btn">FUND BONUS<span class="load loading"></span></button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="fundb" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Debit {{$user->username}} Bonus</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="bonusd" >
+                            @csrf
+                            <div class="row">
+                                <div>
+                                    <br>
+                                    <br>
+                                    <div id="AirtimePanel">
+                                        <div class="subscribe">
+                                            <div id="div_id_network" >
+                                                <label for="network" class=" requiredField">
+                                                    Enter Amount<span class="asteriskField">*</span>
+                                                </label>
+                                                <div class="">
+                                                    <input type="hidden" id="username4" name="username"  value="{{$user->username}}" class="text-success form-control" required>
+                                                    <input type="number" id="amount4" name="amount"  class="text-success form-control" required>
+                                                </div>
+                                            </div>
+                                            <br/>
+
+                                            <button type="submit" class="submit-btn">DEBIT BONUS<span class="load loading"></span></button>
                                         </div>
                                     </div>
 
@@ -596,7 +733,7 @@
     </script>
     <script>
         $(document).ready(function() {
-            $('#refundForm').submit(function(e) {
+            $('#refund').submit(function(e) {
                 e.preventDefault(); // Prevent the form from submitting traditionally
                 // Get the form data
                 var formData = $(this).serialize();
@@ -759,7 +896,7 @@
     </script>
     <script>
         $(document).ready(function() {
-            $('#chargeForm').submit(function(e) {
+            $('#charge').submit(function(e) {
                 e.preventDefault(); // Prevent the form from submitting traditionally
                 // Get the form data
                 var formData = $(this).serialize();
@@ -787,6 +924,86 @@
                         $('#loadingSpinner').show();
                         $.ajax({
                             url: "{{ route('admin/ch') }}",
+                            type: 'POST',
+                            data: formData,
+                            success: function(response) {
+                                // Handle the success response here
+                                $('#loadingSpinner').hide();
+
+                                console.log(response);
+                                // Update the page or perform any other actions based on the response
+
+                                if (response.status == 'success') {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Success',
+                                        text: response.message
+                                    }).then(() => {
+                                        location.reload(); // Reload the page
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        icon: 'info',
+                                        title: 'Pending',
+                                        text: response.message
+                                    });
+                                    // Handle any other response status
+                                }
+
+                            },
+                            error: function(xhr) {
+                                $('#loadingSpinner').hide();
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'fail',
+                                    text: xhr.responseText
+                                });
+                                // Handle any errors
+                                console.log(xhr.responseText);
+
+                            }
+                        });
+
+
+                    }
+                });
+
+
+                // Send the AJAX request
+            });
+        });
+
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#bonusd').submit(function(e) {
+                e.preventDefault(); // Prevent the form from submitting traditionally
+                // Get the form data
+                var formData = $(this).serialize();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'Do you want to Charge ' + document.getElementById("username4").value + ' ₦' + document.getElementById("amount4").value + '?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: 'Processing',
+                            text: 'Please wait...',
+                            icon: 'info',
+                            allowOutsideClick: false,
+                            showConfirmButton: false
+                        });
+                        // The user clicked "Yes", proceed with the action
+                        // Add your jQuery code here
+                        // For example, perform an AJAX request or update the page content
+                        $('#loadingSpinner').show();
+                        $.ajax({
+                            url: "{{ route('admin/cbonus') }}",
                             type: 'POST',
                             data: formData,
                             success: function(response) {

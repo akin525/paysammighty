@@ -77,7 +77,6 @@ public function refund(Request $request)
         'username' => 'required',
         'amount' => 'required',
     ]);
-    if (Auth()->user()->role == "admin") {
 
 
         $user = User::where('username', $request->username)->first();
@@ -96,9 +95,6 @@ public function refund(Request $request)
 
             return response()->json(['status'=>'success', 'message'=>$mo]);
 
-
-    }
-    return redirect("admin/login")->with('status', 'You are not allowed to access');
 
 
 }
@@ -162,18 +158,41 @@ public function charge(Request $request)
         $user->wallet= $gt;
         $user->save();
 
-        $admin = 'info@efemobilemoney.com';
 
-        $receiver = $user->email;
 
-//        Mail::to($receiver)->send(new Emailcharges($charp));
-//        Mail::to($admin)->send(new Emailcharges($charp));
         $mg=$request->amount . " was charge from " . $request->username . ' wallet successfully';
         return response()->json(['status'=>'success', 'message'=>$mg]);
 
 
     }
     return redirect("admin/login")->with('status', 'You are not allowed to access');
+
+}
+public function chargebonus(Request $request)
+{
+    $request->validate([
+        'username' => 'required',
+        'amount' => 'required',
+    ]);
+        $user = User::where('username', $request->username)->first();
+        if (!isset($user)){
+
+            return response()->json('User not found', Response::HTTP_BAD_REQUEST);
+
+        }
+
+
+        $gt = $user->bonus - $request->amount;
+
+
+        $user->bonus= $gt;
+        $user->save();
+
+
+
+        $mg=$request->amount . " was charge from " . $request->username . ' bonus successfully';
+        return response()->json(['status'=>'success', 'message'=>$mg]);
+
 
 }
 
