@@ -18,7 +18,7 @@
     <title>@yield('tittle')</title>
 
     <!-- Favicon icon -->
-    <link rel="icon" sizes="16x16" href="{{asset('user/wall.png')}}">
+    <link rel="icon"  href="https://pay.sammighty.com.ng/user/wall.png">
     <link href="{{asset('user/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet')}}">
     <link rel="stylesheet" href="{{asset('user/vendor/chartist/css/chartist.min.css')}}">
     <link href="{{asset('user/vendor/bootstrap-select/dist/css/bootstrap-select.min.css')}}" rel="stylesheet">
