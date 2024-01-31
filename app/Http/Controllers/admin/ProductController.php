@@ -14,7 +14,7 @@ class ProductController
 {
 public function index()
 {
-    $product=easy::paginate(50);
+    $product=easy::all();
 
     return view('admin/product', compact('product'));
 }

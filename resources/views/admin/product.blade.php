@@ -76,7 +76,7 @@
                                 </label>
                             </td>
                             <td>
-                                <button  type="button" class="btn btn-primary" onclick="openModal(this)" data-user-id="{{$deposit->id}}" data-user-amount="{{$deposit->amount}}" data-user-name="{{$depositr->plan}}" >
+                                <button  type="button" class="btn btn-primary" onclick="openModal(this)" data-user-id="{{$deposit->id}}" data-user-amount="{{$deposit->amount}}" data-user-name="{{$deposit->plan}}" >
                                     <i class="fa fa-edit"></i>Edit
                                 </button>
                             </td>
