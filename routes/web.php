@@ -122,6 +122,8 @@ Route::get('admin/dashboard', [LoginController::class, 'admindashboard'])->name(
     Route::get('admin/pd/{id}', [ProductController::class, 'on'])->name('admin/pd');
     Route::post('admin/do', [ProductController::class, 'edit'])->name('admin/do');
     Route::get('admin/product', [productController::class, 'index'])->name('admin/product');
+    Route::get('admin/up1/{id}', [ProductController::class, 'pair'])->name('admin/up1');
+    Route::get('admin/air', [ProductController::class, 'air'])->name('admin/air');
 
 
 

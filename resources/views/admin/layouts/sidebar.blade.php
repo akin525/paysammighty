@@ -235,7 +235,7 @@
                     </a>
                     <ul aria-expanded="false">
                         <li><a href="#">Data Server</a></li>
-                        <li><a href="#">Airtime Server</a></li>
+                        <li><a href="{{route('admin/air')}}">Airtime Server</a></li>
                     </ul>
                 </li>
                 <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">

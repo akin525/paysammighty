@@ -17,24 +17,15 @@
                             </div>
                         </th>
                         <th>ID</th>
-                        <th>Plan-ID</th>
-                        <th>Network</th>
-                        <th>Plan</th>
-                        <th>Code</th>
-                        <th>Amount</th>
-                        <th>T-Amount</th>
-                        <th>R-Amount</th>
-                        <th>Status</th>
                         <th>Server</th>
-                        <th>Cat-ID</th>
+                        <th>Status</th>
                         <th>Switch</th>
-                        <th>Edit</th>
                     </tr>
                     </thead>
                     <tbody>
                     <link rel="stylesheet" href="{{asset('style.css')}}">
                     <link rel="stylesheet" href="{{asset('demo.css')}}"/>
-                    @foreach($product as $deposit)
+                    @foreach($air as $deposit)
                         <tr>
                             <td>
                                 <div class="checkbox me-0 align-self-center">
@@ -45,13 +36,7 @@
                                 </div>
                             </td>
                             <td><span class="text-black font-w500">{{$deposit['id']}}</span></td>
-                            <td><span class="text-black font-w500">{{$deposit['plan_id']}}</span></td>
-                            <td><span class="text-black text-nowrap">{{$deposit['network']}}</span></td>
-                            <td><span class="text-black text-nowrap">{{$deposit['plan']}}</span></td>
-                            <td><span class="text-black text-nowrap">{{$deposit['code']}}</span></td>
-                            <td><span class="text-black fs-16 font-w600">₦{{$deposit['amount']}}</span></td>
-                            <td><span class="text-black fs-16 font-w600">₦{{$deposit['tamount']}}</span></td>
-                            <td><span class="text-black fs-16 font-w600">₦{{$deposit['ramount']}}</span></td>
+                            <td><span class="text-black font-w500">{{$deposit['server']}}</span></td>
                             <td>
                                 @if($deposit['status']=='1')
                                     <a href="javascript:void(0)" class="btn btn-sm btn-success light">Active</a>
@@ -60,13 +45,11 @@
                                 @endif
 
                             </td>
-                            <td><span class="text-black fs-16 font-w600">{{$deposit['server']}}</span></td>
-                            <td><span class="text-black fs-16 font-w600">{{$deposit['cat_id']}}</span></td>
                             <td>
                                 <label class="toggleSwitch nolabel">
                                     <input type="checkbox" name="status" value="0" id="myCheckBox"
                                            {{$deposit->status =="1"?'checked':''}}
-                                          onclick="window.location='{{route('admin/pd', $deposit->id)}}'"/>
+                                          onclick="window.location='{{route('admin/up1', $deposit->id)}}'"/>
                                     <span>
                                                 <span>off</span>
                                                 <span>on</span>
@@ -74,11 +57,6 @@
 
                                     <a></a>
                                 </label>
-                            </td>
-                            <td>
-                                <button  type="button" class="btn btn-primary" onclick="openModal(this)" data-user-id="{{$deposit->id}}" data-user-amount="{{$deposit->amount}}" data-user-name="{{$deposit->plan}}" >
-                                    <i class="fa fa-edit"></i>Edit
-                                </button>
                             </td>
                         </tr>
                     @endforeach
