@@ -3,7 +3,7 @@
 use App\Http\Controllers\admin\CandCController;
 use App\Http\Controllers\admin\LoginController;
 use App\Http\Controllers\admin\MessageController;
-use app\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ReportController;
 use App\Http\Controllers\admin\UsersController;
 use App\Http\Controllers\AirtimeController;
