@@ -49,9 +49,9 @@
                             <td><span class="text-black text-nowrap">{{$deposit['network']}}</span></td>
                             <td><span class="text-black text-nowrap">{{$deposit['plan']}}</span></td>
                             <td><span class="text-black text-nowrap">{{$deposit['code']}}</span></td>
-                            <td><span class="text-black fs-16 font-w600">₦{{number_format(intval($deposit['amount'] *1),2)}}</span></td>
-                            <td><span class="text-black fs-16 font-w600">₦{{number_format(intval($deposit['tamount'] *1),2)}}</span></td>
-                            <td><span class="text-black fs-16 font-w600">₦{{number_format(intval($deposit['ramount'] *1),2)}}</span></td>
+                            <td><span class="text-black fs-16 font-w600">₦{{number_format(intval($deposit['amount'] *1))}}</span></td>
+                            <td><span class="text-black fs-16 font-w600">₦{{number_format(intval($deposit['tamount'] *1))}}</span></td>
+                            <td><span class="text-black fs-16 font-w600">₦{{number_format(intval($deposit['ramount'] *1))}}</span></td>
                             <td>
                                 @if($deposit['status']=='1')
                                     <a href="javascript:void(0)" class="btn btn-sm btn-success light">Active</a>
