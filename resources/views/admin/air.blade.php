@@ -35,10 +35,10 @@
                                     </div>
                                 </div>
                             </td>
-                            <td><span class="text-black font-w500">{{$deposit['id']}}</span></td>
-                            <td><span class="text-black font-w500">{{$deposit['server']}}</span></td>
+                            <td><span class="text-black font-w500">{{$deposit->id}}</span></td>
+                            <td><span class="text-black font-w500">{{$deposit->server}}</span></td>
                             <td>
-                                @if($deposit['status']=='1')
+                                @if($deposit->status=='1')
                                     <a href="javascript:void(0)" class="btn btn-sm btn-success light">Active</a>
                                 @else
                                     <a href="javascript:void(0)" class="btn btn-sm btn-warning light">Not Active</a>
