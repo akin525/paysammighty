@@ -96,6 +96,16 @@
             })
         </script>
 @endif
+    @if(Session::has('status'))
+        <script>
+            Swal.fire({
+                title: 'done',
+                text: '{{ Session::get('status') }}',
+                icon: 'success',
+                confirmButtonColor: '#3085d6',
+            })
+        </script>
+@endif
 <!--**********************************
         Nav header start
     ***********************************-->
@@ -226,6 +236,14 @@
                     <ul aria-expanded="false">
                         <li><a href="#">Data Server</a></li>
                         <li><a href="#">Airtime Server</a></li>
+                    </ul>
+                </li>
+                <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span class="nav-text">Product</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{route('admin/product')}}">Easy Product</a></li>
                     </ul>
                 </li>
                 <li><a  href="{{route('admin/deposits')}}">

@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\CandCController;
 use App\Http\Controllers\admin\LoginController;
 use App\Http\Controllers\admin\MessageController;
+use app\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ReportController;
 use App\Http\Controllers\admin\UsersController;
 use App\Http\Controllers\AirtimeController;
@@ -116,6 +117,13 @@ Route::get('admin/dashboard', [LoginController::class, 'admindashboard'])->name(
 
     Route::get('admin/message', [MessageController::class, 'messageindexload'])->name('admin/message');
     Route::post('admin/mes', [MessageController::class, 'updatemessage'])->name('admin/mes');
+
+
+    Route::get('admin/pd/{id}', [ProductController::class, 'on'])->name('admin/pd');
+    Route::post('admin/do', [ProductController::class, 'edit'])->name('admin/do');
+    Route::get('admin/product', [productController::class, 'index'])->name('admin/product');
+
+
 
 
 });
