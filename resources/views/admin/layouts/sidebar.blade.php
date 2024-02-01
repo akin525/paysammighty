@@ -234,7 +234,7 @@
                         <span class="nav-text">Server Switch</span>
                     </a>
                     <ul aria-expanded="false">
-                        <li><a href="{{route('server')}}">Data Server</a></li>
+                        <li><a href="{{route('admin/server')}}">Data Server</a></li>
                         <li><a href="{{route('admin/air')}}">Airtime Server</a></li>
                     </ul>
                 </li>
