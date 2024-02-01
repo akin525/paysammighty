@@ -38,7 +38,8 @@ class VertualController
 
         $headers = array(
             'Content-Type: application/json',
-            'Authorization: Bearer ' . env('PAYLONY')
+//            'Authorization: Bearer ' . env('PAYLONY')
+            'Authorization: Bearer sk_live_ee2k7jc4yixocqa1svajblpu9iolxkkqciquycg'
         );
 
         $data = array(
