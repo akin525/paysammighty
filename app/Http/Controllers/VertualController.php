@@ -36,33 +36,65 @@ class VertualController
         $url = 'https://api.paylony.com/api/v1/create_account';
 //        $url = 'https://app.paylony.com/api/v1/create_account';
 
-        $headers = array(
-            'Content-Type: application/json',
+//        $headers = array(
+//            'Content-Type: application/json',
 //            'Authorization: Bearer ' . env('PAYLONY')
-            'Authorization: Bearer sk_live_ee2k7jc4yixocqa1svajblpu9iolxkkqciquycg'
-        );
+//            'Authorization: Bearer sk_live_ee2k7jc4yixocqa1svajblpu9iolxkkqciquycg'
+//        );
 
-        $data = array(
-            "firstname" => $user['account_prefix'],
-            "lastname" => $user['name'],
-            "address" => "lagos nigeria",
-            "gender" => "Male",
-            "email" => $user['email'],
-            "phone" => $business['phone'],
-            "dob" => "1995-03-13",
-            "provider" => "safehaven"
-        );
+//        $data = array(
+//            "firstname" => $user['account_prefix'],
+//            "lastname" => $user['name'],
+//            "address" => "lagos nigeria",
+//            "gender" => "Male",
+//            "email" => $user['email'],
+//            "phone" => $business['phone'],
+//            "dob" => "1995-03-13",
+//            "provider" => "safehaven"
+//        );
+//
+//        $options = array(
+//            'http' => array(
+//                'header' => implode("\r\n", $headers),
+//                'method' => 'POST',
+//                'content' => json_encode($data),
+//            ),
+//        );
+//
+//        $context = stream_context_create($options);
+//        $response = file_get_contents($url, false, $context);
 
-        $options = array(
-            'http' => array(
-                'header' => implode("\r\n", $headers),
-                'method' => 'POST',
-                'content' => json_encode($data),
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.paylony.com/api/v1/create_account',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => '{
+    "firstname":"'.$user['account_prefix'].'",
+    "lastname":"'.$user['name'].'",
+    "address":"ikeja lagos",
+    "gender":"Male",
+    "email":"'.$user['email'].'",
+    "phone":"'.$business['phone'].'",
+    "dob":"1995-03-13",
+     "provider":"safehaven"
+}',
+            CURLOPT_HTTPHEADER => array(
+                'Content-Type: application/json',
+                'Authorization: Bearer ' . env('PAYLONY')
             ),
-        );
+        ));
 
-        $context = stream_context_create($options);
-        $response = file_get_contents($url, false, $context);
+        $response = curl_exec($curl);
+
+        curl_close($curl);
 
         $data = json_decode($response, true);
             if ($data['success']=="true") {
