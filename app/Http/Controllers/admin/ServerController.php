@@ -9,20 +9,30 @@ use Illuminate\Http\Request;
 
 class ServerController extends Controller
 {
-    function dataindex()
+
+    public function server()
     {
-        $server=server::all();
-        return view('admin/dataswitch', compact('server'));
-    }
-    function airtimeindex()
-    {
-        $server=airtimecon::all();
-        return view('admin/airtime', compact('server'));
+        $server=server::get();
+
+        return view('admin/server', compact('server'));
     }
 
-    function dataswitch(Request $request)
+    public function up(Request $request)
     {
+        $server=server::where('id', $request->id)->first();
+        if ($server->status==1)
+        {
+            $u="0";
+        }else{
+            $u="1";
+        }
+
+        $server->status=$u;
+        $server->save();
+        return redirect(url('admin/server'))
+            ->with('status',' Server change successfully');
 
     }
+
 
 }

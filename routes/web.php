@@ -126,6 +126,8 @@ Route::get('admin/dashboard', [LoginController::class, 'admindashboard'])->name(
     Route::get('admin/air', [ProductController::class, 'air'])->name('admin/air');
 
 
+    Route::get('admin/server', [\App\Http\Controllers\admin\ServerController::class, 'server'])->name('admin/server');
+    Route::get('admin/up/{id', [\App\Http\Controllers\admin\ServerController::class, 'up'])->name('admin/up');
 
 
 });
