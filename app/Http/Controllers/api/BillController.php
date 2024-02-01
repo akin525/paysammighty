@@ -35,7 +35,20 @@ class BillController
         $apikey = $request->header('apikey');
         $user = User::where('apikey',$apikey)->first();
         $bt = easy::where("cat_id", $request->code)->first();
-
+        if (!$bt){
+            $mg = "incorrect product code";
+            return response()->json([
+                'message' => $mg,
+                'success' => 0
+            ], 200);
+        }
+        if ($bt->status =="0"){
+            $mg = "product unavailable";
+            return response()->json([
+                'message' => $mg,
+                'success' => 0
+            ], 200);
+        }
         if ($user) {
 
             if ($user->wallet< $bt->ramount) {
@@ -110,13 +123,19 @@ class BillController
                     'bf' => $gt,
                 ]);
                     $daterserver = new DataserverController();
-
                         $object = json_decode($bt);
                         $object->number = $request->number;
                         $object->refid = $request->refid;
                         $json = json_encode($object);
 
                         $mcd = server::where('status', "1")->first();
+                if (!$mcd){
+                    $mg = "Out Of Service";
+                    return response()->json([
+                        'message' => $mg,
+                        'success' => 0
+                    ], 200);
+                }
                         if ($mcd->name == "easyaccess") {
                             $response = $daterserver->easyaccess($object);
 //                            return response()->json([

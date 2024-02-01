@@ -126,7 +126,20 @@ class AlltvController
                 $tv = easy::where('plan_id', $request->coded)->first();
 //                return $tv;
 
-
+                if (!$tv){
+                    $mg = "incorrect product code";
+                    return response()->json([
+                        'message' => $mg,
+                        'success' => 0
+                    ], 200);
+                }
+                if ($tv->status =="0"){
+                    $mg = "product unavailable";
+                    return response()->json([
+                        'message' => $mg,
+                        'success' => 0
+                    ], 200);
+                }
 
                 if ($user->wallet< $tv->tamount) {
                     $mg = "You Cant Make Purchase Above" . "NGN" . $tv->tamount . " from your wallet. Your wallet balance is NGN $user->wallet. Please Fund Wallet And Retry or Pay Online Using Our Alternative Payment Methods.";

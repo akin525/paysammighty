@@ -84,6 +84,13 @@ class AirtimeController
 
                 $daterserver = new AirtimeserverController();
                 $mcd = airtimecon::where('status', "1")->first();
+                if (!$mcd){
+                    $mg = "Out Of Service";
+                    return response()->json([
+                        'message' => $mg,
+                        'success' => 0
+                    ], 200);
+                }
                 if ($mcd->server == "mcd"){
                     $response = $daterserver->mcdbill($request);
                     $data = json_decode($response, true);

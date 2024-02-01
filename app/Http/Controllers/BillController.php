@@ -99,7 +99,13 @@ class BillController extends Controller
 
                 $daterserver = new DataserverController();
                 $mcd = server::where('status', "1")->first();
-
+                if (!$mcd){
+                    $mg = "Out Of Service";
+                    return response()->json([
+                        'message' => $mg,
+                        'success' => 0
+                    ], 200);
+                }
                 if ($mcd->name == "honorworld") {
                     $response = $daterserver->honourwordbill($object);
 //return $response;

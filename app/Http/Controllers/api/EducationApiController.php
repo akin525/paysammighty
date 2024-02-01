@@ -320,6 +320,20 @@ class EducationApiController
         $apikey = $request->header('apikey');
         $user = User::where('apikey',$apikey)->first();
         $bt = easy::where("network", "Jamb")->first();
+        if (!$bt){
+            $mg = "incorrect product code";
+            return response()->json([
+                'message' => $mg,
+                'success' => 0
+            ], 200);
+        }
+        if ($bt->status =="0"){
+            $mg = "product unavailable";
+            return response()->json([
+                'message' => $mg,
+                'success' => 0
+            ], 200);
+        }
         if ($user) {
 
             if ($user->wallet < $bt->ramount) {

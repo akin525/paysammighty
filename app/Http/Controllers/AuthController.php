@@ -58,7 +58,7 @@ class AuthController
             return view('bills.data', compact('user', 'serve'));
         } else {
 //            Alert::info('Server', 'Out of service, come back later');
-            return redirect('dashboard');
+            return redirect('dashboard')->with('error', 'Out of service, come back later');
         }
     }
     public function select1(Request  $request)

@@ -33,7 +33,8 @@ class VertualController
 
             $input=$user;
 
-        $url = 'https://api.paylony.com/api/v1/create_account';
+//        $url = 'https://api.paylony.com/api/v1/create_account';
+        $url = 'https://app.paylony.com/api/v1/create_account';
 
         $headers = array(
             'Content-Type: application/json',
