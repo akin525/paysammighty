@@ -14,9 +14,10 @@
         </div>
         <div class="cm-content-body form excerpt" style="">
             <form action="{{route('admin/findpurchase')}}" method="post">
+                @csrf
             <div class="card-body">
                 <div class="row">
-                    <div class="">
+                    <div class="col-xl-5">
                         <input type="text" class="form-control mb-xl-0 mb-3" name="refid" id="exampleFormControlInput1" placeholder="Reference ID">
                     </div>
 
