@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Models\bill_payment;
 use App\Models\Business;
 use App\Models\Deposit;
+use App\Models\reverse;
 use App\Models\User;
 use App\Models\VirtualAccounts;
 use Illuminate\Http\Request;
@@ -163,6 +164,36 @@ class TransactionController
         }
 
         return view('admin/checkpurchase',compact('purchase', 'user', 'pass'));
+    }
+    function reversedtransaction($request)
+    {
+        $bills=bill_payment::where('id', $request)->first();
+
+        $re=reverse::create([
+            'username' => $bills->username,
+            'product' => 'data|' . $bills->plan,
+            'amount' => $bills->amount,
+            'samount' => $bills->samount,
+            'server_response' => 'reversed transaction',
+            'status' => 0,
+            'number' => $bills->number,
+            'transactionid' => $bills->transactionid,
+            'discountamount'=>0,
+            'paymentmethod'=> 'wallet',
+            'fbalance'=>$bills->fbalance,
+            'balance'=>$bills->balance,
+        ]);
+
+        $user=User::where('username', $bills->username)->first();
+        $bal=$bills->amount+$user->wallet;
+            $user->wallet=$bal;
+            $user->save();
+
+            $msg="Transaction Reverse Successful";
+            return response()->json([
+                'status'=>'success',
+                'message'=>$msg,
+            ]);
     }
 
 }
