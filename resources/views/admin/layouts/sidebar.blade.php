@@ -339,7 +339,7 @@
                 @endif
                     <div class="page-titles">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">@yield('page')</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0)" class="fs-34 text-black font-w600">@yield('page')</a></li>
                         </ol>
                     </div>
 {{--                <h2 class="text-black font-w600 mb-0">@yield('page')</h2>--}}

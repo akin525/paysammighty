@@ -48,7 +48,7 @@
                                     <td>{{$re->transactionid}}</td>
                                     <td>
                                         <a href="{{route('admin/checkid', $re->id)}}" class="badge badge-success">
-                                            <i class="fa fa-pencil">Check</i>
+                                            <i class="fa fa-pencil"></i>
                                         </a>
                                     </td>
                                 </tr>
