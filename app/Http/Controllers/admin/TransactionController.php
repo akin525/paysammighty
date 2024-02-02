@@ -149,5 +149,20 @@ class TransactionController
 
         return view('admin/finddpurchase',compact('purchase', 'user', 'pass'));
     }
+    function checktransaction($request)
+    {
+        $purchase=bill_payment::where('transactionid', $request)->first();
+        if ($purchase != null){
+            $user=User::where('username', $purchase->username)->first();
+            $bu=Business::where('username', $purchase->username)->first();
+            $user['number']=$bu->phone;
+            $pass=1;
+        }else{
+            $user="";
+            $pass=0;
+        }
+
+        return view('admin/checkpurchase',compact('purchase', 'user', 'pass'));
+    }
 
 }

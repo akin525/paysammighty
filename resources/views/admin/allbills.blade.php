@@ -23,6 +23,7 @@
                                 <th>Balance After</th>
                                 <th>Phone No</th>
                                 <th>Payment_Ref</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -45,6 +46,11 @@
                                     <td>{{$re->balance}}</td>
                                     <td>{{$re->number}}</td>
                                     <td>{{$re->transactionid}}</td>
+                                    <td>
+                                        <a href="{{route('admin/checkid', $re->id)}}" class="badge badge-success">
+                                            <i class="fa fa-pencil">Check</i>
+                                        </a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -59,6 +65,7 @@
                                 <th>Balance After</th>
                                 <th>Phone No</th>
                                 <th>Payment_Ref</th>
+                                <th>Action</th>
                             </tr>
                             </tfoot>
                         </table>

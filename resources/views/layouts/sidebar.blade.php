@@ -298,7 +298,12 @@
                     <a href="{{route('myaccount')}}" class="badge badge-success">Update Here</a>
                 </div>
                 @endif
-                <h2 class="text-black font-w600 mb-0">@yield('page')</h2>
+                    <div class="page-titles">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">@yield('page')</a></li>
+                        </ol>
+                    </div>
+{{--                <h2 class="text-black font-w600 mb-0">@yield('page')</h2>--}}
             </div>
             <div class="row">
             @yield('content')

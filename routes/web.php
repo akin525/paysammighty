@@ -133,5 +133,6 @@ Route::get('admin/dashboard', [LoginController::class, 'admindashboard'])->name(
 
     Route::any('admin/findpurchase1', [TransactionController::class, 'findtransaction'])->name('admin/findpurchase1');
     Route::any('admin/findpurchase', [TransactionController::class, 'findtrans'])->name('admin/findpurchase');
+    Route::get('admin/checkid/{id}', [TransactionController::class, 'checktransaction'])->name('.admin/checkid');
 
 });
