@@ -125,6 +125,15 @@ class TransactionController
 
 
     }
+    function findtrans(Request $request)
+    {
+        $purchase="";
+            $bu="";
+            $user="";
+            $pass=1;
+
+        return view('admin/finddpurchase',compact('purchase', 'user', 'pass'));
+    }
     function findtransaction(Request $request)
     {
         $purchase=bill_payment::where('transactionid', $request->refid)->first();

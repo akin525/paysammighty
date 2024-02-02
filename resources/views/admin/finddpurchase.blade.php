@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="cm-content-body form excerpt" style="">
-            <form action="{{route('admin/findpurchase')}}" method="post">
+            <form action="{{route('admin/findpurchase1')}}" method="post">
                 @csrf
             <div class="card-body">
                 <div class="row">
