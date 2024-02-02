@@ -136,7 +136,7 @@ class TransactionController
             $user="";
         }
 
-        return view('admin/finddpurchase',$purchase, $user);
+        return view('admin/finddpurchase',compact('purchase', 'user'));
     }
 
 }
