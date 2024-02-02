@@ -131,7 +131,7 @@ Route::get('admin/dashboard', [LoginController::class, 'admindashboard'])->name(
     Route::get('admin/up/{id', [\App\Http\Controllers\admin\ServerController::class, 'up'])->name('admin/up');
 
 
-    Route::any('admin/findpurchase1', [TransactionController::class, 'findtransaction'])->name('admin/findpurchase');
+    Route::any('admin/findpurchase1', [TransactionController::class, 'findtransaction'])->name('admin/findpurchase1');
     Route::any('admin/findpurchase', [TransactionController::class, 'findtrans'])->name('admin/findpurchase');
 
 });
