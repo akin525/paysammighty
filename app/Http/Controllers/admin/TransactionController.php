@@ -151,7 +151,7 @@ class TransactionController
     }
     function checktransaction($request)
     {
-        $purchase=bill_payment::where('transactionid', $request)->first();
+        $purchase=bill_payment::where('id', $request)->first();
         if ($purchase != null){
             $user=User::where('username', $purchase->username)->first();
             $bu=Business::where('username', $purchase->username)->first();
