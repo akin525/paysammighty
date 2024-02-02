@@ -132,11 +132,13 @@ class TransactionController
             $user=User::where('username', $purchase->username)->first();
             $bu=Business::where('username', $purchase->username)->first();
             $user['number']=$bu->phone;
+            $pass=1;
         }else{
             $user="";
+            $pass=0;
         }
 
-        return view('admin/finddpurchase',compact('purchase', 'user'));
+        return view('admin/finddpurchase',compact('purchase', 'user', 'pass'));
     }
 
 }

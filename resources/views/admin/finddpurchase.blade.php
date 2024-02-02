@@ -39,7 +39,7 @@
             </div>
             <div class="col-sm-6 p-0 justify-content-sm-start mt-2 mt-sm-0 d-flex">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Transactions</a></li>
+                    <li class="breadcrumb-item active">Transactions</li>
                     <li class="breadcrumb-item"><a href="javascript:void(0)">#{{$purchase->transactionid}}</a></li>
                 </ol>
             </div>
@@ -57,7 +57,7 @@
                             </div>
                             <div>
                                 <a href="javascript:void(0)" class="btn btn-outline-primary btn-rounded me-3 mb-sm-0 mb-2"><i class="las la-file-pdf me-3 scale5"></i>PDF</a>
-                                <a href="javascript:void(0)" class="btn btn-primary btn-rounded mb-sm-0 mb-2"><i class="las la-money scale5 me-3"></i>Reverse</a>
+                                <a href="javascript:void(0)" class="btn btn-primary btn-rounded mb-sm-0 mb-2"><i class="las la-money-bill  me-3"></i>Reverse Invoice</a>
                             </div>
                         </div>
                         <div class="card-body border-bottom">
@@ -129,6 +129,25 @@
                             <h2 class="fs-36 text-white mb-sm-4 mb-3">{{$purchase->product}}</h2>
                         </div>
                         <a href="#"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                    </div>
+                    @if($pass==0)
+                        <div class="alert alert-warning alert-dismissible alert-alt fade show">
+                            <strong>Ooops!</strong>Transaction not found
+                        </div>
+                    @endif
+                </div>
+                <div class="col-xl-12 col-lg-6 col-md-12">
+                    <div class="card">
+
+                        @if($purchase->status =="0")
+                            <div class="alert alert-danger alert-dismissible alert-alt fade show">
+                                <strong>Ooops!</strong> This transaction was not successful kindly reverse or reprocess this transaction
+                            </div>
+                        @elseif($purchase->status =="1")
+                            <div class="alert alert-success alert-dismissible alert-alt fade show">
+                                <strong>Successful!</strong> This transaction was successfully delivered to the customer
+                            </div>
+                        @endif
                     </div>
                 </div>
 
