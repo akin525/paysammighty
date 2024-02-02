@@ -128,9 +128,14 @@ class TransactionController
     function findtransaction(Request $request)
     {
         $purchase=bill_payment::where('transactionid', $request->refid)->first();
-        $user=User::where('username', $purchase->username)->first();
-        $bu=Business::where('username', $purchase->username)->first();
-        $user['number']=$bu->phone;
+        if ($purchase != null){
+            $user=User::where('username', $purchase->username)->first();
+            $bu=Business::where('username', $purchase->username)->first();
+            $user['number']=$bu->phone;
+        }else{
+            $user="";
+        }
+
         return view('admin/finddpurchase',$purchase, $user);
     }
 
