@@ -28,6 +28,11 @@
                 </div>
             </div>
             </form>
+            @if($pass==0)
+                <div class="alert alert-warning alert-dismissible alert-alt fade show">
+                    <strong>Ooops!</strong>Transaction not found
+                </div>
+            @endif
         </div>
     </div>
 
@@ -95,7 +100,7 @@
                             <h4 class="fs-20 text-black font-w600 mb-4">Recipients</h4>
                             <div class="d-sm-flex d-block">
                                 <div class="d-flex me-auto mb-sm-0 mb-3 align-items-center">
-                                    <img src="images/avatar/30.png" alt="" class="me-3 rounded-circle" width="85">
+                                    <img src="{{asset('user/images/avatar/1.png')}}" alt="" class="me-3 rounded-circle" width="85">
                                     <div>
                                         <h3 class="fs-24 text-black font-w600">{{$purchase->username}}</h3>
                                         <span>{{$user->email}}</span>
@@ -130,11 +135,7 @@
                         </div>
                         <a href="#"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
                     </div>
-                    @if($pass==0)
-                        <div class="alert alert-warning alert-dismissible alert-alt fade show">
-                            <strong>Ooops!</strong>Transaction not found
-                        </div>
-                    @endif
+
                 </div>
                 <div class="col-xl-12 col-lg-6 col-md-12">
                     <div class="card">
