@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\LoginController;
 use App\Http\Controllers\admin\MessageController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ReportController;
+use App\Http\Controllers\admin\TransactionController;
 use App\Http\Controllers\admin\UsersController;
 use App\Http\Controllers\AirtimeController;
 use App\Http\Controllers\AuthController;
@@ -129,5 +130,7 @@ Route::get('admin/dashboard', [LoginController::class, 'admindashboard'])->name(
     Route::get('admin/server', [\App\Http\Controllers\admin\ServerController::class, 'server'])->name('admin/server');
     Route::get('admin/up/{id', [\App\Http\Controllers\admin\ServerController::class, 'up'])->name('admin/up');
 
+
+    Route::any('admin/findpurchase', [TransactionController::class, 'findtransaction'])->name('admin/findpurchase');
 
 });

@@ -252,6 +252,11 @@
                         <span class="badge badge-xs style-1 badge-success">₦</span>
 
                     </a>
+
+                <li><a  href="{{route('admin/findpurchase')}}">
+                        <i class="fa fa-money-check"></i>
+                        <span class="nav-text">Find Transaction</span>
+                    </a>
                 </li>
                 <li><a  href="{{route('admin/allbills')}}">
                         <i class="fa fa-cart-plus"></i>
