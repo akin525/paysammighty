@@ -16,13 +16,13 @@
             <form action="{{route('admin/findpurchase')}}" method="post">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-xl-3">
+                    <div class="">
                         <input type="text" class="form-control mb-xl-0 mb-3" name="refid" id="exampleFormControlInput1" placeholder="Reference ID">
                     </div>
 
                     <div class="col-xl-3 col-sm-6">
                         <button class="btn btn-primary" title="Click here to Search" type="submit"><i class="fa fa-search me-1"></i>Search</button>
-                        <button class="btn btn-danger light" title="Click here to remove filter" type="button">Remove</button>
+{{--                        <button class="btn btn-danger light" title="Click here to remove filter" type="button">Remove</button>--}}
                     </div>
                 </div>
             </div>
