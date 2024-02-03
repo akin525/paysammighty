@@ -135,4 +135,6 @@ Route::get('admin/dashboard', [LoginController::class, 'admindashboard'])->name(
     Route::any('admin/findpurchase', [TransactionController::class, 'findtrans'])->name('admin/findpurchase');
     Route::get('admin/checkid/{id}', [TransactionController::class, 'checktransaction'])->name('admin/checkid');
 
+    Route::get('admin/reverse/{id}', [TransactionController::class, 'reversedtransaction'])->name('admin/reverse');
+
 });

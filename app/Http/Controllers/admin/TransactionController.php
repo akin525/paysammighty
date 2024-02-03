@@ -9,6 +9,7 @@ use App\Models\reverse;
 use App\Models\User;
 use App\Models\VirtualAccounts;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 
 class TransactionController
@@ -169,13 +170,18 @@ class TransactionController
     {
         $bills=bill_payment::where('id', $request)->first();
 
+        $check=reverse::where('transactionid', $bills->transactionid)->first();
+        if (isset($check)){
+            $mg = "Transaction already reversed";
+            return response()->json( $mg, Response::HTTP_CONFLICT);
+        }
         $re=reverse::create([
             'username' => $bills->username,
             'product' => 'data|' . $bills->plan,
             'amount' => $bills->amount,
             'samount' => $bills->samount,
             'server_response' => 'reversed transaction',
-            'status' => 0,
+            'status' => "Reversed",
             'number' => $bills->number,
             'transactionid' => $bills->transactionid,
             'discountamount'=>0,
@@ -189,6 +195,8 @@ class TransactionController
             $user->wallet=$bal;
             $user->save();
 
+            $bills->status="Reversed";
+            $bills->save();
             $msg="Transaction Reverse Successful";
             return response()->json([
                 'status'=>'success',

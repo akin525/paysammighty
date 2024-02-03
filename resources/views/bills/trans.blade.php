@@ -33,8 +33,10 @@
                                     <td>
                                         @if($re->status =="1")
                                             <span class="badge badge-success">Deliver Successfully</span>
-                                        @else
+                                        @elseif($re->status =="0")
                                             <span class="badge badge-danger">Failed(contact Admin)</span>
+                                        @else
+                                            <span class="badge badge-primary">Reversed</span>
                                         @endif
 
                                     </td>
