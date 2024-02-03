@@ -78,7 +78,7 @@
                             </div>
                             <div>
                                 <a href="javascript:void(0)" class="btn btn-outline-primary btn-rounded me-3 mb-sm-0 mb-2"><i class="las la-file-pdf me-3 scale5"></i>PDF</a>
-                                <button id="rever" class="btn btn-primary btn-rounded mb-sm-0 mb-2"><i class="las la-money-bill  me-3"></i>Reverse Invoice</button>
+                                <button id="mark" class="btn btn-primary btn-rounded mb-sm-0 mb-2"><i class="las la-money-bill  me-3"></i>Mark Reverse</button>
                             </div>
                         </div>
                         <div class="card-body border-bottom">
@@ -145,6 +145,8 @@
                         <div class="card-info text-white">
                             <p class="mb-1">Amount</p>
                             <h2 class="fs-36 text-white mb-sm-4 mb-3">₦{{number_format(intval($purchase->amount *1),2)}}</h2>
+                            <button id="rever" class="btn btn-primary btn-rounded mb-sm-0 mb-2"><i class="las la-money-bill  me-3"></i>Reverse Money</button>
+
                             <hr>
                             <p class="mb-1">PRODUCT NAME</p>
                             <h2 class="fs-36 text-white mb-sm-4 mb-3">{{$purchase->product}}</h2>
@@ -225,6 +227,56 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $('#mark').click(function() {
+                // Show the loading spinner
+                Swal.fire({
+                    title: 'Processing',
+                    text: 'Please wait...',
+                    icon: 'info',
+                    allowOutsideClick: false,
+                    showConfirmButton: false
+                });
+
+                // Send the selected value to the '/getOptions' route
+                $.ajax({
+                    url: '{{ route('admin/mreverse', $purchase->id) }}',
+                    type: 'GET',
+                    success: function(response) {
+                        // Handle the successful response
+                        if (response.status == 1) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success',
+                                text: response.message
+                            }).then(() => {
+                                location.reload(); // Reload the page
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Pending',
+                                text: response.message
+                            });
+                            // Handle any other response status
+                        }
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Fail',
+                            text: xhr.responseText
+                        });
+                        // Handle any errors
+                        console.log(xhr.responseText);
+                        console.log(xhr);
+                    }
+                });
+            });
+        });
+    </script>
+
 
     @endif
     @endsection

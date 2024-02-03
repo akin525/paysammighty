@@ -136,5 +136,6 @@ Route::get('admin/dashboard', [LoginController::class, 'admindashboard'])->name(
     Route::get('admin/checkid/{id}', [TransactionController::class, 'checktransaction'])->name('admin/checkid');
 
     Route::get('admin/reverse/{id}', [TransactionController::class, 'reversedtransaction'])->name('admin/reverse');
+    Route::get('admin/mreverse/{id}', [TransactionController::class, 'reversedmark'])->name('admin/mreverse');
 
 });
