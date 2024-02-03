@@ -170,7 +170,7 @@
 
                 // Send the selected value to the '/getOptions' route
                 $.ajax({
-                    url: '{{ route('reverse', $purchase->id) }}',
+                    url: '{{ route('admin/reverse', $purchase->id) }}',
                     type: 'GET',
                     success: function(response) {
                         // Handle the successful response
