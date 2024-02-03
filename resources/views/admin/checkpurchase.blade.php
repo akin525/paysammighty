@@ -16,6 +16,22 @@
             </div>
         </div>
     </div>
+    <div class="card">
+
+        @if($purchase->status =="0")
+            <div class="alert alert-danger alert-dismissible alert-alt fade show">
+                <strong>Ooops!</strong> This transaction was not successful kindly reverse or reprocess this transaction
+            </div>
+        @elseif($purchase->status =="1")
+            <div class="alert alert-success alert-dismissible alert-alt fade show">
+                <strong>Successful!</strong> This transaction was successfully delivered to the customer
+            </div>
+        @else
+            <div class="alert alert-primary alert-dismissible alert-alt fade show">
+                <strong>Reversed!</strong> This transaction was reversed back  to the customer
+            </div>
+        @endif
+    </div>
     <div class="row">
         <div class="col-xl-8">
             <div class="row">
