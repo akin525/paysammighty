@@ -199,7 +199,7 @@ class TransactionController
             $bills->save();
             $msg="Transaction Reverse Successful";
             return response()->json([
-                'status'=>'success',
+                'status'=>1,
                 'message'=>$msg,
             ]);
     }

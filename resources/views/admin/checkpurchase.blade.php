@@ -140,7 +140,7 @@
                     type: 'GET',
                     success: function(response) {
                         // Handle the successful response
-                        if (response.status == '1') {
+                        if (response.status == 1) {
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Success',
