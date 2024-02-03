@@ -136,7 +136,7 @@
 
                 // Send the selected value to the '/getOptions' route
                 $.ajax({
-                    url: '{{ url('reverse', $purchase->id) }}',
+                    url: '{{ route('reverse', $purchase->id) }}',
                     type: 'GET',
                     success: function(response) {
                         // Handle the successful response
