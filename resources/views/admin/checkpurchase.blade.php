@@ -111,7 +111,7 @@
                         <div class="card-info text-white">
                             <p class="mb-1">Amount</p>
                             <h2 class="fs-36 text-white mb-sm-4 mb-3">₦{{number_format(intval($purchase->amount *1),2)}}</h2>
-                            <button id="rever" class="btn btn-primary btn-rounded mb-sm-0 mb-2"><i class="las la-money-bill  me-3"></i>Reverse Money</button>
+                            <button id="rever" class="btn btn-danger btn-rounded mb-sm-0 mb-2"><i class="las la-money-bill  me-3"></i>Reverse Money</button>
 
                             <hr>
                             <p class="mb-1">PRODUCT NAME</p>
