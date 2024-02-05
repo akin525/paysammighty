@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\CandCController;
+use App\Http\Controllers\admin\InsertController;
 use App\Http\Controllers\admin\LoginController;
 use App\Http\Controllers\admin\MessageController;
 use App\Http\Controllers\admin\ProductController;
@@ -139,4 +140,6 @@ Route::get('admin/dashboard', [LoginController::class, 'admindashboard'])->name(
     Route::get('admin/mreverse/{id}', [TransactionController::class, 'reversedmark'])->name('admin/mreverse');
 
     Route::get('admin/marksu/{id}', [TransactionController::class, 'marksuccess'])->name('admin/marksu');
+
+    Route::get('admin/listdata/{id}', [InsertController::class, 'getmcdproduct'])->name('admin/listdata');
 });
