@@ -78,7 +78,7 @@
                             </div>
                             <div>
                                 <button id="mark" class="btn btn-primary btn-rounded mb-sm-0 mb-2"><i class="las la-money-bill  me-3"></i>Mark Reverse</button>
-                                <button id="marksu" class="btn btn-success btn-rounded mb-sm-0 mb-2"><i class="las la-markdown  me-3"></i>Mark Success</button>
+                                <button id="marksu" class="btn btn-success btn-rounded mb-sm-0 mb-2"><i class="las la-bomb  me-3"></i>Mark Success</button>
                             </div>
                         </div>
                         <div class="card-body border-bottom">

@@ -43,7 +43,7 @@
                                 <span class="fs-34 text-black font-w600">#{{$purchase->transactionid}}</span>
                             </div>
                             <div>
-                                <button id="marksu" class="btn btn-success btn-rounded mb-sm-0 mb-2"><i class="las la-markdown  me-3"></i>Mark Success</button>
+                                <button id="marksu" class="btn btn-success btn-rounded mb-sm-0 mb-2"><i class="las la-bomb  me-3"></i>Mark Success</button>
                                 <button id="mark" class="btn btn-primary btn-rounded mb-sm-0 mb-2"><i class="las la-money-bill  me-3"></i>Mark Reverse</button>
                             </div>
                         </div>
