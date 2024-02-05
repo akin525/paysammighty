@@ -96,7 +96,6 @@ class BillController
 
                 $bonus=$user->bonus + $bon;
                 $user->wallet = $gt;
-                $user->bonus= $bonus;
                 $user->save();
 
                 $bo = bill_payment::create([
@@ -147,6 +146,8 @@ class BillController
                             if ($data['success'] == 'true') {
                                 $success = 1;
 
+                                $user->bonus= $bonus;
+                                $user->save();
                                 $ms = $data['message'];
                                 $po = $bt->ramount - $bt->amount;
 
