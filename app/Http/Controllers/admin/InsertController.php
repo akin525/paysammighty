@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Mcd;
 
 class InsertController extends Controller
 {
@@ -30,26 +31,29 @@ class InsertController extends Controller
 
         $response = curl_exec($curl);
         curl_close($curl);
-        return $response;
+//        return $response;
 
         $data = json_decode($response, true);
 
 //return $success;
         foreach ($data as $plan){
             $success =$plan["network"];
-            $planid = $plan["planId"];
+            $planid = $plan["coded"];
             $price= $plan['price'];
-            $allowance=$plan['allowance'];
-            $validity =$plan['validity'];
-            $insert= big::create([
+            $allowance=$plan['name'];
+            $category =$plan['category'];
+            $server=$plan['server'];
+            $insert= Mcd::create([
                 'plan_id' =>$planid,
                 'network' =>$success,
-                'plan' =>$allowance.$validity,
+                'plan' =>$allowance,
                 'code' =>$planid,
                 'amount'=>$price,
                 'tamount'=>$price,
                 'ramount'=>$price,
                 'cat_id'=>$planid,
+                'server'=>$server,
+                'category'=>$category,
             ]);
         }
     }
