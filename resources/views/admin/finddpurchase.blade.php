@@ -77,8 +77,8 @@
                                 <span class="fs-34 text-black font-w600">#{{$purchase->transactionid}}</span>
                             </div>
                             <div>
-                                <a href="javascript:void(0)" class="btn btn-outline-primary btn-rounded me-3 mb-sm-0 mb-2"><i class="las la-file-pdf me-3 scale5"></i>PDF</a>
                                 <button id="mark" class="btn btn-primary btn-rounded mb-sm-0 mb-2"><i class="las la-money-bill  me-3"></i>Mark Reverse</button>
+                                <button id="marksu" class="btn btn-success btn-rounded mb-sm-0 mb-2"><i class="las la-markdown  me-3"></i>Mark Success</button>
                             </div>
                         </div>
                         <div class="card-body border-bottom">
@@ -175,7 +175,7 @@
                 </div>
 
 
-            </div>k
+            </div>
         </div>
     </div>
     <script>
@@ -242,6 +242,55 @@
                 // Send the selected value to the '/getOptions' route
                 $.ajax({
                     url: '{{ route('admin/mreverse', $purchase->id) }}',
+                    type: 'GET',
+                    success: function(response) {
+                        // Handle the successful response
+                        if (response.status == 1) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success',
+                                text: response.message
+                            }).then(() => {
+                                location.reload(); // Reload the page
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Pending',
+                                text: response.message
+                            });
+                            // Handle any other response status
+                        }
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Fail',
+                            text: xhr.responseText
+                        });
+                        // Handle any errors
+                        console.log(xhr.responseText);
+                        console.log(xhr);
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#marksu').click(function() {
+                // Show the loading spinner
+                Swal.fire({
+                    title: 'Processing',
+                    text: 'Please wait...',
+                    icon: 'info',
+                    allowOutsideClick: false,
+                    showConfirmButton: false
+                });
+
+                // Send the selected value to the '/getOptions' route
+                $.ajax({
+                    url: '{{ route('admin/marksu', $purchase->id) }}',
                     type: 'GET',
                     success: function(response) {
                         // Handle the successful response

@@ -240,5 +240,17 @@ class TransactionController
                 'message'=>$msg,
             ]);
     }
+    function marksuccess($request)
+    {
+        $bills=bill_payment::where('id', $request)->first();
+
+            $bills->status=1;
+            $bills->save();
+            $msg="Transaction Mark Successful";
+            return response()->json([
+                'status'=>1,
+                'message'=>$msg,
+            ]);
+    }
 
 }
