@@ -36,7 +36,7 @@ class InsertController extends Controller
         $data = json_decode($response, true);
 
 //return $success;
-        foreach ($data as $plan){
+        foreach ($data['data'] as $plan){
             $success =$plan["network"];
             $planid = $plan["coded"];
             $price= $plan['price'];
