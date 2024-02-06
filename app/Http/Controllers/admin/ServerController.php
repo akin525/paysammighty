@@ -17,9 +17,9 @@ class ServerController extends Controller
         return view('admin/server', compact('server'));
     }
 
-    public function up($request)
+    public function up(Request $request)
     {
-        $server=server::where('id', $request)->first();
+        $server=server::where('id', $request->id)->first();
         if ($server->status==1)
         {
             $u="0";

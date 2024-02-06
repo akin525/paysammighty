@@ -72,9 +72,9 @@ public function air()
     return view('admin/air', compact("air"));
 }
 
-public function pair($request)
+public function pair(Request $request)
 {
-    $air = airtimecon::where('id', $request)->first();
+    $air = airtimecon::where('id', $request->id)->first();
     if ($air->status == 1){
         $na= '0';
     }elseif ($air->status == 0){

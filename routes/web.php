@@ -129,7 +129,7 @@ Route::get('admin/dashboard', [LoginController::class, 'admindashboard'])->name(
 
 
     Route::get('admin/server', [\App\Http\Controllers\admin\ServerController::class, 'server'])->name('admin/server');
-    Route::get('admin/up/{id', [\App\Http\Controllers\admin\ServerController::class, 'up'])->name('admin/up');
+    Route::get('admin/up/{id}', [\App\Http\Controllers\admin\ServerController::class, 'up'])->name('admin/up');
 
 
     Route::any('admin/findpurchase1', [TransactionController::class, 'findtransaction'])->name('admin/findpurchase1');
