@@ -19,9 +19,9 @@ public function index()
     return view('admin/product', compact('product'));
 }
 
-public function on($request)
+public function on(Request $request)
 {
-    $product = easy::where('id', $request)->first();
+    $product = easy::where('id', $request->id)->first();
 
     if ($product->status == "1") {
         $give = "0";
@@ -72,9 +72,9 @@ public function air()
     return view('admin/air', compact("air"));
 }
 
-public function pair(Request $request)
+public function pair($request)
 {
-    $air = airtimecon::where('id', $request->id)->first();
+    $air = airtimecon::where('id', $request)->first();
     if ($air->status == 1){
         $na= '0';
     }elseif ($air->status == 0){
