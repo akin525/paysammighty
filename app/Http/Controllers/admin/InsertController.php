@@ -7,14 +7,14 @@ use App\Models\Mcd;
 
 class InsertController extends Controller
 {
-    function getmcdproduct1($request)
+    function getmcdproduct($request)
     {
 
 
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://reseller.mcd.5starcompany.com.ng/api/v1/tv/'.$request,
+            CURLOPT_URL => 'https://reseller.mcd.5starcompany.com.ng/api/v1/data/'.$request,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -57,7 +57,7 @@ class InsertController extends Controller
             ]);
         }
     }
-    function getmcdproduct($request)
+    function getmcdproduct1($request)
     {
 
 
