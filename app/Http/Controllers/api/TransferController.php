@@ -97,40 +97,11 @@ class TransferController
 
             ksort($payloadData);
 
-// Convert the sorted payload back to a JSON string
             $payload = json_encode($payloadData);
 
-// Ensure the key is trimmed properly and matches the API's expectations
             $trimmedKey = trim(env('ENCRYPTION_KEY'));
 
-// Calculate the hash using HMAC-512
             $hash = hash_hmac('SHA512', $payload, $trimmedKey);
-
-            $url = 'https://api.paylony.com/api/v1/bank_transfer';
-
-            $headers = array(
-                'Content-Type: application/json',
-                'Authorization: Bearer ' . env('PAYLONY'),
-                'Signature:'.$hash
-            );
-
-            $data = array(
-                "account_name"=>$request->name,
-                "account_number"=>$request->number,
-                "amount"=>$request->amount,
-                "bank_code"=>$request->id,
-                "narration"=>$request->narration,
-                "reference"=>$request->refid,
-                "sender_name"=>$request->name,
-            );
-
-            $options = array(
-                'http' => array(
-                    'header' => implode("\r\n", $headers),
-                    'method' => 'POST',
-                    'content' => json_encode($data),
-                ),
-            );
 
 
 
