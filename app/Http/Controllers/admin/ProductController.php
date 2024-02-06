@@ -19,9 +19,9 @@ public function index()
     return view('admin/product', compact('product'));
 }
 
-public function on(Request $request)
+public function on($request)
 {
-    $product = easy::where('id', $request->id)->first();
+    $product = easy::where('id', $request)->first();
 
     if ($product->status == "1") {
         $give = "0";
