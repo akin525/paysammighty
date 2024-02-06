@@ -6,6 +6,7 @@ use App\Models\airtimecon;
 use App\Models\big;
 use App\Models\data;
 use App\Models\easy;
+use App\Models\Mcd;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -17,6 +18,12 @@ public function index()
     $product=easy::all();
 
     return view('admin/product', compact('product'));
+}
+public function index1()
+{
+    $product=Mcd::all();
+
+    return view('admin/product1', compact('product'));
 }
 
 public function on(Request $request)
@@ -33,6 +40,22 @@ public function on(Request $request)
     $msg= 'Product update successfully';
 
     return redirect('admin/product')->with('status', $msg);
+
+}
+public function on1(Request $request)
+{
+    $product = Mcd::where('id', $request->id)->first();
+
+    if ($product->status == "1") {
+        $give = "0";
+    } else {
+        $give = "1";
+    }
+    $product->status = $give;
+    $product->save();
+    $msg= 'Product update successfully';
+
+    return redirect('admin/product1')->with('status', $msg);
 
 }
 public function in(Request $request)
@@ -53,6 +76,26 @@ public function edit(Request $request)
         'name' => 'required',
     ]);
     $pro=easy::where('id', $request->id)->first();
+    $pro->plan=$request->name;
+    $pro->amount=$request->amount;
+    $pro->tamount=$request->tamount;
+    $pro->ramount=$request->ramount;
+    $pro->save();
+    return response()->json([
+        'status'=>'success',
+        'message'=>'Product update successfully',
+    ]);
+}
+public function edit1(Request $request)
+{
+    $request->validate([
+        'id' => 'required',
+        'amount' => 'required',
+        'tamount' => 'required',
+        'ramount' => 'required',
+        'name' => 'required',
+    ]);
+    $pro=Mcd::where('id', $request->id)->first();
     $pro->plan=$request->name;
     $pro->amount=$request->amount;
     $pro->tamount=$request->tamount;

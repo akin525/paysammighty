@@ -244,6 +244,7 @@
                     </a>
                     <ul aria-expanded="false">
                         <li><a href="{{route('admin/product')}}">Easy Product</a></li>
+                        <li><a href="{{route('admin/mcd')}}">MCD Product</a></li>
                     </ul>
                 </li>
                 <li><a  href="{{route('admin/deposits')}}">
