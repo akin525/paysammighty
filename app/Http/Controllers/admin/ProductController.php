@@ -7,6 +7,7 @@ use App\Models\big;
 use App\Models\data;
 use App\Models\easy;
 use App\Models\Mcd;
+use App\Models\McdServer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -128,6 +129,52 @@ public function pair(Request $request)
     $air->save();
 
     return redirect('admin/air')->with('status', 'Server update successfully');
+
+}
+
+function mcdserver()
+{
+    $server=McdServer::all();
+    return view('admin/mcdserver', compact('server'));
+
+}
+function createservermcd(Request $request)
+{
+    $request->validate([
+        'category'=>'required',
+        'server'=>'required',
+        'name'=>'required',
+    ]);
+
+
+    $insert=McdServer::create([
+        'name'=>$request->name,
+        'category'=>$request->category,
+        'server'=>$request->server,
+        ]);
+    $msg="Sever created Successful";
+    return response()->json([
+        'status'=>'success',
+        'message'=>$msg,
+        ]);
+
+}
+function changeservermcd(Request $request)
+{
+    $request->validate([
+        'id'=>'required',
+        'server'=>'required',
+    ]);
+    $insert=McdServer::where('id', $request->id)->first();
+
+    $insert->server=$request->server;
+    $insert->save();
+
+    $msg="Sever change to ".$request->server." Successful";
+    return response()->json([
+        'status'=>'success',
+        'message'=>$msg,
+        ]);
 
 }
 

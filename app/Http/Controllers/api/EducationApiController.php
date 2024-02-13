@@ -771,7 +771,7 @@ return $responseBody;
                     'username' => $user->username,
                     'product' => $bt->network,
                     'amount' => $bt->ramount,
-                    'samount' => $request->selling_amount,
+                    'samount' => $bt->ramount,
                     'server_response' => 'ur fault',
                     'status' => 0,
                     'number' => $request->number,
