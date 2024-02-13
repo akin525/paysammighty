@@ -757,15 +757,15 @@ return $responseBody;
                         'success' => 0
                     ], 200);
                 }
-                $gt = $user->wallet - $request->selling_amount;
+                $gt = $user->wallet - $bt->ramount;
 
                 $fbalance=$user->wallet;
 
                 $bon=$request->selling_amount- $bt->ramount  ;
 
-                $bonus=$user->bonus + $bon;
+//                $bonus=$user->bonus + $bon;
                 $user->wallet = $gt;
-                $user->bonus= $bonus;
+//                $user->bonus= $bonus;
                 $user->save();
                 $bo = bill_payment::create([
                     'username' => $user->username,
@@ -829,7 +829,10 @@ return $responseBody;
                     $mg='Neco Checker Successful Generated, kindly check your pin';
                     $admin="info@sammighty.com.ng";
                     Mail::to($admin)->send(new Emailtrans($bo));
-
+                    $update = bill_payment::where('id', $bo->id)->update([
+                        'server_response' => $response,
+                        'status' => 1,
+                    ]);
                     return response()->json([
                         'message' => $mg, 'success' => 1, 'pin'=>$token,'reference_no'=>$ref,
                         'user' => $user
