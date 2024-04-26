@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\AlltvController;
-use App\Http\Controllers\Api\EkectController;
+use App\Http\Controllers\api\EkectController;
 use App\Http\Controllers\api\ResellerdetailsController;
 use App\Http\Controllers\Api\VerifyController;
 use Illuminate\Http\Request;

@@ -1,7 +1,8 @@
 <?php
 
-namespace app\Http\Controllers\Api;
+namespace App\Http\Controllers\api;
 
+use App\Http\Controllers\Controller;
 use App\Models\bo;
 use App\Models\data;
 use App\Models\easy;
@@ -11,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Api\BillController;
 
-class EkectController
+class EkectController extends Controller
 {
     public function listelect()
     {
