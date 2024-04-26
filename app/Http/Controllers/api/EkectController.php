@@ -4,6 +4,7 @@ namespace app\Http\Controllers\Api;
 
 use App\Models\bo;
 use App\Models\data;
+use App\Models\easy;
 use App\Models\User;
 use App\Models\wallet;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class EkectController
     public function listelect()
     {
 
-        $tv = data::where('plan','elect')->get();
+        $tv = easy::where('network','elect')->get();
 
         return response()->json([
             'message' => "electricity fetch successfuly", 'data' => $tv

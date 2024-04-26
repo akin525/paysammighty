@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\api\AlltvController;
+use app\Http\Controllers\Api\EkectController;
 use App\Http\Controllers\api\ResellerdetailsController;
+use App\Http\Controllers\Api\VerifyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +40,13 @@ Route::post('jamb', [\App\Http\Controllers\api\EducationApiController::class, 'm
 Route::post('verifyid', [\App\Http\Controllers\api\EducationApiController::class, 'mcdverifyprofile'])->name('verifyid');
 Route::get('buydatacard', [\App\Http\Controllers\api\DatacardController::class, 'datacardpurchase'])->name('buydatacard');
 Route::post('transfer', [\App\Http\Controllers\api\TransferController::class, 'withdraw'])->name('transfer');
+    Route::get('listtv', [AlltvController::class, 'listtv']);
+    Route::get('listelect', [EkectController::class, 'listelect']);
+    Route::get('elect', [EkectController::class, 'electric']);
+    Route::post('velect', [EkectController::class, 'verifyelect']);
+    Route::post('payelect', [EkectController::class, 'payelect']);
+    Route::post('verifybill', [VerifyController::class, 'verifybill']);
+    Route::post('verifydeposit', [VerifyController::class, 'verifyfunding']);
 
 
 });
