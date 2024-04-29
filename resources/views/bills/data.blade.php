@@ -84,16 +84,16 @@
                                 <option value="glo-data">GLO</option>
                                 <option value="etisalat-data">9MOBILE</option>
                             @elseif($serve->name=='easyaccess')
-                                <option value="MTN">MTN</option>
-                                <option value="GLO">GLO</option>
+                                <option value="MTN">MTN-DG</option>
+                                <option value="GLO">GLO-DG</option>
                                 <option value="GLO_CG">GLO-CG</option>
-                                <option value="9MOBILE">9MOBILE</option>
-                                <option value="AIRTEL">AIRTEL</option>
+                                <option value="9MOBILE">9MOBILE-DG</option>
+                                <option value="9MOBILE_SME">9MOBILE-SME</option>
+                                <option value="AIRTEL">AIRTEL-DG</option>
                             @else
                                 <option value="MTN">MTN</option>
                                 <option value="GLO">GLO</option>
                                 <option value="9MOBILE">9MOBILE</option>
-                                <option value="9MOBILE_SME">9MOBILE-SME</option>
                             @endif
                             @if ($serve->name == 'mcd')
                                 <option value="airtel-data">AIRTEL</option>
