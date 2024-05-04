@@ -48,7 +48,7 @@ class GenerateAccountController
             "email" => $request['email'],
             "phone" => $request['phone'],
             "dob" => $request['dob'],
-            "provider" => "safeheaven"
+            "provider" => "safehaven"
         );
 
         $options = array(
