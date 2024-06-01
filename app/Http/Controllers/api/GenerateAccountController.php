@@ -48,7 +48,8 @@ class GenerateAccountController
             "email" => $request['email'],
             "phone" => $request['phone'],
             "dob" => $request['dob'],
-            "provider" => "safehaven"
+//            "provider" => "safehaven"
+            "provider" => "netbank"
         );
 
         $options = array(
