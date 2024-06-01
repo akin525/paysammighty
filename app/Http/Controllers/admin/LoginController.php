@@ -49,20 +49,17 @@ class LoginController
         $thisweek= Deposit::where([['created_at', 'LIKE', $date . '%']])->sum('amount');
 
 
-        $url1 = 'https://integration.mcd.5starcompany.com.ng/api/reseller/me';
+        $url1 = 'https://reseller.mcd.5starcompany.com.ng/api/v1/my-balance';
 
         $headers1 = array(
             'Content-Type: application/json',
-            'Authorization: MCDKEY_903sfjfi0ad833mk8537dhc03kbs120r0h9a',
+            'Authorization: Bearer U0z27c35Q2ABESJDp3GWO2DbKNBCp8hQTD9zS8TXC2ZSaN8VPHZFTqkntLwbtQVNJRWLabCJpqOUwCq7JVDtcAFHWV3NVNFEDzSaPBUE0YXiG9VdLdqezLmlXOlOgT3nBLEV4OZRDXpXs82Zn5Ofti',
         );
-        $data = array(
-            'service' => 'balance'
-        );
+
         $options = array(
             'http' => array(
                 'header' => implode("\r\n", $headers1),
                 'method' => 'POST',
-                'content' => json_encode($data),
             ),
         );
 
