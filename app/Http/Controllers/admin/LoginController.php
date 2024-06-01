@@ -59,7 +59,7 @@ class LoginController
         $options = array(
             'http' => array(
                 'header' => implode("\r\n", $headers1),
-                'method' => 'POST',
+                'method' => 'GET',
             ),
         );
 
