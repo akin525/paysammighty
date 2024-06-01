@@ -48,20 +48,37 @@ CallBackURL=$callbackUrl";
     public function mcdbill( $request)
     {
 
-        $url = 'https://integration.mcd.5starcompany.com.ng/api/reseller/pay';
+        if ($request->name == "m"){
+            $net="MTN";
+        };
+        if ($request->name == "g"){
+            $net="GLO";
+        };
+        if ($request->name == "a"){
+            $net="AIRTEL";
+        };
+        if ($request->name == "9"){
+            $net="9MOBILE";
+        };
+
+
+        $url = 'https://reseller.mcd.5starcompany.com.ng/api/v1/airtime';
 
         $headers = array(
             'Content-Type: application/json',
-            'Authorization: MCDKEY_903sfjfi0ad833mk8537dhc03kbs120r0h9a'
+            'Authorization: Bearer U0z27c35Q2ABESJDp3GWO2DbKNBCp8hQTD9zS8TXC2ZSaN8VPHZFTqkntLwbtQVNJRWLabCJpqOUwCq7JVDtcAFHWV3NVNFEDzSaPBUE0YXiG9VdLdqezLmlXOlOgT3nBLEV4OZRDXpXs82Zn5Ofti',
 
         );
 
         $data = array(
-            'service' => 'airtime',
-            'coded' => $request->name,
-            'phone' => $request->number,
+            'country' => 'NG',
+            'provider' => $net,
+            'number' => $request->number,
             'amount' => $request->amount,
-            'reseller_price' => $request->amount
+            'payment' => "wallet",
+            'promo' => "0",
+            'ref' => $request->refid,
+            'operatorID'=> '0'
         );
 
         $options = array(
