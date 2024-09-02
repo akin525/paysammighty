@@ -34,7 +34,7 @@ class BillController
         }
         $apikey = $request->header('apikey');
         $user = User::where('apikey',$apikey)->first();
-        $bt = easy::where("cat_id", $request->code)->first();
+        $bt = easy::where("code", $request->code)->first();
         if (!$bt){
             $mg = "incorrect product code";
             return response()->json([
