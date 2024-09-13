@@ -317,6 +317,15 @@
     </div>
 </div>
 @yield('script')
+<script>
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://support.sammighty.com.ng/app-assets/chat_js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'best-support-system-chat'));
+</script>
 <script src="{{asset('user/vendor/global/global.min.js')}}"></script>
 <script src="{{asset('user/vendor/bootstrap-select/dist/js/bootstrap-select.min.js')}}"></script>
 <script src="{{asset('user/vendor/chart-js/chart.bundle.min.js')}}"></script>
