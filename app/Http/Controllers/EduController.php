@@ -43,7 +43,6 @@ class EduController
     {
         $request->validate([
             'value' => 'required',
-            'refid' => 'required',
         ]);
 
         $user = User::where('username', Auth::user()->username)->first();
@@ -131,7 +130,7 @@ class EduController
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                     CURLOPT_CUSTOMREQUEST => "POST",
                     CURLOPT_POSTFIELDS => array(
-                        'no_of_pins' =>$request->value,
+                        'no_of_pins' =>1,
                     ),
                     CURLOPT_HTTPHEADER => array(
                         "AuthorizationToken: fed2524ba6cae4b443f65f60a30a8731", //replace this with your authorization_token
