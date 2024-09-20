@@ -149,7 +149,7 @@
                 var formData = $(this).serialize();
                 Swal.fire({
                     title: 'Are you sure?',
-                    text: 'Do you want to buy airtime of ₦' + document.getElementById("amount").value + ' on ' + document.getElementById("number").value +' ?',
+                    text: 'Do you want to buy Neco Pin ?',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
