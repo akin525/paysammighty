@@ -262,6 +262,13 @@
 
                     </a>
                 </li>
+                <li><a  href="{{route('neco')}}">
+                        <i class="fa fa-book"></i>
+                        <span class="nav-text">Neco Token</span>
+                        <span class="badge badge-xs style-1 badge-danger">HOT</span>
+
+                    </a>
+                </li>
                 <li><a  href="{{route('allbill')}}">
                         <i class="fa fa-money-check"></i>
                         <span class="nav-text">All Bills</span>

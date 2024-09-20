@@ -78,6 +78,8 @@ Route::middleware([
     Route::post('updatebvn', [\App\Http\Controllers\BankController::class, 'updatekbvn'])->name('updatebvn');
 
     Route::get('viewjamb/{id}', [\App\Http\Controllers\EduController::class, 'viewjamb'])->name('viewjamb');
+    Route::get('neco', [\App\Http\Controllers\EduController::class, 'viewnecob'])->name('neco');
+    Route::post('buyneco', [\App\Http\Controllers\EduController::class, 'necobuy'])->name('buyneco');
 });
 Route::get('/logout', function(){
     Auth::logout();
