@@ -41,9 +41,7 @@ class EduController
 
     function necobuy(Request $request)
     {
-        $request->validate([
-            'value' => 'required',
-        ]);
+
 
         $user = User::where('username', Auth::user()->username)->first();
         $bt = easy::where("network", "NECO")->first();
