@@ -55,7 +55,7 @@ class WithdrawController
     function verifyaccount($valuea, $valueb)
     {
 
-        $url = 'https://app.paylony.com/api/v1/account_name';
+        $url = 'https://api.paylony.com/api/v1/account_name';
 
         $headers = array(
             'Content-Type: application/json',
