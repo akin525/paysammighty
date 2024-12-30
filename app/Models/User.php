@@ -32,6 +32,7 @@ class User extends Authenticatable
         'email',
         'wallet',
         'password',
+        'is_two_factor_verified',
     ];
 
     /**

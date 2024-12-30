@@ -33,12 +33,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 });
+Route::get('2fa', [App\Http\Controllers\TwoFactorController::class, 'show'])->name('2fa');
+Route::post('2fa', [App\Http\Controllers\TwoFactorController::class, 'verify']);
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
+Route::group(['middleware' => ['auth', 'two.factor']], function () {
 
     Route::get('dashboard', [DashboardController::class, 'loaddashboard'])->name('dashboard');
     Route::get('wallet', [DashboardController::class, 'mywallet'])->name('wallet');
