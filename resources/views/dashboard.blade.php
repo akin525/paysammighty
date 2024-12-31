@@ -4,15 +4,14 @@
 @section('content')
     <style>
         /* styles.css */
-        /*body {*/
-        /*    font-family: 'Arial', sans-serif;*/
-        /*    margin: 0;*/
-        /*    padding: 0;*/
-        /*    background: linear-gradient(to bottom, #0d47a1, #1e88e5);*/
-        /*    color: white;*/
-        /*    text-align: center;*/
-        /*    overflow: hidden;*/
-        /*}*/
+        body {
+            font-family: 'Arial', sans-serif;
+
+            background: linear-gradient(to bottom, #0d47a1, #1e88e5);
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
 
         .banner {
             background: #d32f2f;
