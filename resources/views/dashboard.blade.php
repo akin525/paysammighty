@@ -5,91 +5,60 @@
     <style>
         /* styles.css */
         body {
-            font-family: 'Arial', sans-serif;
+            margin: 0;
+            font-family: 'Georgia', serif;
+            color: #fff;
+        }
 
-            background: linear-gradient(to bottom, #0d47a1, #1e88e5);
-            color: white;
+        .hero {
+            height: 100vh;
+            background: url('https://source.unsplash.com/1600x900/?christmas,holiday') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
             text-align: center;
             overflow: hidden;
         }
 
-        .banner {
-            background: #d32f2f;
-            padding: 50px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        .overlay {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            border-radius: 15px;
         }
 
-        .banner h1 {
-            font-size: 2.5em;
+        .overlay h1 {
+            font-size: 3em;
             margin: 0;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            letter-spacing: 2px;
         }
 
-        .banner p {
-            font-size: 1.2em;
-            margin: 10px 0 0;
-        }
-
-        .decorations {
-            position: relative;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .snowflake {
-            position: absolute;
-            top: -50px;
-            left: 50%;
-            width: 10px;
-            height: 10px;
-            background: white;
-            border-radius: 50%;
-            opacity: 0.8;
-            animation: snowfall 10s linear infinite;
-        }
-
-        .snowflake:nth-child(2) {
-            left: 30%;
-            width: 12px;
-            height: 12px;
-            animation-duration: 8s;
-        }
-
-        .snowflake:nth-child(3) {
-            left: 70%;
-            width: 8px;
-            height: 8px;
-            animation-duration: 12s;
-        }
-
-        @keyframes snowfall {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0.3;
-            }
+        .overlay p {
+            font-size: 1.5em;
+            margin-top: 15px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
         }
 
         footer {
-            background: #212121;
-            padding: 20px;
-            color: white;
+            background: #111;
+            color: #aaa;
+            text-align: center;
+            padding: 15px 0;
             font-size: 0.9em;
         }
 
-    </style>
-    <div class="banner">
-        <h1>Merry Christmas & Happy New Year!</h1>
-        <p>Wishing you joy, peace, and prosperity this holiday season.</p>
-    </div>
+        footer p {
+            margin: 0;
+        }
 
-    <div class="decorations">
-        <div class="snowflake"></div>
-        <div class="snowflake"></div>
-        <div class="snowflake"></div>
+
+    </style>
+    <div class="hero">
+        <div class="overlay">
+            <h1>Merry Christmas & Happy New Year!</h1>
+            <p>Celebrate the joy and warmth of the season with love and happiness.</p>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
