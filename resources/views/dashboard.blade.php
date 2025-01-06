@@ -2,64 +2,7 @@
 @section('tittle', 'dashboard')
 @section('page', 'Dashboard')
 @section('content')
-    <style>
-        /* styles.css */
-        body {
-            margin: 0;
-            font-family: 'Georgia', serif;
-            color: #fff;
-        }
 
-        .hero {
-            height: 100vh;
-            background: url('https://source.unsplash.com/1600x900/?christmas,holiday') no-repeat center center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .overlay {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 40px;
-            border-radius: 15px;
-        }
-
-        .overlay h1 {
-            font-size: 3em;
-            margin: 0;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-            letter-spacing: 2px;
-        }
-
-        .overlay p {
-            font-size: 1.5em;
-            margin-top: 15px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-        }
-
-        footer {
-            background: #111;
-            color: #aaa;
-            text-align: center;
-            padding: 15px 0;
-            font-size: 0.9em;
-        }
-
-        footer p {
-            margin: 0;
-        }
-
-
-    </style>
-    <div class="hero">
-        <div class="overlay">
-            <h1>Merry Christmas & Happy New Year!</h1>
-            <p>Celebrate the joy and warmth of the season with love and happiness.</p>
-        </div>
-    </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
