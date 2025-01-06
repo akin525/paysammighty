@@ -157,7 +157,7 @@ class LoginController
     {
         $transactions = Deposit::selectRaw('DATE(date) as date, SUM(amount) as total_amount')
             ->groupBy('date')
-            ->orderBy('date', 'ASC')->limit(10)
+            ->orderBy('date', 'ASC')
             ->get();
 
         $dates = $transactions->pluck('date')->toArray();
@@ -172,7 +172,7 @@ class LoginController
     {
         $transactions = bill_payment::selectRaw('DATE(timestamp) as date, SUM(amount) as total_amount')
             ->groupBy('date')
-            ->orderBy('date', 'ASC')->limit(10)
+            ->orderBy('date', 'ASC')
             ->get();
 
         $dates = $transactions->pluck('date')->toArray();
