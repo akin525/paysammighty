@@ -531,7 +531,7 @@ return $responseBody;
         );
         $data = array(
             "service"=>"jamb",
-            "provider"=>"de",
+            "provider"=>"utme-no-mock",
             "number"=>$request->profileid,
         );
 
