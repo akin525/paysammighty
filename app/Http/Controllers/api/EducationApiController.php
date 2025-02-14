@@ -461,7 +461,9 @@ class EducationApiController
                 ], 200);
 
             }else{
-
+                $update = bill_payment::where('id', $bo->id)->update([
+                    'server_response' => $response,
+                ]);
                 return response()->json([
                     'status' => 'fail',
                     'message' => 'error',
