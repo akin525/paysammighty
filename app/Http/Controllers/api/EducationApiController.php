@@ -464,7 +464,7 @@ class EducationApiController
 
                 return response()->json([
                     'status' => 'fail',
-                    'message' => $data,
+                    'message' => 'error',
                     'success' => 0
                 ]);
             }
