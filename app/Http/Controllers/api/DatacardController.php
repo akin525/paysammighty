@@ -7,6 +7,7 @@ namespace App\Http\Controllers\api;
 use App\Mail\Emailtrans;
 use App\Models\bill_payment;
 use App\Models\easy;
+use App\Models\Giftbills;
 use App\Models\profit;
 use App\Models\User;
 use App\Models\WalletTransaction;
@@ -16,6 +17,72 @@ use Illuminate\Support\Facades\Validator;
 
 class DatacardController
 {
+
+    public function list(Request $request)
+    {
+
+
+        $request->validate([
+            'pro'=>'required',
+            'provider'=>'required',
+        ]);
+        $auth = env('GIFTBILLS');
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://giftbills.com/api/v1/internet/plans/'.$request->provider,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_SSL_VERIFYPEER => 0,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: Bearer '.$auth,
+                'MerchantId: '.env('GIFTBILLS_MID'),
+                'Content-Type: application/json',
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+//        return $response;
+
+        $data1 = json_decode($response, true);
+        $data=$data1['data'];
+
+//return $success;
+        foreach ($data as $plan){
+            $success =$request->provider;
+            $planid = $plan["id"];
+            $price= $plan['amount'];
+            $catid=$plan['data_type_id'];
+            $validity =$plan['name'];
+            $code=$plan['data_type_id'];
+            $insert= Giftbills::create([
+                'plan_id' =>$planid,
+                'network' =>$success,
+                'plan' =>$validity,
+                'code' =>$code,
+                'amount'=>$price,
+                'tamount'=>$price,
+                'ramount'=>$price,
+                'cat_id'=>$planid,
+            ]);
+        }
+
+        return $data1;
+
+//    return view('pam', compact('product'));
+
+
+    }
+
 
 
     function datacardpurchase(Request $request)
@@ -181,4 +248,67 @@ class DatacardController
         }
         return $err_keeper;
     }
+
+
+    public function listtv(Request $request)
+    {
+
+
+        $auth = env('GIFTBILLS');
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://giftbills.com/api/v1/tv-packages/'.$request->provider,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_SSL_VERIFYPEER => 0,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: Bearer '.$auth,
+                'MerchantId: '.env('GIFTBILLS_MID'),
+                'Content-Type: application/json',
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        return $response;
+
+        $data1 = json_decode($response, true);
+        $data=$data1['data'];
+
+//return $success;
+        foreach ($data as $plan){
+            $success =$request->provider;
+            $planid = $plan["id"];
+            $price= $plan['amount'];
+            $catid=$plan['id'];
+            $validity =$plan['name'];
+            $code=$plan['id'];
+            $insert= Giftbills::create([
+                'plan_id' =>$planid,
+                'network' =>$success,
+                'plan' =>$validity,
+                'code' =>$code,
+                'amount'=>$price,
+                'tamount'=>$price,
+                'ramount'=>$price,
+                'cat_id'=>$planid,
+            ]);
+        }
+
+        return $data1;
+
+//    return view('pam', compact('product'));
+
+
+    }
+
 }

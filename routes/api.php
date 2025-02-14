@@ -22,7 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('paylony', [\App\Http\Controllers\api\WehookController::class, 'sendwebhook'])->name('paylony');
-
+Route::post('listdata', [\App\Http\Controllers\api\DatacardController::class, 'list'])->name('listdata');
+Route::post('listtv', [\App\Http\Controllers\api\DatacardController::class, 'listtv'])->name('listtv');
 Route::group(['middleware'=> 'apikey'], function () {
     Route::post('reseller', [\App\Http\Controllers\api\WehookController::class, 'sendwebhook1'])->name('reseller');
     Route::get('dashboard', [ResellerdetailsController::class, 'details']);
